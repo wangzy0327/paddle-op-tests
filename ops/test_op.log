@@ -1,0 +1,2780 @@
+Running test_abs_op.py...
+
+I1106 15:35:51.422816 461790 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1106 15:35:51.422874 461790 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1106 15:35:51.452811 461790 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1106 15:35:51.456669 461790 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1106 15:35:51.456795 461790 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1106 15:35:51.456825 461790 init.cc:240] CustomDevice: mlu, visible devices count: 1
+In file included from ./source/sycl_0.cc:1:
+In file included from /opt/llvm-mlu/build/bin/../include/sycl/sycl.hpp:11:
+In file included from /opt/llvm-mlu/build/bin/../include/sycl/CL/sycl.hpp:24:
+/opt/llvm-mlu/build/bin/../include/sycl/CL/sycl/builtins.hpp:1796:13: error: no matching function for call to '__invoke_vector_select'
+  __sycl_std::__invoke_vector_select<T>(n, out, in1, in2, in3);
+            ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/local/lib/python3.9/dist-packages/paddle/libs/cinn_sycl_runtime_source.h:357:19: note: in instantiation of function template specialization 'sycl::ext::mlu::vector_select<float>' requested here
+  sycl::ext::mlu::vector_select(true_val.data_, condition.data_, true_val.data_, false_val.data_, Num);
+                  ^
+./source/sycl_0.cc:14:55: note: in instantiation of function template specialization 'cinn_sycl_select<float, unsigned char, 1024UL>' requested here
+      cinn_sycl_store(var_0, IndexVec<1024>::Ramp(0), cinn_sycl_select((DataVec<float, 1024>::Load(x, 0) > 0.00000000f), DataVec<float, 1024>::Load(x, 0), -(DataVec<float, 1024>::Load(x, 0))));
+                                                      ^
+/opt/llvm-mlu/build/bin/../include/sycl/CL/sycl/detail/builtins.hpp:356:34: note: candidate function template not viable: no known conversion from 'uint8_t *' (aka 'unsigned char *') to 'float *' for 3rd argument
+inline __SYCL_ALWAYS_INLINE void __invoke_vector_select(size_t n, T *t1, T *t2, const T *t3, const T *t4) __NOEXC {
+                                 ^
+/opt/llvm-mlu/build/bin/../include/sycl/CL/sycl/detail/builtins.hpp:361:34: note: candidate function template not viable: no known conversion from 'uint8_t *' (aka 'unsigned char *') to 'float *' for 3rd argument
+inline __SYCL_ALWAYS_INLINE void __invoke_vector_select(size_t n, T *t1, T *t2, const T *t3, T t4) __NOEXC {
+                                 ^
+/opt/llvm-mlu/build/bin/../include/sycl/CL/sycl/detail/builtins.hpp:366:34: note: candidate function template not viable: no known conversion from 'uint8_t *' (aka 'unsigned char *') to 'float *' for 3rd argument
+inline __SYCL_ALWAYS_INLINE void __invoke_vector_select(size_t n, T *t1, T *t2, T t3, const T *t4) __NOEXC {
+                                 ^
+1 error generated.
+terminate called after throwing an instance of 'common::enforce::EnforceNotMet'
+  what():  (External) Following compile command failed:
+/opt/llvm-mlu/build/bin/clang++ -I /usr/local/lib/python3.9/dist-packages/paddle/libs -fsycl -fsycl-targets=mlisa-cambricon-bang -std=c++17 -fPIC -O3 -shared -ldl -fbracket-depth=1030 ./source/sycl_0.cc -o ./source/sycl_0.so
+  [Hint: Expected system(command.c_str()) == 0, but received system(command.c_str()):256 != 0:0.] (at ../paddle/cinn/backends/sycl/compiler_sycl.cc:81)
+
+
+
+--------------------------------------
+C++ Traceback (most recent call last):
+--------------------------------------
+0   cinn::hlir::framework::ParallelCompiler::RunTask()
+1   cinn::hlir::framework::ParallelCompiler::Task::CodegenAndJit()
+2   cinn::backends::syclrtc::Compiler::operator()(std::string const&, cinn::common::Target::Arch)
+
+----------------------
+Error Message Summary:
+----------------------
+FatalError: `Process abort signal` is detected by the operating system.
+  [TimeInfo: *** Aborted at 1730878557 (unix time) try "date -d @1730878557" if you are using GNU date ***]
+  [SignalInfo: *** SIGABRT (@0x70bde) received by PID 461790 (TID 0x7fc9b13f9700) from PID 461790 ***]
+
+
+Finished running test_abs_op.py.
+
+
+Running test_abs_op.py...
+
+I1107 15:33:39.641050 637302 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1107 15:33:39.641094 637302 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1107 15:33:39.667553 637302 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1107 15:33:39.670742 637302 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1107 15:33:39.670831 637302 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1107 15:33:39.670855 637302 init.cc:240] CustomDevice: mlu, visible devices count: 1
+In file included from ./source/sycl_0.cc:2:
+/usr/local/lib/python3.9/dist-packages/paddle/libs/cinn_sycl_runtime_source.h:194:5: error: no matching function for call to 'vector_neg'
+    sycl::ext::mlu::vector_neg(data_, data_, Num);
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~
+./source/sycl_0.cc:14:185: note: in instantiation of member function 'DataVec<int, 2048>::operator-' requested here
+      cinn_sycl_store(var_0, IndexVec<2048>::Ramp(0), cinn_sycl_select(DataVec<float, 2048>::ConvertFrom((DataVec<int32_t, 2048>::Load(x, 0) > 0)), DataVec<int32_t, 2048>::Load(x, 0), -(DataVec<int32_t, 2048>::Load(x, 0))));
+                                                                                                                                                                                        ^
+/opt/llvm-mlu/build/bin/../include/sycl/CL/sycl/builtins.hpp:1535:59: note: candidate template ignored: requirement 'detail::is_contained<int, sycl::detail::type_list<sycl::detail::type_list<float>, sycl::detail::type_list<sycl::vec<float, 1>, sycl::vec<float, 2>, sycl::vec<float, 3>, sycl::vec<float, 4>, sycl::vec<float, 8>, sycl::vec<float, 16>>>>::value' was not satisfied [with T = int]
+detail::enable_if_t<detail::is_genfloatf<T>::value, void> vector_neg(T* out, const T* in, size_t n) __NOEXC {
+                                                          ^
+In file included from ./source/sycl_0.cc:2:
+/usr/local/lib/python3.9/dist-packages/paddle/libs/cinn_sycl_runtime_source.h:376:3: error: no matching function for call to 'vector_select'
+  sycl::ext::mlu::vector_select(true_val.data_, condition.data_, true_val.data_, false_val.data_, Num);
+  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./source/sycl_0.cc:14:55: note: in instantiation of function template specialization 'cinn_sycl_select<int, float, 2048UL>' requested here
+      cinn_sycl_store(var_0, IndexVec<2048>::Ramp(0), cinn_sycl_select(DataVec<float, 2048>::ConvertFrom((DataVec<int32_t, 2048>::Load(x, 0) > 0)), DataVec<int32_t, 2048>::Load(x, 0), -(DataVec<int32_t, 2048>::Load(x, 0))));
+                                                      ^
+/opt/llvm-mlu/build/bin/../include/sycl/CL/sycl/builtins.hpp:1810:59: note: candidate template ignored: deduced conflicting types for parameter 'T' ('int' vs. 'float')
+detail::enable_if_t<detail::is_genfloatf<T>::value, void> vector_select(T* out, T* in1, const T* in2, const T* in3, size_t n) __NOEXC {
+                                                          ^
+/opt/llvm-mlu/build/bin/../include/sycl/CL/sycl/builtins.hpp:1815:59: note: candidate template ignored: deduced conflicting types for parameter 'T' ('int' vs. 'float')
+detail::enable_if_t<detail::is_genfloatf<T>::value, void> vector_select(T* out, T* in1, const T* in2, T in3, size_t n) __NOEXC {
+                                                          ^
+/opt/llvm-mlu/build/bin/../include/sycl/CL/sycl/builtins.hpp:1820:59: note: candidate template ignored: deduced conflicting types for parameter 'T' ('int' vs. 'float')
+detail::enable_if_t<detail::is_genfloatf<T>::value, void> vector_select(T* out, T* in1, T in2, const T* in3, size_t n) __NOEXC {
+                                                          ^
+2 errors generated.
+terminate called after throwing an instance of 'common::enforce::EnforceNotMet'
+  what():  (External) Following compile command failed:
+/opt/llvm-mlu/build/bin/clang++ -I /usr/local/lib/python3.9/dist-packages/paddle/libs -fsycl -fsycl-targets=mlisa-cambricon-bang -std=c++17 -fPIC -O3 -shared -ldl -fbracket-depth=1030 ./source/sycl_0.cc -o ./source/sycl_0.so
+  [Hint: Expected system(command.c_str()) == 0, but received system(command.c_str()):256 != 0:0.] (at ../paddle/cinn/backends/sycl/compiler_sycl.cc:81)
+
+
+
+Running test_abs_op.py...
+
+I1108 16:04:05.323638 761458 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1108 16:04:05.323707 761458 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1108 16:04:05.355911 761458 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1108 16:04:05.360250 761458 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1108 16:04:05.360390 761458 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1108 16:04:05.360427 761458 init.cc:240] CustomDevice: mlu, visible devices count: 1
+./source/sycl_0.cc:14:55: error: no matching function for call to 'cinn_sycl_select'
+      cinn_sycl_store(var_0, IndexVec<1024>::Ramp(0), cinn_sycl_select((DataVec<float, 1024>::Load(x, 0) > 0.00000000f), DataVec<float, 1024>::Load(x, 0), -(DataVec<float, 1024>::Load(x, 0))));
+                                                      ^~~~~~~~~~~~~~~~
+/usr/local/lib/python3.9/dist-packages/paddle/libs/cinn_sycl_runtime_source.h:350:10: note: candidate function template not viable: no known conversion from 'DataVec<uint8_t, 1024UL>' (aka 'DataVec<unsigned char, 1024UL>') to 'bool' for 1st argument
+inline T cinn_sycl_select(bool condition, T true_val, T false_val) {
+         ^
+/usr/local/lib/python3.9/dist-packages/paddle/libs/cinn_sycl_runtime_source.h:355:26: note: candidate template ignored: deduced conflicting types for parameter 'T' ('unsigned char' vs. 'float')
+inline DataVec<T, Num>&& cinn_sycl_select(const DataVec<T, Num> &condition, DataVec<T, Num> &&true_val,
+                         ^
+1 error generated.
+terminate called after throwing an instance of 'common::enforce::EnforceNotMet'
+  what():  (External) Following compile command failed:
+/opt/llvm-mlu/build/bin/clang++ -I /usr/local/lib/python3.9/dist-packages/paddle/libs -fsycl -fsycl-targets=mlisa-cambricon-bang -std=c++17 -fPIC -O3 -shared -ldl -fbracket-depth=1030 ./source/sycl_0.cc -o ./source/sycl_0.so
+  [Hint: Expected system(command.c_str()) == 0, but received system(command.c_str()):256 != 0:0.] (at ../paddle/cinn/backends/sycl/compiler_sycl.cc:81)
+
+
+
+--------------------------------------
+C++ Traceback (most recent call last):
+--------------------------------------
+0   cinn::hlir::framework::ParallelCompiler::RunTask()
+1   cinn::hlir::framework::ParallelCompiler::Task::CodegenAndJit()
+2   cinn::backends::syclrtc::Compiler::operator()(std::string const&, cinn::common::Target::Arch)
+
+----------------------
+Error Message Summary:
+----------------------
+FatalError: `Process abort signal` is detected by the operating system.
+  [TimeInfo: *** Aborted at 1731053051 (unix time) try "date -d @1731053051" if you are using GNU date ***]
+  [SignalInfo: *** SIGABRT (@0xb9e72) received by PID 761458 (TID 0x7fd54e8a0700) from PID 761458 ***]
+
+
+Finished running test_abs_op.py.
+
+
+
+
+
+Running test_abs_op.py...
+
+I1112 16:44:08.990613 867343 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1112 16:44:08.990657 867343 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1112 16:44:09.017728 867343 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1112 16:44:09.020998 867343 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1112 16:44:09.021087 867343 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1112 16:44:09.021111 867343 init.cc:240] CustomDevice: mlu, visible devices count: 1
+F
+======================================================================
+FAIL: test_check_results (op_test_helper.TestAbsOpShape.TestAbsOpShape0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/Paddle/test/cinn/ops/test_abs_op.py", line 107, in test_check_results
+    self.check_outputs_and_grads(all_equal=True)
+  File "/opt/Paddle/test/cinn/ops/op_test.py", line 158, in check_outputs_and_grads
+    self.check_results(
+  File "/opt/Paddle/test/cinn/ops/op_test.py", line 261, in check_results
+    self.assertEqual(
+AssertionError: dtype('float32') != <VarType.FP32: 5> : [CPU] The 0-th output dtype different, which expect shape is float32 but actual is paddle.float32.
+
+----------------------------------------------------------------------
+Ran 1 test in 9.393s
+
+FAILED (failures=1)
+Current Paddle device : mlu:0
+
+Running TestAbsOpShape.TestAbsOpShape0: {'x_shape': [1024], 'x_dtype': 'float32'}
+Tensor(shape=[1024], dtype=float32, place=Place(mlu:0), stop_gradient=True,
+       [61.69610977, 24.42175484, 12.45445251, ..., 20.76573181,
+        63.64213181, 3.80594015 ])
+Paddle Execution time: 0.000253 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002033 seconds
+[61.69611   24.421755  12.4544525 ... 20.765732  63.64213    3.8059402]
+Tensor(shape=[1024], dtype=float32, place=Place(mlu:0), stop_gradient=True,
+       [61.69610977, 24.42175484, 12.45445251, ..., 20.76573181,
+        63.64213181, 3.80594015 ])
+
+Finished running test_abs_op.py.
+
+Running test_abs_op.py...
+
+I1112 17:27:43.670120 875225 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1112 17:27:43.670166 875225 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1112 17:27:43.697141 875225 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1112 17:27:43.700336 875225 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1112 17:27:43.700426 875225 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1112 17:27:43.700450 875225 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 9.654s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 5.509s
+
+OK
+Current Paddle device : mlu:0
+
+Running TestAbsOpShape.TestAbsOpShape0: {'x_shape': [1024], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000273 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001998 seconds
+Current Paddle device : mlu:0
+
+Running TestAbsOpDtype.TestAbsOpDtype0: {'x_shape': [32, 64], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000064 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001961 seconds
+
+Finished running test_abs_op.py.
+
+
+
+Running test_acos_op.py...
+
+I1113 09:22:16.940143 877250 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1113 09:22:16.940210 877250 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1113 09:22:16.971722 877250 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1113 09:22:16.975669 877250 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1113 09:22:16.975792 877250 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1113 09:22:16.975822 877250 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 9.819s
+
+OK
+Current Paddle device : mlu:0
+
+Running TestAcosCase2.TestAcosCase20: {'x_shape': [1024], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Tensor(shape=[1024], dtype=float32, place=Place(mlu:0), stop_gradient=False,
+       [2.23567176, 1.32408357, 1.69566512, ..., 1.36161685, 2.26064610,
+        1.53272772])
+Paddle Execution time: 0.000618 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002542 seconds
+Tensor(shape=[1024], dtype=float32, place=Place(mlu:0), stop_gradient=False,
+       [2.23567200, 1.32408369, 1.69566512, ..., 1.36161685, 2.26064610,
+        1.53272772])
+
+Finished running test_acos_op.py.
+
+Running test_acosh_op.py...
+
+I1113 09:41:30.365288 881287 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1113 09:41:30.365352 881287 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1113 09:41:30.396224 881287 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1113 09:41:30.400023 881287 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1113 09:41:30.400143 881287 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1113 09:41:30.400173 881287 init.cc:240] CustomDevice: mlu, visible devices count: 1
+LLVM ERROR: Cannot select: 0x561a6895b9f0: f32 = extract_vector_elt 0x561a6895b988, Constant:i64<0>
+  0x561a6895b988: v128f32 = fadd contract 0x561a6895b920, 0x561a6893fc20
+    0x561a6895b920: v128f32 = fmul contract 0x561a68956e40, 0x561a6895b8b8
+      0x561a68956e40: v128f32 = BUILD_VECTOR 0x561a6893fef8, 0x561a6893fef8, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32
+        0x561a6893fef8: f32 = fmul contract 0x561a68940100, 0x561a68940100
+          0x561a68940100: f32 = fadd contract 0x561a6893fa80, ConstantFP:f32<-1.000000e+00>
+            0x561a6893fa80: f32 = bitcast 0x561a6893fbb8
+              0x561a6893fbb8: i32 = sub nsw 0x561a68956d70, 0x561a6893fcf0
+                0x561a68956d70: i32 = MLISAISD::SELECT 0x561a6893f608, 0x561a6893fd58, 0x561a68956070
+                  0x561a6893f608: i32 = setcc 0x561a68956070, Constant:i32<8388608>, setlt:ch
+
+
+                  0x561a6893fd58: i32 = bitcast 0x561a68955fa0
+
+                  0x561a68956070: i32,ch = CopyFromReg 0x561a689105d8, Register:i32 %2
+
+                0x561a6893fcf0: i32 = and 0x561a6893fc88, Constant:i32<-8388608>
+                  0x561a6893fc88: i32 = add nsw 0x561a68956d70, Constant:i32<-1059760811>
+
+
+                  0x561a6893fe90: i32 = Constant<-8388608>
+            0x561a68940168: f32 = ConstantFP<-1.000000e+00>
+          0x561a68940100: f32 = fadd contract 0x561a6893fa80, ConstantFP:f32<-1.000000e+00>
+            0x561a6893fa80: f32 = bitcast 0x561a6893fbb8
+              0x561a6893fbb8: i32 = sub nsw 0x561a68956d70, 0x561a6893fcf0
+                0x561a68956d70: i32 = MLISAISD::SELECT 0x561a6893f608, 0x561a6893fd58, 0x561a68956070
+                  0x561a6893f608: i32 = setcc 0x561a68956070, Constant:i32<8388608>, setlt:ch
+
+
+                  0x561a6893fd58: i32 = bitcast 0x561a68955fa0
+
+                  0x561a68956070: i32,ch = CopyFromReg 0x561a689105d8, Register:i32 %2
+
+                0x561a6893fcf0: i32 = and 0x561a6893fc88, Constant:i32<-8388608>
+                  0x561a6893fc88: i32 = add nsw 0x561a68956d70, Constant:i32<-1059760811>
+
+
+                  0x561a6893fe90: i32 = Constant<-8388608>
+            0x561a68940168: f32 = ConstantFP<-1.000000e+00>
+        0x561a6893fef8: f32 = fmul contract 0x561a68940100, 0x561a68940100
+          0x561a68940100: f32 = fadd contract 0x561a6893fa80, ConstantFP:f32<-1.000000e+00>
+            0x561a6893fa80: f32 = bitcast 0x561a6893fbb8
+              0x561a6893fbb8: i32 = sub nsw 0x561a68956d70, 0x561a6893fcf0
+                0x561a68956d70: i32 = MLISAISD::SELECT 0x561a6893f608, 0x561a6893fd58, 0x561a68956070
+                  0x561a6893f608: i32 = setcc 0x561a68956070, Constant:i32<8388608>, setlt:ch
+
+
+                  0x561a6893fd58: i32 = bitcast 0x561a68955fa0
+
+                  0x561a68956070: i32,ch = CopyFromReg 0x561a689105d8, Register:i32 %2
+
+                0x561a6893fcf0: i32 = and 0x561a6893fc88, Constant:i32<-8388608>
+                  0x561a6893fc88: i32 = add nsw 0x561a68956d70, Constant:i32<-1059760811>
+
+
+                  0x561a6893fe90: i32 = Constant<-8388608>
+            0x561a68940168: f32 = ConstantFP<-1.000000e+00>
+          0x561a68940100: f32 = fadd contract 0x561a6893fa80, ConstantFP:f32<-1.000000e+00>
+            0x561a6893fa80: f32 = bitcast 0x561a6893fbb8
+              0x561a6893fbb8: i32 = sub nsw 0x561a68956d70, 0x561a6893fcf0
+                0x561a68956d70: i32 = MLISAISD::SELECT 0x561a6893f608, 0x561a6893fd58, 0x561a68956070
+                  0x561a6893f608: i32 = setcc 0x561a68956070, Constant:i32<8388608>, setlt:ch
+
+
+                  0x561a6893fd58: i32 = bitcast 0x561a68955fa0
+
+                  0x561a68956070: i32,ch = CopyFromReg 0x561a689105d8, Register:i32 %2
+
+                0x561a6893fcf0: i32 = and 0x561a6893fc88, Constant:i32<-8388608>
+                  0x561a6893fc88: i32 = add nsw 0x561a68956d70, Constant:i32<-1059760811>
+
+
+                  0x561a6893fe90: i32 = Constant<-8388608>
+            0x561a68940168: f32 = ConstantFP<-1.000000e+00>
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+        0x561a6893fdc0: f32 = undef
+      0x561a6895b8b8: v128f32 = fadd contract 0x561a6895b850, 0x561a6893fae8
+        0x561a6895b850: v128f32 = fmul contract 0x561a68956e40, 0x561a68956ea8
+          0x561a68956e40: v128f32 = BUILD_VECTOR 0x561a6893fef8, 0x561a6893fef8, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32
+            0x561a6893fef8: f32 = fmul contract 0x561a68940100, 0x561a68940100
+              0x561a68940100: f32 = fadd contract 0x561a6893fa80, ConstantFP:f32<-1.000000e+00>
+                0x561a6893fa80: f32 = bitcast 0x561a6893fbb8
+                  0x561a6893fbb8: i32 = sub nsw 0x561a68956d70, 0x561a6893fcf0
+
+
+                0x561a68940168: f32 = ConstantFP<-1.000000e+00>
+              0x561a68940100: f32 = fadd contract 0x561a6893fa80, ConstantFP:f32<-1.000000e+00>
+                0x561a6893fa80: f32 = bitcast 0x561a6893fbb8
+                  0x561a6893fbb8: i32 = sub nsw 0x561a68956d70, 0x561a6893fcf0
+
+
+                0x561a68940168: f32 = ConstantFP<-1.000000e+00>
+            0x561a6893fef8: f32 = fmul contract 0x561a68940100, 0x561a68940100
+              0x561a68940100: f32 = fadd contract 0x561a6893fa80, ConstantFP:f32<-1.000000e+00>
+                0x561a6893fa80: f32 = bitcast 0x561a6893fbb8
+                  0x561a6893fbb8: i32 = sub nsw 0x561a68956d70, 0x561a6893fcf0
+
+
+                0x561a68940168: f32 = ConstantFP<-1.000000e+00>
+              0x561a68940100: f32 = fadd contract 0x561a6893fa80, ConstantFP:f32<-1.000000e+00>
+                0x561a6893fa80: f32 = bitcast 0x561a6893fbb8
+                  0x561a6893fbb8: i32 = sub nsw 0x561a68956d70, 0x561a6893fcf0
+
+
+                0x561a68940168: f32 = ConstantFP<-1.000000e+00>
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+          0x561a68956ea8: v128f32 = BUILD_VECTOR ConstantFP:f32<1.408461e-01>, 0x561a6893f878, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32
+            0x561a6893f330: f32 = ConstantFP<1.408461e-01>
+            0x561a6893f878: f32 = fadd contract 0x561a6893f8e0, ConstantFP:f32<-1.214863e-01>
+              0x561a6893f8e0: f32 = fmul contract 0x561a6893fef8, ConstantFP:f32<-1.301886e-01>
+                0x561a6893fef8: f32 = fmul contract 0x561a68940100, 0x561a68940100
+                  0x561a68940100: f32 = fadd contract 0x561a6893fa80, ConstantFP:f32<-1.000000e+00>
+
+
+                  0x561a68940100: f32 = fadd contract 0x561a6893fa80, ConstantFP:f32<-1.000000e+00>
+
+
+                0x561a6893fa18: f32 = ConstantFP<-1.301886e-01>
+              0x561a6893fb50: f32 = ConstantFP<-1.214863e-01>
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+            0x561a6893fdc0: f32 = undef
+        0x561a6893fae8: v128f32 = BUILD_VECTOR ConstantFP:f32<1.398061e-01>, ConstantFP:f32<-1.668424e-01>, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32
+          0x561a689562e0: f32 = ConstantFP<1.398061e-01>
+          0x561a68956348: f32 = ConstantFP<-1.668424e-01>
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+          0x561a6893fdc0: f32 = undef
+    0x561a6893fc20: v128f32 = BUILD_VECTOR ConstantFP:f32<2.001230e-01>, ConstantFP:f32<-2.499967e-01>, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32, undef:f32
+      0x561a689564e8: f32 = ConstantFP<2.001230e-01>
+      0x561a68956550: f32 = ConstantFP<-2.499967e-01>
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+      0x561a6893fdc0: f32 = undef
+  0x561a6893f948: i64 = Constant<0>
+In function: _ZTSZZ17fn_acosh_0_kernelENKUlRN2cl4sycl7handlerEE_clES2_E24space0_fn_acosh_0_kernel
+PLEASE submit a bug report to https://github.com/llvm/llvm-project/issues/ and include the crash backtrace.
+Stack dump:
+0.	Program arguments: /usr/local/neuware/lib/llvm-mm/bin/llc -filetype=asm --march=mlisa --mcpu=mtp_372 -o /tmp/sycl_0-a69edc.s -x ir /tmp/sycl_0-a611f3.bc
+1.	Running pass 'Function Pass Manager' on module '/tmp/sycl_0-a611f3.bc'.
+2.	Running pass 'MLISA DAG->DAG Pattern Instruction Selection' on function '@_ZTSZZ17fn_acosh_0_kernelENKUlRN2cl4sycl7handlerEE_clES2_E24space0_fn_acosh_0_kernel'
+ #0 0x00007f1c6a3adfa4 (/usr/local/neuware/lib/llvm-mm/bin/../lib/libLLVM-15.so+0xc79fa4)
+ #1 0x00007f1c6a3ab7e4 (/usr/local/neuware/lib/llvm-mm/bin/../lib/libLLVM-15.so+0xc777e4)
+ #2 0x00007f1c6938e090 (/lib/x86_64-linux-gnu/libc.so.6+0x43090)
+ #3 0x00007f1c6938e00b raise /build/glibc-LcI20x/glibc-2.31/signal/../sysdeps/unix/sysv/linux/raise.c:51:1
+ #4 0x00007f1c6936d859 abort /build/glibc-LcI20x/glibc-2.31/stdlib/abort.c:81:7
+ #5 0x00007f1c6a12fb53 (/usr/local/neuware/lib/llvm-mm/bin/../lib/libLLVM-15.so+0x9fbb53)
+ #6 0x00007f1c6ade3750 llvm::SelectionDAGISel::CannotYetSelect(llvm::SDNode*) (/usr/local/neuware/lib/llvm-mm/bin/../lib/libLLVM-15.so+0x16af750)
+ #7 0x00007f1c6ade8cea llvm::SelectionDAGISel::SelectCodeCommon(llvm::SDNode*, unsigned char const*, unsigned int) (/usr/local/neuware/lib/llvm-mm/bin/../lib/libLLVM-15.so+0x16b4cea)
+ #8 0x00007f1c6ade15d0 llvm::SelectionDAGISel::DoInstructionSelection() (/usr/local/neuware/lib/llvm-mm/bin/../lib/libLLVM-15.so+0x16ad5d0)
+ #9 0x00007f1c6aded189 llvm::SelectionDAGISel::CodeGenAndEmitDAG() (/usr/local/neuware/lib/llvm-mm/bin/../lib/libLLVM-15.so+0x16b9189)
+#10 0x00007f1c6adefe41 llvm::SelectionDAGISel::SelectAllBasicBlocks(llvm::Function const&) (/usr/local/neuware/lib/llvm-mm/bin/../lib/libLLVM-15.so+0x16bbe41)
+#11 0x00007f1c6adf2658 (/usr/local/neuware/lib/llvm-mm/bin/../lib/libLLVM-15.so+0x16be658)
+#12 0x00007f1c6c7a08bf (/usr/local/neuware/lib/llvm-mm/bin/../lib/libLLVM-15.so+0x306c8bf)
+#13 0x00007f1c6a8262b9 (/usr/local/neuware/lib/llvm-mm/bin/../lib/libLLVM-15.so+0x10f22b9)
+#14 0x00007f1c6a536300 llvm::FPPassManager::runOnFunction(llvm::Function&) (/usr/local/neuware/lib/llvm-mm/bin/../lib/libLLVM-15.so+0xe02300)
+#15 0x00007f1c6a536479 llvm::FPPassManager::runOnModule(llvm::Module&) (/usr/local/neuware/lib/llvm-mm/bin/../lib/libLLVM-15.so+0xe02479)
+#16 0x00007f1c6a537060 llvm::legacy::PassManagerImpl::run(llvm::Module&) (/usr/local/neuware/lib/llvm-mm/bin/../lib/libLLVM-15.so+0xe03060)
+#17 0x0000561a66f791db (/usr/local/neuware/lib/llvm-mm/bin/llc+0x181db)
+#18 0x0000561a66f70d2a main (/usr/local/neuware/lib/llvm-mm/bin/llc+0xfd2a)
+#19 0x00007f1c6936f083 __libc_start_main /build/glibc-LcI20x/glibc-2.31/csu/../csu/libc-start.c:342:3
+#20 0x0000561a66f714ee _start (/usr/local/neuware/lib/llvm-mm/bin/llc+0x104ee)
+clang-13: error: unable to execute command: Aborted (core dumped)
+clang-13: error: clang frontend command failed due to signal (use -v to see invocation)
+clang version 13.0.0 (https://github.com/zhourunyu/llvm-mlu.git ffb0071602b212ee96130f1734a3a627f8f5366c)
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /opt/llvm-mlu/build/bin
+clang-13: note: diagnostic msg: Error generating preprocessed source(s).
+terminate called after throwing an instance of 'common::enforce::EnforceNotMet'
+  what():  (External) Following compile command failed:
+/opt/llvm-mlu/build/bin/clang++ -I /usr/local/lib/python3.9/dist-packages/paddle/libs -fsycl -fsycl-targets=mlisa-cambricon-bang -std=c++17 -fPIC -O3 -shared -ldl -fbracket-depth=1030 ./source/sycl_0.cc -o ./source/sycl_0.so
+  [Hint: Expected system(command.c_str()) == 0, but received system(command.c_str()):65024 != 0:0.] (at ../paddle/cinn/backends/sycl/compiler_sycl.cc:81)
+
+
+
+--------------------------------------
+C++ Traceback (most recent call last):
+--------------------------------------
+0   cinn::hlir::framework::ParallelCompiler::RunTask()
+1   cinn::hlir::framework::ParallelCompiler::Task::CodegenAndJit()
+2   cinn::backends::syclrtc::Compiler::operator()(std::string const&, cinn::common::Target::Arch)
+
+----------------------
+Error Message Summary:
+----------------------
+FatalError: `Process abort signal` is detected by the operating system.
+  [TimeInfo: *** Aborted at 1731462098 (unix time) try "date -d @1731462098" if you are using GNU date ***]
+  [SignalInfo: *** SIGABRT (@0xd7287) received by PID 881287 (TID 0x7f696c0c4700) from PID 881287 ***]
+
+
+Finished running test_acosh_op.py.
+
+Running test_add_op.py...
+
+I1113 11:04:57.448051 898245 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1113 11:04:57.448097 898245 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1113 11:04:57.474223 898245 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1113 11:04:57.477375 898245 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1113 11:04:57.477466 898245 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1113 11:04:57.477489 898245 init.cc:240] CustomDevice: mlu, visible devices count: 1
+[2024-11-13 11:5:1] [CNNL] [Warning]: When calculating multiplication of complex_float data, it is required to use [cnnlGetOpTensorWorkspaceSize_v2] to apply for workspace.
+.
+----------------------------------------------------------------------
+Ran 1 test in 9.338s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 5.088s
+
+OK
+Current Paddle device : mlu:0
+
+Running TestAddAll.TestElementwiseAddOpCase0: {'x_shape': [1024], 'y_shape': [1024], 'dout_shape': [1024], 'axis': -1, 'x_dtype': 'float32', 'y_dtype': 'float32', 'dout_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Tensor(shape=[1024], dtype=float32, place=Place(mlu:0), stop_gradient=False,
+       [-1.96654558, 10.94178391, -0.66281235, ...,  6.66211557,
+        -7.86484528,  4.89311886])
+Paddle Execution time: 0.000346 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001688 seconds
+Tensor(shape=[1024], dtype=float32, place=Place(mlu:0), stop_gradient=False,
+       [-1.96654558, 10.94178391, -0.66281235, ...,  6.66211557,
+        -7.86484528,  4.89311886])
+Current Paddle device : mlu:0
+
+Running TestAddAllWithBroadcast.TestElementwiseAddOpCase0: {'x_shape': [1024], 'y_shape': [1], 'dout_shape': [1024], 'axis': -1, 'x_dtype': 'float32', 'y_dtype': 'float32', 'dout_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Tensor(shape=[1024], dtype=float32, place=Place(mlu:0), stop_gradient=False,
+       [-1.96654558,  6.64524078,  2.95762014, ...,  6.27963877,
+        -2.16114759,  4.58365917])
+Paddle Execution time: 0.000193 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001635 seconds
+Tensor(shape=[1024], dtype=float32, place=Place(mlu:0), stop_gradient=False,
+       [-1.96654558,  6.64524078,  2.95762014, ...,  6.27963877,
+        -2.16114759,  4.58365917])
+
+Finished running test_add_op.py.
+
+Running test_asin_op.py...
+
+I1113 11:30:15.140955 903258 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1113 11:30:15.141021 903258 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1113 11:30:15.172003 903258 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1113 11:30:15.175880 903258 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1113 11:30:15.176003 903258 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1113 11:30:15.176036 903258 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 10.431s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 6.265s
+
+OK
+Current Paddle device : mlu:0
+
+Running TestAsinOpShape.TestAsinOpShape0: {'x_shape': [1024], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Tensor(shape=[1024], dtype=float32, place=Place(mlu:0), stop_gradient=True,
+       [-0.66487545,  0.24671271, -0.12486877, ...,  0.20917946,
+        -0.68984979,  0.03806860])
+Paddle Execution time: 0.000522 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002602 seconds
+Tensor(shape=[1024], dtype=float32, place=Place(mlu:0), stop_gradient=False,
+       [-0.66487551,  0.24671271, -0.12486877, ...,  0.20917946,
+        -0.68984979,  0.03806860])
+Current Paddle device : mlu:0
+
+Running TestAsinOpDtype.TestAsinOpDtype0: {'x_shape': [32, 64], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Tensor(shape=[32, 64], dtype=float32, place=Place(mlu:0), stop_gradient=True,
+       [[-0.66487545,  0.24671271, -0.12486877, ...,  0.25250819,
+         -0.04382644, -0.65435761],
+        [-0.23759420, -1.10230970, -0.09685455, ..., -0.77149743,
+         -0.33593354,  0.32056576],
+        [-1.02231038, -1.09731722, -0.36142802, ..., -0.31641975,
+          0.28562886, -0.84442502],
+        ...,
+        [ 0.21487491,  0.42876571, -0.38072994, ..., -0.76077205,
+          0.53965372, -0.26554492],
+        [-0.44934461, -0.54264468,  0.83709925, ..., -0.16123256,
+         -0.06994884,  0.53843153],
+        [ 0.66912556, -0.79993939, -0.99301577, ...,  0.47636759,
+         -0.15063223,  0.46816832]])
+Paddle Execution time: 0.000558 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.003136 seconds
+Tensor(shape=[32, 64], dtype=float32, place=Place(mlu:0), stop_gradient=False,
+       [[-0.66487551,  0.24671271, -0.12486877, ...,  0.25250819,
+         -0.04382644, -0.65435767],
+        [-0.23759419, -1.10230970, -0.09685455, ..., -0.77149749,
+         -0.33593354,  0.32056576],
+        [-1.02231050, -1.09731722, -0.36142802, ..., -0.31641975,
+          0.28562883, -0.84442502],
+        ...,
+        [ 0.21487491,  0.42876574, -0.38072994, ..., -0.76077205,
+          0.53965372, -0.26554492],
+        [-0.44934461, -0.54264468,  0.83709925, ..., -0.16123256,
+         -0.06994884,  0.53843153],
+        [ 0.66912562, -0.79993945, -0.99301577, ...,  0.47636759,
+         -0.15063223,  0.46816832]])
+
+Finished running test_asin_op.py.
+
+Running test_atan_op.py...
+
+I1113 11:38:27.425791 906290 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1113 11:38:27.425834 906290 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1113 11:38:27.451956 906290 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1113 11:38:27.455067 906290 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1113 11:38:27.455161 906290 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1113 11:38:27.455184 906290 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 9.626s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 5.911s
+
+OK
+Current Paddle device : mlu:0
+
+Running TestAtanCase1.TestAtanCase10: {'x_shape': [512, 256], 'x_dtype': 'float32'}
+Tensor(shape=[512, 256], dtype=float32, place=Place(mlu:0), stop_gradient=False,
+       [[0.18923426, 0.55655861, 0.41260004, ..., 0.03814554, 0.51464558,
+         0.58253670],
+        [0.18125105, 0.67328644, 0.54964495, ..., 0.03868818, 0.60555077,
+         0.44448090],
+        [0.16767168, 0.06308794, 0.03221321, ..., 0.35778427, 0.38180161,
+         0.74666786],
+        ...,
+        [0.59213018, 0.42405176, 0.03582907, ..., 0.30462360, 0.35184574,
+         0.38769531],
+        [0.14123964, 0.49212217, 0.55503750, ..., 0.78349543, 0.53075647,
+         0.05865192],
+        [0.21831226, 0.07903528, 0.60659695, ..., 0.37984562, 0.43862772,
+         0.40084362]])
+Paddle Execution time: 0.000324 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.100323 seconds
+Tensor(shape=[512, 256], dtype=float32, place=Place(mlu:0), stop_gradient=False,
+       [[0.18922804, 0.55651754, 0.41260159, ..., 0.03814567, 0.51467812,
+         0.58258790],
+        [0.18125497, 0.67316049, 0.54946363, ..., 0.03868852, 0.60560083,
+         0.44448277],
+        [0.16767523, 0.06308806, 0.03221295, ..., 0.35778826, 0.38180810,
+         0.74651039],
+        ...,
+        [0.59199589, 0.42405722, 0.03582794, ..., 0.30462065, 0.35184827,
+         0.38769072],
+        [0.14123838, 0.49215049, 0.55496395, ..., 0.78345329, 0.53086770,
+         0.05865323],
+        [0.21830651, 0.07903528, 0.60666066, ..., 0.37984961, 0.43862852,
+         0.40084031]])
+Current Paddle device : mlu:0
+
+Running TestAtanCase2.TestAtanCase20: {'x_shape': [1024], 'x_dtype': 'float32'}
+Tensor(shape=[1024], dtype=float32, place=Place(mlu:0), stop_gradient=False,
+       [0.18923426, 0.55655861, 0.41260004, ..., 0.54326582, 0.17982244,
+        0.47863674])
+Paddle Execution time: 0.000083 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002530 seconds
+Tensor(shape=[1024], dtype=float32, place=Place(mlu:0), stop_gradient=False,
+       [0.18922804, 0.55651754, 0.41260159, ..., 0.54322994, 0.17982557,
+        0.47875521])
+
+Finished running test_atan_op.py.
+
+Running test_acosh_op.py...
+
+I1113 12:09:20.447583 913200 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1113 12:09:20.447647 913200 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1113 12:09:20.477207 913200 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1113 12:09:20.480891 913200 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1113 12:09:20.481019 913200 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1113 12:09:20.481050 913200 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 9.221s
+
+OK
+Current Paddle device : mlu:0
+
+Running TestAcoshCase2.TestAcoshCase20: {'x_shape': [1024], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Tensor(shape=[1024], dtype=float32, place=Place(mlu:0), stop_gradient=False,
+       [3.72602391, 4.83568954, 4.49740124, ..., 4.80682230, 3.67896700,
+        4.66079760])
+Paddle Execution time: 0.000521 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.011659 seconds
+Tensor(shape=[1024], dtype=float32, place=Place(mlu:0), stop_gradient=False,
+       [3.72602415, 4.83568954, 4.49740124, ..., 4.80682230, 3.67896700,
+        4.66079760])
+
+Finished running test_acosh_op.py.
+
+Running test_asinh_op.py...
+
+I1113 12:17:37.715031 914011 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1113 12:17:37.715095 914011 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1113 12:17:37.744501 914011 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1113 12:17:37.748215 914011 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1113 12:17:37.748342 914011 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1113 12:17:37.748373 914011 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 9.855s
+
+OK
+Current Paddle device : mlu:0
+
+Running TestAsinhCase2.TestAsinhCase20: {'x_shape': [1024], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Tensor(shape=[1024], dtype=float32, place=Place(mlu:0), stop_gradient=False,
+       [0.19036755, 0.58769035, 0.42483279, ..., 0.57210517, 0.18080266,
+        0.49816740])
+Paddle Execution time: 0.000465 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.012363 seconds
+Tensor(shape=[1024], dtype=float32, place=Place(mlu:0), stop_gradient=False,
+       [0.19036765, 0.58769035, 0.42483270, ..., 0.57210517, 0.18080272,
+        0.49816740])
+
+Finished running test_asinh_op.py.
+
+Running test_atanh_op.py...
+
+I1113 13:07:18.693702 915007 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1113 13:07:18.693743 915007 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1113 13:07:18.720599 915007 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1113 13:07:18.723815 915007 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1113 13:07:18.723906 915007 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1113 13:07:18.723928 915007 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 10.395s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 6.345s
+
+OK
+Current Paddle device : mlu:0
+
+Running TestAtanhCase1.TestAtanhCase10: {'x_shape': [512, 256], 'x_dtype': 'float32'}
+Tensor(shape=[512, 256], dtype=float32, place=Place(mlu:0), stop_gradient=False,
+       [[0.19391400, 0.72843796, 0.46941650, ..., 0.03818273, 0.64090687,
+         0.79082036],
+        [0.18536048, 1.09146249, 0.71270049, ..., 0.03872719, 0.85253370,
+         0.51814681],
+        [0.17090937, 0.06325613, 0.03223525, ..., 0.39292589, 0.42544878,
+         1.62328565],
+        ...,
+        [0.81520241, 0.48651713, 0.03585864, ..., 0.32542762, 0.38509554,
+         0.43363902],
+        [0.14315505, 0.59874177, 0.72493362, ..., 3.12127495, 0.67320347,
+         0.05878821],
+        [0.22559252, 0.07936648, 0.85555393, ..., 0.42274255, 0.50892371,
+         0.45229548]])
+Paddle Execution time: 0.003946 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.451475 seconds
+Tensor(shape=[512, 256], dtype=float32, place=Place(mlu:0), stop_gradient=False,
+       [[0.19391403, 0.72843790, 0.46941650, ..., 0.03818271, 0.64090687,
+         0.79082036],
+        [0.18536048, 1.09146249, 0.71270049, ..., 0.03872718, 0.85253370,
+         0.51814687],
+        [0.17090942, 0.06325608, 0.03223525, ..., 0.39292589, 0.42544872,
+         1.62328565],
+        ...,
+        [0.81520241, 0.48651707, 0.03585863, ..., 0.32542765, 0.38509554,
+         0.43363902],
+        [0.14315505, 0.59874171, 0.72493368, ..., 3.12127495, 0.67320347,
+         0.05878824],
+        [0.22559257, 0.07936650, 0.85555393, ..., 0.42274255, 0.50892371,
+         0.45229548]])
+Current Paddle device : mlu:0
+
+Running TestAtanhCase2.TestAtanhCase20: {'x_shape': [1024], 'x_dtype': 'float32'}
+Tensor(shape=[1024], dtype=float32, place=Place(mlu:0), stop_gradient=False,
+       [0.19391400, 0.72843796, 0.46941650, ..., 0.69915110, 0.18383257,
+        0.57501078])
+Paddle Execution time: 0.000953 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.012586 seconds
+Tensor(shape=[1024], dtype=float32, place=Place(mlu:0), stop_gradient=False,
+       [0.19391403, 0.72843790, 0.46941650, ..., 0.69915110, 0.18383259,
+        0.57501072])
+
+Finished running test_atanh_op.py.
+
+Running test_bitcast_convert_op.py...
+
+I1113 14:28:38.136457 923516 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1113 14:28:38.136502 923516 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1113 14:28:38.162566 923516 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1113 14:28:38.165710 923516 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1113 14:28:38.165802 923516 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1113 14:28:38.165825 923516 init.cc:240] CustomDevice: mlu, visible devices count: 1
+...
+----------------------------------------------------------------------
+Ran 3 tests in 20.750s
+
+OK
+Current Paddle device : mlu:0
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 3.680753 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.006651 seconds
+Current Paddle device : mlu:0
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000106 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.009121 seconds
+Current Paddle device : mlu:0
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000107 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.008712 seconds
+
+Finished running test_bitcast_convert_op.py.
+
+Running test_bitwise_op.py...
+
+I1113 14:53:21.937373 935966 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1113 14:53:21.937448 935966 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1113 14:53:21.967005 935966 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1113 14:53:21.970728 935966 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1113 14:53:21.970846 935966 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1113 14:53:21.970875 935966 init.cc:240] CustomDevice: mlu, visible devices count: 1
+....
+----------------------------------------------------------------------
+Ran 4 tests in 26.709s
+
+OK
+....
+----------------------------------------------------------------------
+Ran 4 tests in 22.972s
+
+OK
+........
+----------------------------------------------------------------------
+Ran 8 tests in 47.370s
+
+OK
+/usr/local/lib/python3.9/dist-packages/numpy/core/numeric.py:330: RuntimeWarning: invalid value encountered in cast
+  multiarray.copyto(a, fill_value, casting='unsafe')
+....
+----------------------------------------------------------------------
+Ran 4 tests in 22.029s
+
+OK
+/usr/local/lib/python3.9/dist-packages/numpy/core/numeric.py:330: RuntimeWarning: invalid value encountered in cast
+  multiarray.copyto(a, fill_value, casting='unsafe')
+....
+----------------------------------------------------------------------
+Ran 4 tests in 23.084s
+
+OK
+
+Running TestBitwiseOpShape.TestBitwiseOpCase0: {'x_shape': [1024], 'y_shape': [1024], 'dtype': 'int32', 'op_type': 'and'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000416 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.011241 seconds
+
+Running TestBitwiseOpShape.TestBitwiseOpCase1: {'x_shape': [1024], 'y_shape': [1024], 'dtype': 'int32', 'op_type': 'or'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000252 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.010687 seconds
+
+Running TestBitwiseOpShape.TestBitwiseOpCase2: {'x_shape': [1024], 'y_shape': [1024], 'dtype': 'int32', 'op_type': 'xor'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000105 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.010829 seconds
+
+Running TestBitwiseOpShape.TestBitwiseOpCase3: {'x_shape': [1024], 'y_shape': [1024], 'dtype': 'int32', 'op_type': 'not'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000167 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.010281 seconds
+
+Running TestBitwiseOpDtype.TestBitwiseOpCase0: {'x_shape': [32, 64], 'y_shape': [32, 64], 'dtype': 'int32', 'op_type': 'and'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000120 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.012654 seconds
+
+Running TestBitwiseOpDtype.TestBitwiseOpCase1: {'x_shape': [32, 64], 'y_shape': [32, 64], 'dtype': 'int32', 'op_type': 'or'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000108 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.012635 seconds
+
+Running TestBitwiseOpDtype.TestBitwiseOpCase2: {'x_shape': [32, 64], 'y_shape': [32, 64], 'dtype': 'int32', 'op_type': 'xor'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000107 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.012678 seconds
+
+Running TestBitwiseOpDtype.TestBitwiseOpCase3: {'x_shape': [32, 64], 'y_shape': [32, 64], 'dtype': 'int32', 'op_type': 'not'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000074 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.011855 seconds
+
+Running TestBitwiseOpBroadcast.TestBitwiseOpCase0: {'x_shape': [1024], 'y_shape': [1], 'dtype': 'int32', 'op_type': 'and'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000162 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.009992 seconds
+
+Running TestBitwiseOpBroadcast.TestBitwiseOpCase1: {'x_shape': [1024], 'y_shape': [1], 'dtype': 'int32', 'op_type': 'or'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000107 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.009728 seconds
+
+Running TestBitwiseOpBroadcast.TestBitwiseOpCase2: {'x_shape': [1024], 'y_shape': [1], 'dtype': 'int32', 'op_type': 'xor'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000113 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.011406 seconds
+
+Running TestBitwiseOpBroadcast.TestBitwiseOpCase3: {'x_shape': [1024], 'y_shape': [1], 'dtype': 'int32', 'op_type': 'not'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000103 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.009572 seconds
+
+Running TestBitwiseOpBroadcast.TestBitwiseOpCase4: {'x_shape': [512, 256], 'y_shape': [1, 1], 'dtype': 'int32', 'op_type': 'and'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000128 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.226634 seconds
+
+Running TestBitwiseOpBroadcast.TestBitwiseOpCase5: {'x_shape': [512, 256], 'y_shape': [1, 1], 'dtype': 'int32', 'op_type': 'or'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000161 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.226513 seconds
+
+Running TestBitwiseOpBroadcast.TestBitwiseOpCase6: {'x_shape': [512, 256], 'y_shape': [1, 1], 'dtype': 'int32', 'op_type': 'xor'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000159 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.227290 seconds
+
+Running TestBitwiseOpBroadcast.TestBitwiseOpCase7: {'x_shape': [512, 256], 'y_shape': [1, 1], 'dtype': 'int32', 'op_type': 'not'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000118 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.184958 seconds
+
+Running TestBitwiseWithINF.TestBitwiseOpCase0: {'x_shape': [16], 'y_shape': [16], 'with_inf': True, 'dtype': 'int32', 'op_type': 'and'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000142 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.009199 seconds
+
+Running TestBitwiseWithINF.TestBitwiseOpCase1: {'x_shape': [16], 'y_shape': [16], 'with_inf': True, 'dtype': 'int32', 'op_type': 'or'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000103 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.009965 seconds
+
+Running TestBitwiseWithINF.TestBitwiseOpCase2: {'x_shape': [16], 'y_shape': [16], 'with_inf': True, 'dtype': 'int32', 'op_type': 'xor'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000140 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.008510 seconds
+
+Running TestBitwiseWithINF.TestBitwiseOpCase3: {'x_shape': [16], 'y_shape': [16], 'with_inf': True, 'dtype': 'int32', 'op_type': 'not'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000074 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.008624 seconds
+
+Running TestBitwiseWithNAN.TestBitwiseOpCase0: {'x_shape': [16], 'y_shape': [16], 'with_nan': True, 'dtype': 'int32', 'op_type': 'and'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000115 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.008744 seconds
+
+Running TestBitwiseWithNAN.TestBitwiseOpCase1: {'x_shape': [16], 'y_shape': [16], 'with_nan': True, 'dtype': 'int32', 'op_type': 'or'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000105 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.008386 seconds
+
+Running TestBitwiseWithNAN.TestBitwiseOpCase2: {'x_shape': [16], 'y_shape': [16], 'with_nan': True, 'dtype': 'int32', 'op_type': 'xor'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000104 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.008900 seconds
+
+Running TestBitwiseWithNAN.TestBitwiseOpCase3: {'x_shape': [16], 'y_shape': [16], 'with_nan': True, 'dtype': 'int32', 'op_type': 'not'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000076 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.008840 seconds
+
+Finished running test_bitwise_op.py.
+
+Running test_broadcast_to_op.py...
+
+I1113 15:19:22.749652 944355 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1113 15:19:22.749718 944355 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1113 15:19:22.781409 944355 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1113 15:19:22.785281 944355 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1113 15:19:22.785415 944355 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1113 15:19:22.785450 944355 init.cc:240] CustomDevice: mlu, visible devices count: 1
+....
+----------------------------------------------------------------------
+Ran 4 tests in 29.234s
+
+OK
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000341 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.009745 seconds
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000080 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.010605 seconds
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000089 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.010716 seconds
+Current Paddle device : mlu:0
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000089 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.010133 seconds
+
+Finished running test_broadcast_to_op.py.
+
+Running test_ceil_op.py...
+
+I1113 15:51:03.249482 952790 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1113 15:51:03.249547 952790 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1113 15:51:03.280436 952790 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1113 15:51:03.284154 952790 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1113 15:51:03.284286 952790 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1113 15:51:03.284320 952790 init.cc:240] CustomDevice: mlu, visible devices count: 1
+F1113 15:51:13.400853 953034 sycl_module.cc:47] Check failed: so_handler_ != nullptr ERROR:./source/sycl_0.so: undefined symbol: _ZN2cl10__host_std11vector_ceilEmPfPKf
+*** Check failure stack trace: ***
+    @     0x7f220fc05063  google::LogMessage::Fail()
+    @     0x7f220fc074e5  google::LogMessage::SendToLog()
+    @     0x7f220fc04b41  google::LogMessage::Flush()
+    @     0x7f220fc0809f  google::LogMessageFatal::~LogMessageFatal()
+    @     0x7f220713ef43  cinn::runtime::sycl::SYCLModule::GetFunction()
+    @     0x7f220740c92b  cinn::hlir::framework::ParallelCompiler::Task::CodegenAndJit()
+    @     0x7f220740d5eb  cinn::hlir::framework::ParallelCompiler::RunTask()
+    @     0x7f22b2b0fdf4  (unknown)
+    @     0x7f22b6bf9609  start_thread
+    @     0x7f22b6d33353  clone
+    @              (nil)  (unknown)
+
+Finished running test_ceil_op.py.
+
+
+Running test_cbrt_op.py...
+
+I1114 12:19:03.444095 993627 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1114 12:19:03.444159 993627 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1114 12:19:03.474931 993627 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1114 12:19:03.478719 993627 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1114 12:19:03.478838 993627 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1114 12:19:03.478883 993627 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 10.408s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 5.797s
+
+OK
+
+Running TestCbrtOpShape.TestCbrtOpShape0: {'shape': [1024], 'dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 4.155149 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002069 seconds
+
+Running TestCbrtOpDtype.TestCbrtOpDtype0: {'shape': [80, 40, 5, 7], 'dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000223 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.003360 seconds
+
+Finished running test_cbrt_op.py.
+
+Running test_ceil_op.py...
+
+I1114 12:20:39.849388 995125 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1114 12:20:39.849431 995125 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1114 12:20:39.876405 995125 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1114 12:20:39.879640 995125 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1114 12:20:39.879729 995125 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1114 12:20:39.879752 995125 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 9.159s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 6.051s
+
+OK
+Current Paddle device : mlu:0
+
+Running TestCeilOpShape.TestCeilOpShape0: {'shape': [1024], 'dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000560 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001914 seconds
+Current Paddle device : mlu:0
+
+Running TestCeilOpDtype.TestCeilOpDtype0: {'shape': [80, 40, 5, 7], 'dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000448 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002036 seconds
+
+Finished running test_ceil_op.py.
+
+Running test_floor_op.py...
+
+I1114 12:21:49.176118 996248 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1114 12:21:49.176162 996248 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1114 12:21:49.202971 996248 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1114 12:21:49.206226 996248 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1114 12:21:49.206316 996248 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1114 12:21:49.206341 996248 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 10.095s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 5.876s
+
+OK
+Current Paddle device : mlu:0
+
+Running TestFloorOpShape.TestFloorOpShape0: {'x_shape': [1024], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000254 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001951 seconds
+Current Paddle device : mlu:0
+
+Running TestFloorOpDtype.TestFloorOpDtype0: {'x_shape': [32, 64], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000122 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001831 seconds
+
+Finished running test_floor_op.py.
+
+Running test_cos_op.py...
+
+I1114 13:59:52.381268 997792 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1114 13:59:52.381335 997792 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1114 13:59:52.413050 997792 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1114 13:59:52.416808 997792 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1114 13:59:52.416932 997792 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1114 13:59:52.416963 997792 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 10.317s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 5.605s
+
+OK
+Current Paddle device : mlu:0
+
+Running TestCosOpShape.TestCosOpShape0: {'x_shape': [1024], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000240 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.006270 seconds
+Current Paddle device : mlu:0
+
+Running TestCosOpDtype.TestCosOpDtype0: {'x_shape': [32, 64], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000075 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002998 seconds
+
+Finished running test_cos_op.py.
+
+Running test_cosh_op.py...
+
+I1114 14:20:51.895727 1005329 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1114 14:20:51.895774 1005329 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1114 14:20:51.922798 1005329 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1114 14:20:51.926152 1005329 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1114 14:20:51.926242 1005329 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1114 14:20:51.926267 1005329 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 9.189s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 5.735s
+
+OK
+Current Paddle device : mlu:0
+
+Running TestCoshOpShape.TestCoshOpShape0: {'x_shape': [1024], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000671 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002021 seconds
+Current Paddle device : mlu:0
+
+Running TestCoshOpDtype.TestCoshOpDtype0: {'x_shape': [32, 64], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000302 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001875 seconds
+
+Finished running test_cosh_op.py.
+
+Running test_pow_op.py...
+
+I1114 14:22:26.339206 1006344 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1114 14:22:26.339273 1006344 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1114 14:22:26.370311 1006344 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1114 14:22:26.374060 1006344 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1114 14:22:26.374193 1006344 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1114 14:22:26.374225 1006344 init.cc:240] CustomDevice: mlu, visible devices count: 1
+/usr/local/lib/python3.9/dist-packages/numpy/core/numeric.py:2358: RuntimeWarning: invalid value encountered in multiply
+  x = x * ones_like(cond)
+.
+----------------------------------------------------------------------
+Ran 1 test in 10.841s
+
+OK
+/usr/local/lib/python3.9/dist-packages/numpy/core/numeric.py:2358: RuntimeWarning: invalid value encountered in multiply
+  x = x * ones_like(cond)
+.
+----------------------------------------------------------------------
+Ran 1 test in 5.717s
+
+OK
+Current Paddle device : mlu:0
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000267 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002075 seconds
+Current Paddle device : mlu:0
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000092 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002003 seconds
+
+Finished running test_pow_op.py.
+
+Running test_erf_op.py...
+
+I1114 15:32:51.107514 1010044 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1114 15:32:51.107578 1010044 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1114 15:32:51.138656 1010044 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1114 15:32:51.142588 1010044 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1114 15:32:51.142725 1010044 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1114 15:32:51.142758 1010044 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 9.545s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 6.002s
+
+OK
+Current Paddle device : mlu:0
+
+Running TestErfOpShape.TestErfOpShape0: {'x_shape': [1024], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000564 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002107 seconds
+Current Paddle device : mlu:0
+
+Running TestErfOpDtype.TestErfOpDtype0: {'x_shape': [32, 64], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000421 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.003069 seconds
+
+Finished running test_erf_op.py.
+
+Running test_exp_op.py...
+
+I1114 15:33:08.452558 1010524 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1114 15:33:08.452603 1010524 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1114 15:33:08.479316 1010524 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1114 15:33:08.482473 1010524 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1114 15:33:08.482563 1010524 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1114 15:33:08.482585 1010524 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 9.531s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 5.538s
+
+OK
+Current Paddle device : mlu:0
+
+Running TestExpOpShape.TestUnaryOpCase0: {'x_shape': [1024], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000260 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001906 seconds
+Current Paddle device : mlu:0
+
+Running TestExpOpDtype.TestUnaryOpCase0: {'x_shape': [32, 64], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000076 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001866 seconds
+
+Finished running test_exp_op.py.
+
+Running test_is_finite_op.py...
+
+I1114 15:44:06.278402 1016064 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1114 15:44:06.278468 1016064 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1114 15:44:06.309063 1016064 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1114 15:44:06.312933 1016064 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1114 15:44:06.313066 1016064 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1114 15:44:06.313097 1016064 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 9.363s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 5.986s
+
+OK
+Current Paddle device : mlu:0
+
+Running TestIsFiniteOpShape.TestIsFiniteOpShape0: {'x_shape': [1024], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000876 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002319 seconds
+Current Paddle device : mlu:0
+
+Running TestIsFiniteOpDtype.TestIsFiniteOpDtype0: {'x_shape': [32, 64], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000398 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002833 seconds
+
+Finished running test_is_finite_op.py.
+
+Running test_is_inf_op.py...
+
+I1114 15:44:23.521402 1016443 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1114 15:44:23.521447 1016443 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1114 15:44:23.548158 1016443 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1114 15:44:23.551309 1016443 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1114 15:44:23.551399 1016443 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1114 15:44:23.551420 1016443 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 9.238s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 5.951s
+
+OK
+Current Paddle device : mlu:0
+
+Running TestIsInfOpShape.TestIsInfOpShape0: {'x_shape': [1024], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000564 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002056 seconds
+Current Paddle device : mlu:0
+
+Running TestIsInfOpDtype.TestIsInfOpDtype0: {'x_shape': [32, 64], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000399 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.003191 seconds
+
+Finished running test_is_inf_op.py.
+
+Running test_is_nan_op.py...
+
+I1114 15:44:40.467607 1016876 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1114 15:44:40.467653 1016876 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1114 15:44:40.494328 1016876 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1114 15:44:40.497478 1016876 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1114 15:44:40.497568 1016876 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1114 15:44:40.497604 1016876 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 9.792s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 5.498s
+
+OK
+Current Paddle device : mlu:0
+
+Running TestIsNanOpShape.TestIsNanOpShape0: {'x_shape': [1024], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000565 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002465 seconds
+Current Paddle device : mlu:0
+
+Running TestIsNanOpDtype.TestIsNanOpDtype0: {'x_shape': [32, 64], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000484 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.003003 seconds
+
+Finished running test_is_nan_op.py.
+
+Running test_isclose_op.py...
+
+I1114 15:49:46.020308 1019767 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1114 15:49:46.020350 1019767 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1114 15:49:46.040396 1019767 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1114 15:49:46.043030 1019767 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1114 15:49:46.043107 1019767 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1114 15:49:46.043128 1019767 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 9.653s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 5.465s
+
+OK
+....
+----------------------------------------------------------------------
+Ran 4 tests in 21.693s
+
+OK
+Current Paddle device : mlu:0
+
+TestIsCloseShape.TestIsCloseOpCase0: {'shape': [1024], 'dtype': 'float32', 'rtol': 1e-05, 'atol': 1e-08, 'equal_nan': False, 'nan_as_input': False}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000626 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002929 seconds
+Current Paddle device : mlu:0
+
+TestIsCloseDtype.TestIsCloseOpCase0: {'shape': [1024], 'dtype': 'float32', 'rtol': 1e-05, 'atol': 1e-08, 'equal_nan': False, 'nan_as_input': False}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000452 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002616 seconds
+Current Paddle device : mlu:0
+
+TestIsCloseAttr.TestIsCloseOpCase0: {'shape': [1024], 'dtype': 'float32', 'rtol': 0.001, 'atol': 0.001, 'equal_nan': False, 'nan_as_input': False}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000495 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002611 seconds
+Current Paddle device : mlu:0
+
+TestIsCloseAttr.TestIsCloseOpCase1: {'shape': [1024], 'dtype': 'float32', 'rtol': 1e-05, 'atol': 1e-05, 'equal_nan': False, 'nan_as_input': False}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000686 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002585 seconds
+Current Paddle device : mlu:0
+
+TestIsCloseAttr.TestIsCloseOpCase2: {'shape': [1024], 'dtype': 'float32', 'rtol': 1e-08, 'atol': 1e-08, 'equal_nan': False, 'nan_as_input': False}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000574 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002587 seconds
+Current Paddle device : mlu:0
+
+TestIsCloseAttr.TestIsCloseOpCase3: {'shape': [1024], 'dtype': 'float32', 'rtol': 1e-05, 'atol': 1e-08, 'equal_nan': True, 'nan_as_input': False}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000595 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002806 seconds
+
+Finished running test_isclose_op.py.
+
+Running test_left_shift_op.py...
+
+I1114 15:54:55.916436 1022613 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1114 15:54:55.916491 1022613 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1114 15:54:55.943755 1022613 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1114 15:54:55.946878 1022613 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1114 15:54:55.946971 1022613 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1114 15:54:55.946996 1022613 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 9.657s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 6.235s
+
+OK
+Current Paddle device : mlu:0
+
+Running TestLeftShiftAll.TestLeftShiftOpCase0: {'x_shape': [1024], 'y_shape': [1024], 'x_dtype': 'int32', 'y_dtype': 'int32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 3.736614 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002296 seconds
+Current Paddle device : mlu:0
+
+Running TestLeftShiftAllWithBroadcast.TestLeftShiftOpCase0: {'x_shape': [1024], 'y_shape': [1], 'x_dtype': 'int32', 'y_dtype': 'int32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000085 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002257 seconds
+
+Finished running test_left_shift_op.py.
+
+Running test_divide_op.py...
+
+I1114 17:15:38.330112 1054354 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1114 17:15:38.330156 1054354 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1114 17:15:38.357189 1054354 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1114 17:15:38.360489 1054354 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1114 17:15:38.360581 1054354 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1114 17:15:38.360606 1054354 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 10.279s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 5.389s
+
+OK
+..
+----------------------------------------------------------------------
+Ran 2 tests in 11.905s
+
+OK
+Current Paddle device : mlu:0
+
+Running TestDivOpShapeTest.TestDivOpShapeTest0: {'x_shape': [1024], 'y_shape': [1024], 'x_dtype': 'float32', 'y_dtype': 'float32', 'x_low': -1, 'x_high': 1, 'y_low': -1, 'y_high': 1}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000243 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001756 seconds
+Current Paddle device : mlu:0
+
+Running TestDivOpDtypeTest.TestDivOpDtypeTest0: {'x_shape': [32], 'y_shape': [32], 'x_dtype': 'float32', 'y_dtype': 'float32', 'x_low': -1, 'x_high': 1, 'y_low': -1, 'y_high': 1}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000134 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001673 seconds
+Current Paddle device : mlu:0
+
+Running TestDivOpPolarityTest.TestDivOpPolarityTest0: {'x_shape': [32], 'y_shape': [32], 'x_dtype': 'float32', 'y_dtype': 'float32', 'x_low': -10, 'x_high': 10, 'y_low': -10, 'y_high': -1}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000137 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001622 seconds
+Current Paddle device : mlu:0
+
+Running TestDivOpPolarityTest.TestDivOpPolarityTest1: {'x_shape': [32], 'y_shape': [32], 'x_dtype': 'float32', 'y_dtype': 'float32', 'x_low': -10, 'x_high': 10, 'y_low': 1, 'y_high': 10}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000133 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001654 seconds
+
+Finished running test_divide_op.py.
+
+Running test_max_op.py...
+
+I1114 17:16:46.809300 1055098 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1114 17:16:46.809340 1055098 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1114 17:16:46.836119 1055098 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1114 17:16:46.839354 1055098 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1114 17:16:46.839445 1055098 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1114 17:16:46.839468 1055098 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 9.814s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 5.960s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 5.829s
+
+OK
+Current Paddle device : mlu:0
+
+Running TestMaxOpShapeTest.TestMaxOpShapeTest0: {'x_shape': [1024], 'y_shape': [1024], 'x_dtype': 'float32', 'y_dtype': 'float32', 'x_low': 1, 'x_high': 100, 'y_low': 1, 'y_high': 100}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000262 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002185 seconds
+Current Paddle device : mlu:0
+
+Running TestMaxOpDtypeTest.TestMaxOpDtypeTest0: {'x_shape': [32, 64], 'y_shape': [32, 64], 'x_dtype': 'float32', 'y_dtype': 'float32', 'x_low': 1, 'x_high': 100, 'y_low': 1, 'y_high': 100}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000125 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001935 seconds
+Current Paddle device : mlu:0
+
+Running TestMaxOpPolarityTest.TestMaxOpPolarityTest0: {'x_shape': [32, 64], 'y_shape': [32, 64], 'x_dtype': 'float32', 'y_dtype': 'float32', 'x_low': -100, 'x_high': 100, 'y_low': -100, 'y_high': 100}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000146 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001874 seconds
+
+Finished running test_max_op.py.
+
+Running test_mod_op.py...
+
+I1115 09:31:31.658703 1079146 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1115 09:31:31.658744 1079146 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1115 09:31:31.685249 1079146 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1115 09:31:31.688474 1079146 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1115 09:31:31.688562 1079146 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1115 09:31:31.688584 1079146 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 9.065s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 5.572s
+
+OK
+..
+----------------------------------------------------------------------
+Ran 2 tests in 12.208s
+
+OK
+Current Paddle device : mlu:0
+
+Running TestModOpShapeTest.TestModOpShapeTest0: {'x_shape': [1024], 'y_shape': [1024], 'x_dtype': 'float32', 'y_dtype': 'float32', 'x_low': 1, 'x_high': 100, 'y_low': 1, 'y_high': 100}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000499 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002270 seconds
+Current Paddle device : mlu:0
+
+Running TestModOpDtypeTest.TestModOpDtypeTest0: {'x_shape': [32], 'y_shape': [32], 'x_dtype': 'float32', 'y_dtype': 'float32', 'x_low': 1, 'x_high': 100, 'y_low': 1, 'y_high': 100}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000436 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001994 seconds
+Current Paddle device : mlu:0
+
+Running TestModOpPolarityTest.TestModOpPolarityTest0: {'x_shape': [32], 'y_shape': [32], 'x_dtype': 'float32', 'y_dtype': 'float32', 'x_low': 1, 'x_high': 100, 'y_low': 1, 'y_high': 100}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000693 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001954 seconds
+Current Paddle device : mlu:0
+
+Running TestModOpPolarityTest.TestModOpPolarityTest1: {'x_shape': [32], 'y_shape': [32], 'x_dtype': 'float32', 'y_dtype': 'float32', 'x_low': 1, 'x_high': 100, 'y_low': 1, 'y_high': 100}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000625 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001825 seconds
+
+Finished running test_mod_op.py.
+
+Running test_multiply_op.py...
+
+I1115 09:48:10.068023 1087005 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1115 09:48:10.068068 1087005 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1115 09:48:10.094370 1087005 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1115 09:48:10.097594 1087005 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1115 09:48:10.097684 1087005 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1115 09:48:10.097708 1087005 init.cc:240] CustomDevice: mlu, visible devices count: 1
+[2024-11-15 9:48:14] [CNNL] [Warning]: When calculating multiplication of complex_float data, it is required to use [cnnlGetOpTensorWorkspaceSize_v2] to apply for workspace.
+.
+----------------------------------------------------------------------
+Ran 1 test in 9.513s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 5.349s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 5.793s
+
+OK
+Current Paddle device : mlu:0
+
+Running TestElementwiseMulOpShapeTest.TestElementwiseMulOpShapeTest0: {'x_shape': [1024], 'y_shape': [1024], 'axis': -1, 'x_dtype': 'float32', 'y_dtype': 'float32', 'x_low': -100, 'x_high': 100, 'y_low': -100, 'y_high': 100}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000324 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001717 seconds
+Current Paddle device : mlu:0
+
+Running TestElementwiseMulOpDtypeTest.TestElementwiseMulOpDtypeTest0: {'x_shape': [1024], 'y_shape': [1024], 'axis': 0, 'x_dtype': 'float32', 'y_dtype': 'float32', 'x_low': -100, 'x_high': 100, 'y_low': -100, 'y_high': 100}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000158 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001680 seconds
+Current Paddle device : mlu:0
+
+Running TestElementwiseMulOpPolarityTest.TestElementwiseMulOpPolarityTest0: {'x_shape': [1024], 'y_shape': [1024], 'axis': 0, 'x_dtype': 'float32', 'y_dtype': 'float32', 'x_low': -100, 'x_high': 100, 'y_low': -100, 'y_high': 100}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000165 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001784 seconds
+
+Finished running test_multiply_op.py.
+
+Running test_negative_op.py...
+
+I1115 09:53:14.461306 1089439 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1115 09:53:14.461356 1089439 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1115 09:53:14.488991 1089439 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1115 09:53:14.492445 1089439 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1115 09:53:14.492533 1089439 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1115 09:53:14.492558 1089439 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 10.185s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 5.471s
+
+OK
+Current Paddle device : mlu:0
+
+Running TestNegativeOpShape.TestNegativeOpShape0: {'x_shape': [1024], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000623 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001754 seconds
+Current Paddle device : mlu:0
+
+Running TestNegativeOpDtype.TestNegativeOpDtype0: {'x_shape': [32, 64], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000136 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001686 seconds
+
+Finished running test_negative_op.py.
+
+Running test_right_shift_op.py...
+
+I1115 10:27:59.503798 1092001 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1115 10:27:59.503857 1092001 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1115 10:27:59.533957 1092001 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1115 10:27:59.537788 1092001 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1115 10:27:59.537918 1092001 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1115 10:27:59.537950 1092001 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 9.698s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 5.808s
+
+OK
+Current Paddle device : mlu:0
+
+Running TestRightShiftAll.TestRightShiftOpCase0: {'x_shape': [1024], 'y_shape': [1024], 'x_dtype': 'int32', 'y_dtype': 'int32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 4.061596 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002588 seconds
+Current Paddle device : mlu:0
+
+Running TestRightShiftAllWithBroadcast.TestRightShiftOpCase0: {'x_shape': [1024], 'y_shape': [1], 'x_dtype': 'int32', 'y_dtype': 'int32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000118 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002289 seconds
+
+Finished running test_right_shift_op.py.
+
+Running test_round_op.py...
+
+I1115 10:41:14.091851 1094308 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1115 10:41:14.091889 1094308 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1115 10:41:14.111215 1094308 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1115 10:41:14.113601 1094308 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1115 10:41:14.113673 1094308 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1115 10:41:14.113693 1094308 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 9.343s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 5.682s
+
+OK
+Current Paddle device : mlu:0
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000338 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002066 seconds
+Current Paddle device : mlu:0
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000076 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001912 seconds
+
+Finished running test_round_op.py.
+
+Running test_rsqrt_op.py...
+
+I1115 10:45:04.717633 1096454 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1115 10:45:04.717694 1096454 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1115 10:45:04.747814 1096454 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1115 10:45:04.751685 1096454 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1115 10:45:04.751821 1096454 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1115 10:45:04.751853 1096454 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 10.524s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 5.428s
+
+OK
+Current Paddle device : mlu:0
+
+Running TestRsqrtOpShape.TestRsqrtOpShape0: {'x_shape': [1024], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000244 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001670 seconds
+Current Paddle device : mlu:0
+
+Running TestRsqrtOpDtype.TestRsqrtOpDtype0: {'x_shape': [32, 64], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000119 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001570 seconds
+
+Finished running test_rsqrt_op.py.
+
+Running test_select_op.py...
+
+I1115 10:50:27.108460 1099156 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1115 10:50:27.108505 1099156 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1115 10:50:27.134713 1099156 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1115 10:50:27.137895 1099156 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1115 10:50:27.137988 1099156 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1115 10:50:27.138011 1099156 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 9.090s
+
+OK
+..
+----------------------------------------------------------------------
+Ran 2 tests in 10.880s
+
+OK
+Current Paddle device : mlu:0
+
+Running TestSelectOpShape.TestSelectOpShape0: {'shape': [1024], 'dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.002532 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001995 seconds
+Current Paddle device : mlu:0
+
+Running TestSelectOpDtype.TestSelectOpDtype0: {'shape': [5], 'dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000085 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001911 seconds
+Current Paddle device : mlu:0
+
+Running TestSelectOpDtype.TestSelectOpDtype1: {'shape': [80, 40, 5, 7], 'dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000112 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002170 seconds
+
+Finished running test_select_op.py.
+
+Running test_sign_op.py...
+
+I1115 10:54:31.725608 1100815 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1115 10:54:31.725636 1100815 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1115 10:54:31.751956 1100815 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1115 10:54:31.755206 1100815 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1115 10:54:31.755293 1100815 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1115 10:54:31.755314 1100815 init.cc:240] CustomDevice: mlu, visible devices count: 1
+Current Paddle device : mlu:0
+
+Running TestSignOpShape.TestSignOpShape0: {'shape': [1024], 'dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000424 seconds
+CINN running at  Arch.CambriconMLU
+./source/sycl_0.cc:14:216: error: no matching function for call to 'cinn_sycl_select'
+      cinn_sycl_store(var_0, IndexVec<1024>::Ramp(0), cinn_sycl_select((DataVec<float, 1024>::Load(x, 0) < 0.00000000f), -1.00000000f, cinn_sycl_select((DataVec<float, 1024>::Load(x, 0) > 0.00000000f), 1.00000000f, cinn_sycl_select((DataVec<float, 1024>::Load(x, 0) == 0.00000000f), 0.00000000f, DataVec<float, 1024>::Load(x, 0)))));
+                                                                                                                                                                                                                       ^~~~~~~~~~~~~~~~
+/usr/local/lib/python3.9/dist-packages/paddle/libs/cinn_sycl_runtime_source.h:350:10: note: candidate template ignored: deduced conflicting types for parameter 'T' ('float' vs. 'DataVec<float, 1024>')
+inline T cinn_sycl_select(bool condition, T true_val, T false_val) {
+         ^
+/usr/local/lib/python3.9/dist-packages/paddle/libs/cinn_sycl_runtime_source.h:355:24: note: candidate template ignored: could not match 'DataVec<type-parameter-0-0, Num>' against 'float'
+inline DataVec<T, Num> cinn_sycl_select(const DataVec<bool, Num> &condition, const DataVec<T, Num> &true_val,
+                       ^
+1 error generated.
+terminate called after throwing an instance of 'common::enforce::EnforceNotMet'
+  what():  (External) Following compile command failed:
+/opt/llvm-mlu/build/bin/clang++ -I /usr/local/lib/python3.9/dist-packages/paddle/libs -fsycl -fsycl-targets=mlisa-cambricon-bang -std=c++17 -fPIC -O3 -shared -ldl -fbracket-depth=1030 ./source/sycl_0.cc -o ./source/sycl_0.so
+  [Hint: Expected system(command.c_str()) == 0, but received system(command.c_str()):256 != 0:0.] (at ../paddle/cinn/backends/sycl/compiler_sycl.cc:81)
+
+
+
+--------------------------------------
+C++ Traceback (most recent call last):
+--------------------------------------
+0   cinn::hlir::framework::ParallelCompiler::RunTask()
+1   cinn::hlir::framework::ParallelCompiler::Task::CodegenAndJit()
+2   cinn::backends::syclrtc::Compiler::operator()(std::string const&, cinn::common::Target::Arch)
+
+----------------------
+Error Message Summary:
+----------------------
+FatalError: `Process abort signal` is detected by the operating system.
+  [TimeInfo: *** Aborted at 1731639278 (unix time) try "date -d @1731639278" if you are using GNU date ***]
+  [SignalInfo: *** SIGABRT (@0x10cc0f) received by PID 1100815 (TID 0x7f1180c02700) from PID 1100815 ***]
+
+Aborted (core dumped)
+
+Finished running test_sign_op.py.
+
+Running test_sign_op.py...
+
+I1115 11:15:45.323573 1108953 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1115 11:15:45.323616 1108953 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1115 11:15:45.350234 1108953 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1115 11:15:45.353475 1108953 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1115 11:15:45.353569 1108953 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1115 11:15:45.353602 1108953 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 10.088s
+
+OK
+..
+----------------------------------------------------------------------
+Ran 2 tests in 11.001s
+
+OK
+Current Paddle device : mlu:0
+
+Running TestSignOpShape.TestSignOpShape0: {'shape': [1024], 'dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000609 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002296 seconds
+Current Paddle device : mlu:0
+
+Running TestSignOpDtype.TestSignOpDtype0: {'shape': [5], 'dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000474 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002313 seconds
+Current Paddle device : mlu:0
+
+Running TestSignOpDtype.TestSignOpDtype1: {'shape': [80, 40, 5, 7], 'dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.001079 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002563 seconds
+
+Finished running test_sign_op.py.
+
+Running test_sin_op.py...
+
+I1115 11:22:48.045590 1112921 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1115 11:22:48.045632 1112921 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1115 11:22:48.072450 1112921 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1115 11:22:48.075780 1112921 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1115 11:22:48.075875 1112921 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1115 11:22:48.075898 1112921 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 9.642s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 5.492s
+
+OK
+Current Paddle device : mlu:0
+
+Running TestSinOpShape.TestSinOpShape0: {'x_shape': [1024], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000236 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002234 seconds
+Current Paddle device : mlu:0
+
+Running TestSinOpDtype.TestSinOpDtype0: {'x_shape': [32, 64], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000140 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002010 seconds
+
+Finished running test_sin_op.py.
+
+Running test_sinh_op.py...
+
+I1115 11:23:05.126556 1113312 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1115 11:23:05.126614 1113312 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1115 11:23:05.156381 1113312 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1115 11:23:05.160189 1113312 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1115 11:23:05.160315 1113312 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1115 11:23:05.160343 1113312 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 9.341s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 5.208s
+
+OK
+Current Paddle device : mlu:0
+
+Running TestSinhOpShape.TestSinhOpShape0: {'x_shape': [1024], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000593 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002081 seconds
+Current Paddle device : mlu:0
+
+Running TestSinhOpDtype.TestSinhOpDtype0: {'x_shape': [32, 64], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000430 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001820 seconds
+
+Finished running test_sinh_op.py.
+
+Running test_tan_op.py...
+
+I1115 11:32:27.057459 1116959 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1115 11:32:27.057507 1116959 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1115 11:32:27.084949 1116959 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1115 11:32:27.088328 1116959 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1115 11:32:27.088415 1116959 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1115 11:32:27.088440 1116959 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 10.199s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 6.416s
+
+OK
+Current Paddle device : mlu:0
+
+Running TestTanOpShape.TestTanOpShape0: {'x_shape': [1024], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000739 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002385 seconds
+Current Paddle device : mlu:0
+
+Running TestTanOpDtype.TestTanOpDtype0: {'x_shape': [32, 64], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000466 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002084 seconds
+
+Finished running test_tan_op.py.
+
+Running test_tanh_op.py...
+
+I1115 11:32:45.652082 1117410 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1115 11:32:45.652139 1117410 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1115 11:32:45.682654 1117410 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1115 11:32:45.686445 1117410 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1115 11:32:45.686564 1117410 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1115 11:32:45.686595 1117410 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 9.587s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 5.636s
+
+OK
+
+Running TestTanhOpShape.TestTanhOpShape0: {'x_shape': [1024], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000286 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001941 seconds
+
+Running TestTanhOpDtype.TestTanhOpDtype0: {'x_shape': [32, 64], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000180 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001885 seconds
+
+Finished running test_tanh_op.py.
+
+Running test_trunc_op.py...
+
+I1115 11:36:33.182085 1119243 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1115 11:36:33.182125 1119243 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1115 11:36:33.208588 1119243 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1115 11:36:33.211803 1119243 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1115 11:36:33.211897 1119243 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1115 11:36:33.211928 1119243 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 9.151s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 5.680s
+
+OK
+
+Running TestTruncOpShape.TestTruncOpShape0: {'x_shape': [1024], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000570 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001661 seconds
+
+Running TestTruncOpDtype.TestTruncOpDtype0: {'x_shape': [32, 64], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000403 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001812 seconds
+
+Finished running test_trunc_op.py.
+

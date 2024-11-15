@@ -1,0 +1,7 @@
+*.so
+.vscode
+.idea
+.project
+.cache/
+ops/__pycache__
+
