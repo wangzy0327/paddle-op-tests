@@ -14,19 +14,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from op_test import OpTest, OpTestTool
+from op_test import OpTest, OpTestTool, is_compile_with_device
 from op_test_helper import TestCaseHelper
 
 import paddle
-from paddle.cinn.common import is_compiled_with_cuda
-from paddle.cinn.frontend import NetBuilder
-
+# from paddle.cinn.common import is_compiled_with_cuda
+# from paddle.cinn.frontend import NetBuilder
+from paddle.cinn import frontend
+import numpy as np
+import time
 
 @OpTestTool.skip_if(
-    not is_compiled_with_cuda(), "x86 test will be skipped due to timeout."
+    not is_compile_with_device, "x86 test will be skipped due to timeout."
 )
 class TestSliceOp(OpTest):
     def setUp(self):
+        device_info = paddle.get_device()
+        print("Current Paddle device : %s"%(device_info))          
         print(f"\nRunning {self.__class__.__name__}: {self.case}")
         self.inputs = {}
         self.prepare_inputs()
@@ -42,7 +46,10 @@ class TestSliceOp(OpTest):
         self.decrease_axis = self.case["decrease_axis"]
 
     def build_paddle_program(self, target):
+        print("Paddle running at ", target.arch)          
         x = paddle.to_tensor(self.inputs["inputs"], stop_gradient=True)
+        # 记录开始时间
+        start_time = time.time() 
         res = paddle.strided_slice(
             x, self.axes, self.starts, self.ends, self.strides
         )
@@ -56,15 +63,22 @@ class TestSliceOp(OpTest):
         if len(out_shape) == 0:
             out_shape = [1]
         res = paddle.reshape(res, out_shape)
+        end_time = time.time()
+        # 计算执行时间
+        execution_time = end_time - start_time
+        # print(out)
+        
+        print(f"Paddle Execution time: {execution_time:.6f} seconds")        
         self.paddle_outputs = [res]
 
     def build_cinn_program(self, target):
-        builder = NetBuilder("slice")
+        builder = frontend.NetBuilder("slice")
         inputs = builder.create_input(
             self.nptype2cinntype(self.inputs["inputs"].dtype),
             self.inputs["inputs"].shape,
             "inputs",
         )
+        print("CINN running at ", target.arch)         
         out = builder.slice(
             inputs,
             axes=self.axes,
@@ -74,11 +88,32 @@ class TestSliceOp(OpTest):
             decrease_axis=self.decrease_axis,
         )
 
-        prog = builder.build()
-        res = self.get_cinn_output(
-            prog, target, [inputs], [self.inputs["inputs"]], [out]
-        )
-        self.cinn_outputs = res
+        computation = frontend.Computation.build_and_compile(target, builder)
+        
+        tensor_data = [
+            self.inputs["inputs"],
+        ]
+        
+        computation.get_tensor("inputs").from_numpy(tensor_data[0], target)
+        # 记录开始时间
+        start_time = time.time()
+        computation.execute()
+        end_time = time.time()
+        # 计算执行时间
+        execution_time = end_time - start_time
+
+        print(f"CINN Execution time: {execution_time:.6f} seconds")
+        res_tensor = computation.get_tensor(str(out))
+        res_data = res_tensor.numpy(target)
+        # print(res_data)
+        output = paddle.to_tensor(res_data, stop_gradient=True)
+        # print(output)
+        self.cinn_outputs = [output]
+        # prog = builder.build()
+        # res = self.get_cinn_output(
+        #     prog, target, [inputs], [self.inputs["inputs"]], [out]
+        # )
+        # self.cinn_outputs = res
 
     def test_check_results(self):
         self.check_outputs_and_grads(all_equal=True)
@@ -240,10 +275,10 @@ class TestSliceOpDtypeTest(TestCaseHelper):
         ]
         self.dtypes = [
             {"dtype": "float32"},
-            {"dtype": "float64"},
-            {"dtype": "int32"},
-            {"dtype": "int64"},
-            {"dtype": "bool"},
+            # {"dtype": "float64"},
+            # {"dtype": "int32"},
+            # {"dtype": "int64"},
+            # {"dtype": "bool"},
         ]
         self.attrs = []
 

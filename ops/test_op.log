@@ -2925,38 +2925,6 @@ CINN Execution time: 0.002220 seconds
 
 Finished running test_comparison_op.py.
 
-Running test_trunc_op.py...
-
-I1119 16:27:00.301239 1286543 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
-I1119 16:27:00.301288 1286543 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
-I1119 16:27:00.328783 1286543 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
-I1119 16:27:00.332366 1286543 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
-I1119 16:27:00.332458 1286543 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
-I1119 16:27:00.332484 1286543 init.cc:240] CustomDevice: mlu, visible devices count: 1
-.
-----------------------------------------------------------------------
-Ran 1 test in 9.131s
-
-OK
-.
-----------------------------------------------------------------------
-Ran 1 test in 5.398s
-
-OK
-
-Running TestTruncOpShape.TestTruncOpShape0: {'x_shape': [1024], 'x_dtype': 'float32'}
-Paddle running at  Arch.CambriconMLU
-Paddle Execution time: 0.000829 seconds
-CINN running at  Arch.CambriconMLU
-CINN Execution time: 0.002154 seconds
-
-Running TestTruncOpDtype.TestTruncOpDtype0: {'x_shape': [32, 64], 'x_dtype': 'float32'}
-Paddle running at  Arch.CambriconMLU
-Paddle Execution time: 0.000352 seconds
-CINN running at  Arch.CambriconMLU
-CINN Execution time: 0.001890 seconds
-
-Finished running test_trunc_op.py.
 
 Running test_dropout_infer_op.py...
 
@@ -3014,38 +2982,6 @@ CINN Execution time: 0.002180 seconds
 
 Finished running test_dropout_infer_op.py.
 
-Running test_trunc_op.py...
-
-I1119 17:42:57.232736 1312633 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
-I1119 17:42:57.232779 1312633 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
-I1119 17:42:57.260084 1312633 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
-I1119 17:42:57.263619 1312633 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
-I1119 17:42:57.263705 1312633 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
-I1119 17:42:57.263729 1312633 init.cc:240] CustomDevice: mlu, visible devices count: 1
-.
-----------------------------------------------------------------------
-Ran 1 test in 9.573s
-
-OK
-.
-----------------------------------------------------------------------
-Ran 1 test in 5.725s
-
-OK
-
-Running TestTruncOpShape.TestTruncOpShape0: {'x_shape': [1024], 'x_dtype': 'float32'}
-Paddle running at  Arch.CambriconMLU
-Paddle Execution time: 0.000679 seconds
-CINN running at  Arch.CambriconMLU
-CINN Execution time: 0.001955 seconds
-
-Running TestTruncOpDtype.TestTruncOpDtype0: {'x_shape': [32, 64], 'x_dtype': 'float32'}
-Paddle running at  Arch.CambriconMLU
-Paddle Execution time: 0.000418 seconds
-CINN running at  Arch.CambriconMLU
-CINN Execution time: 0.001878 seconds
-
-Finished running test_trunc_op.py.
 
 Running test_binary_elementwise_op.py...
 
@@ -3177,36 +3113,543 @@ CINN Execution time: 0.002596 seconds
 
 Finished running test_binary_elementwise_op.py.
 
-Running test_trunc_op.py...
 
-I1120 09:42:29.838953 1342596 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
-I1120 09:42:29.839007 1342596 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
-I1120 09:42:29.868593 1342596 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
-I1120 09:42:29.872156 1342596 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
-I1120 09:42:29.872263 1342596 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
-I1120 09:42:29.872290 1342596 init.cc:240] CustomDevice: mlu, visible devices count: 1
+Running test_expand_dims.py...
+
+I1120 10:23:45.570871 1345217 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1120 10:23:45.570943 1345217 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1120 10:23:45.602099 1345217 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1120 10:23:45.605948 1345217 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1120 10:23:45.606076 1345217 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1120 10:23:45.606106 1345217 init.cc:240] CustomDevice: mlu, visible devices count: 1
 .
 ----------------------------------------------------------------------
-Ran 1 test in 9.043s
+Ran 1 test in 9.679s
+
+OK
+Current Paddle device : mlu:0
+
+Running TestExpandDimsAll.TestExpandDimsOpCase0: {'x_shape': [1024], 'axes_shape': [0, 1], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000247 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001951 seconds
+
+Finished running test_expand_dims.py.
+
+Running test_gather_op.py...
+
+I1120 10:33:48.602932 1348880 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1120 10:33:48.602995 1348880 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1120 10:33:48.633901 1348880 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1120 10:33:48.637697 1348880 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1120 10:33:48.637820 1348880 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1120 10:33:48.637848 1348880 init.cc:240] CustomDevice: mlu, visible devices count: 1
+./source/sycl_0.cc:15:53: error: no matching function for call to 'Load'
+      cinn_sycl_store(var_3, IndexVec<64>::Ramp(0), DataVec<float, 64>::Load(x, DataVec<int32_t, 64>::Load(index, 0)));
+                                                    ^~~~~~~~~~~~~~~~~~~~~~~~
+/usr/local/lib/python3.9/dist-packages/paddle/libs/cinn_sycl_runtime_source.h:121:27: note: candidate function not viable: no known conversion from 'DataVec<int, 64>::self_type' (aka 'DataVec<int, 64UL>') to 'int32_t' (aka 'int') for 2nd argument
+  inline static self_type Load(const value_type* base, int32_t offset) {
+                          ^
+/usr/local/lib/python3.9/dist-packages/paddle/libs/cinn_sycl_runtime_source.h:138:27: note: candidate function not viable: no known conversion from 'DataVec<int, 64>::self_type' (aka 'DataVec<int, 64UL>') to 'const IndexVec<64UL>' for 2nd argument
+  inline static self_type Load(const value_type* addr, const IndexVec<Num>& offset) {
+                          ^
+/usr/local/lib/python3.9/dist-packages/paddle/libs/cinn_sycl_runtime_source.h:145:27: note: candidate function not viable: no known conversion from 'DataVec<int, 64>::self_type' (aka 'DataVec<int, 64UL>') to 'const IndexVecWithDenom<64UL>' for 2nd argument
+  inline static self_type Load(const value_type* addr, const IndexVecWithDenom<Num>& offset) {
+                          ^
+/usr/local/lib/python3.9/dist-packages/paddle/libs/cinn_sycl_runtime_source.h:152:27: note: candidate function not viable: no known conversion from 'DataVec<int, 64>::self_type' (aka 'DataVec<int, 64UL>') to 'const IndexVecWithMod<64UL>' for 2nd argument
+  inline static self_type Load(const value_type* addr, const IndexVecWithMod<Num>& offset) {
+                          ^
+1 error generated.
+terminate called after throwing an instance of 'common::enforce::EnforceNotMet'
+  what():  (External) Following compile command failed:
+/opt/llvm-mlu/build/bin/clang++ -I /usr/local/lib/python3.9/dist-packages/paddle/libs -fsycl -fsycl-targets=mlisa-cambricon-bang -std=c++17 -fPIC -O3 -shared -ldl -fbracket-depth=1030 ./source/sycl_0.cc -o ./source/sycl_0.so
+  [Hint: Expected system(command.c_str()) == 0, but received system(command.c_str()):256 != 0:0.] (at ../paddle/cinn/backends/sycl/compiler_sycl.cc:81)
+
+
+
+--------------------------------------
+C++ Traceback (most recent call last):
+--------------------------------------
+0   cinn::hlir::framework::ParallelCompiler::RunTask()
+1   cinn::hlir::framework::ParallelCompiler::Task::CodegenAndJit()
+2   cinn::backends::syclrtc::Compiler::operator()(std::string const&, cinn::common::Target::Arch)
+
+----------------------
+Error Message Summary:
+----------------------
+FatalError: `Process abort signal` is detected by the operating system.
+  [TimeInfo: *** Aborted at 1732070036 (unix time) try "date -d @1732070036" if you are using GNU date ***]
+  [SignalInfo: *** SIGABRT (@0x149510) received by PID 1348880 (TID 0x7f74fd1f9700) from PID 1348880 ***]
+
+
+Finished running test_gather_op.py.
+
+Running test_relu_op.py...
+
+I1120 10:55:17.284049 1356143 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1120 10:55:17.284111 1356143 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1120 10:55:17.314646 1356143 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1120 10:55:17.318375 1356143 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1120 10:55:17.318495 1356143 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1120 10:55:17.318524 1356143 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 9.997s
+
+OK
+...
+----------------------------------------------------------------------
+Ran 3 tests in 18.114s
+
+OK
+Current Paddle device : mlu:0
+
+Running TestReluOpShape.TestReluOpShape0: {'shape': [10], 'dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000318 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001811 seconds
+Current Paddle device : mlu:0
+
+Running TestReluOpDtype.TestReluOpDtype0: {'shape': [1], 'dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000115 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001778 seconds
+Current Paddle device : mlu:0
+
+Running TestReluOpDtype.TestReluOpDtype1: {'shape': [5], 'dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000168 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001747 seconds
+Current Paddle device : mlu:0
+
+Running TestReluOpDtype.TestReluOpDtype2: {'shape': [80, 40, 5, 7], 'dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000107 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001840 seconds
+
+Finished running test_relu_op.py.
+
+Running test_reshape_op.py...
+
+I1120 11:29:18.040210 1366010 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1120 11:29:18.040273 1366010 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1120 11:29:18.071506 1366010 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1120 11:29:18.075395 1366010 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1120 11:29:18.075524 1366010 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1120 11:29:18.075556 1366010 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 34.119s
 
 OK
 .
 ----------------------------------------------------------------------
-Ran 1 test in 5.857s
+Ran 1 test in 6.299s
 
 OK
+Current Paddle device : mlu:0
 
-Running TestTruncOpShape.TestTruncOpShape0: {'x_shape': [1024], 'x_dtype': 'float32'}
+Running TestReshapeOpShape.TestReshapeOpShape0: {'shape': [100], 'target_shape': [100], 'dtype': 'float32'}
 Paddle running at  Arch.CambriconMLU
-Paddle Execution time: 0.000559 seconds
+Paddle Execution time: 0.002225 seconds
 CINN running at  Arch.CambriconMLU
-CINN Execution time: 0.001997 seconds
+CINN Execution time: 0.001837 seconds
+Current Paddle device : mlu:0
 
-Running TestTruncOpDtype.TestTruncOpDtype0: {'x_shape': [32, 64], 'x_dtype': 'float32'}
+Running TestReshapeOpShape.TestReshapeOpShape1: {'shape': [100], 'target_shape': [10, 10], 'dtype': 'float32'}
 Paddle running at  Arch.CambriconMLU
-Paddle Execution time: 0.000304 seconds
+Paddle Execution time: 0.000290 seconds
 CINN running at  Arch.CambriconMLU
-CINN Execution time: 0.001945 seconds
+CINN Execution time: 0.001767 seconds
+Current Paddle device : mlu:0
 
-Finished running test_trunc_op.py.
+Running TestReshapeOpShape.TestReshapeOpShape2: {'shape': [125], 'target_shape': [5, 5, 5], 'dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000114 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001842 seconds
+Current Paddle device : mlu:0
+
+Running TestReshapeOpShape.TestReshapeOpShape3: {'shape': [256], 'target_shape': [4, 4, 4, 4], 'dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000116 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001553 seconds
+Current Paddle device : mlu:0
+
+Running TestReshapeOpShape.TestReshapeOpShape4: {'shape': [1024], 'target_shape': [8, 8, 4, 4], 'dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000099 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001426 seconds
+Current Paddle device : mlu:0
+
+Running TestReshapeOpDtype.TestReshapeOpDtype0: {'shape': [2, 3, 4], 'target_shape': [4, 6], 'dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000091 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001578 seconds
+
+Finished running test_reshape_op.py.
+
+Running test_reverse_op.py...
+
+I1120 11:35:49.676823 1369242 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1120 11:35:49.676884 1369242 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1120 11:35:49.707391 1369242 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1120 11:35:49.711046 1369242 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1120 11:35:49.711169 1369242 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1120 11:35:49.711198 1369242 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 12.032s
+
+OK
+Current Paddle device : mlu:0
+
+Running TestReverseOpShape.TestReverseOpShape0: {'shape': [10], 'dtype': 'float32', 'axes': [0], 'net_builder_api': 'reverse'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000533 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001864 seconds
+
+Finished running test_reverse_op.py.
+
+Running test_softmax_op.py...
+
+I1120 14:14:47.700531 1371229 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1120 14:14:47.700596 1371229 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1120 14:14:47.731087 1371229 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1120 14:14:47.734774 1371229 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1120 14:14:47.734894 1371229 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1120 14:14:47.734927 1371229 init.cc:240] CustomDevice: mlu, visible devices count: 1
+ssssssssssssss
+----------------------------------------------------------------------
+Ran 14 tests in 0.000s
+
+OK (skipped=14)
+
+Finished running test_softmax_op.py.
+
+Running test_fill_constant_op.py...
+
+I1120 15:14:28.130295 1378032 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1120 15:14:28.130362 1378032 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1120 15:14:28.161063 1378032 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1120 15:14:28.164821 1378032 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1120 15:14:28.164952 1378032 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1120 15:14:28.164983 1378032 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 10.831s
+
+OK
+....
+----------------------------------------------------------------------
+Ran 4 tests in 22.549s
+
+OK
+........
+----------------------------------------------------------------------
+Ran 8 tests in 47.751s
+
+OK
+Current Paddle device : mlu:0
+
+Running TestFillConstantOpShape.TestFillConstantOpShape0: {'shape': [10], 'dtype': 'float32', 'value': 123.456}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 4.015777 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002097 seconds
+Current Paddle device : mlu:0
+
+Running TestFillConstantOpDtype.TestFillConstantOpDtype0: {'shape': [10], 'dtype': 'float32', 'value': 123.456}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000397 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002025 seconds
+Current Paddle device : mlu:0
+
+Running TestFillConstantOpDtype.TestFillConstantOpDtype1: {'shape': [8, 5], 'dtype': 'float32', 'value': 123.456}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000240 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002047 seconds
+Current Paddle device : mlu:0
+
+Running TestFillConstantOpDtype.TestFillConstantOpDtype2: {'shape': [10, 3, 5], 'dtype': 'float32', 'value': 123.456}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000272 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001890 seconds
+Current Paddle device : mlu:0
+
+Running TestFillConstantOpDtype.TestFillConstantOpDtype3: {'shape': [1, 2, 4, 8], 'dtype': 'float32', 'value': 123.456}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000245 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001800 seconds
+Current Paddle device : mlu:0
+
+Running TestFillConstantOpStrValue.TestFillConstantOpStrValue0: {'shape': [10], 'dtype': 'float32', 'value': '1024'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000235 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002052 seconds
+Current Paddle device : mlu:0
+
+Running TestFillConstantOpStrValue.TestFillConstantOpStrValue1: {'shape': [10], 'dtype': 'float32', 'value': '0.12345678987654321'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000196 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001710 seconds
+Current Paddle device : mlu:0
+
+Running TestFillConstantOpStrValue.TestFillConstantOpStrValue2: {'shape': [8, 5], 'dtype': 'float32', 'value': '1024'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000206 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001981 seconds
+Current Paddle device : mlu:0
+
+Running TestFillConstantOpStrValue.TestFillConstantOpStrValue3: {'shape': [8, 5], 'dtype': 'float32', 'value': '0.12345678987654321'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000239 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001969 seconds
+Current Paddle device : mlu:0
+
+Running TestFillConstantOpStrValue.TestFillConstantOpStrValue4: {'shape': [10, 3, 5], 'dtype': 'float32', 'value': '1024'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000245 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001938 seconds
+Current Paddle device : mlu:0
+
+Running TestFillConstantOpStrValue.TestFillConstantOpStrValue5: {'shape': [10, 3, 5], 'dtype': 'float32', 'value': '0.12345678987654321'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000251 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.004150 seconds
+Current Paddle device : mlu:0
+
+Running TestFillConstantOpStrValue.TestFillConstantOpStrValue6: {'shape': [1, 2, 4, 8], 'dtype': 'float32', 'value': '1024'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000230 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.003039 seconds
+Current Paddle device : mlu:0
+
+Running TestFillConstantOpStrValue.TestFillConstantOpStrValue7: {'shape': [1, 2, 4, 8], 'dtype': 'float32', 'value': '0.12345678987654321'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000252 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002658 seconds
+
+Finished running test_fill_constant_op.py.
+
+Running test_slice_op.py...
+
+I1120 15:23:59.572817 1380967 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1120 15:23:59.572893 1380967 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1120 15:23:59.603771 1380967 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1120 15:23:59.607530 1380967 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1120 15:23:59.607650 1380967 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1120 15:23:59.607681 1380967 init.cc:240] CustomDevice: mlu, visible devices count: 1
+../source/sycl_1.cc:14:122: error: invalid operands to binary expression ('IndexVecWithDenom<25UL>' and 'int')
+      cinn_sycl_store(var_0, IndexVec<25>::Ramp(0), DataVec<float, 25>::Load(inputs, (14 + (((IndexVec<25>::Ramp(0) / 5) * 12) + (2 * (IndexVec<25>::Ramp(0) % 5))))));
+                                                                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^ ~~
+./source/sycl_1.cc:14:133: error: invalid operands to binary expression ('int' and 'IndexVecWithMod<25UL>')
+      cinn_sycl_store(var_0, IndexVec<25>::Ramp(0), DataVec<float, 25>::Load(inputs, (14 + (((IndexVec<25>::Ramp(0) / 5) * 12) + (2 * (IndexVec<25>::Ramp(0) % 5))))));
+                                                                                                                                  ~ ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2 errors generated.
+terminate called after throwing an instance of 'common::enforce::EnforceNotMet'
+  what():  (External) Following compile command failed:
+/opt/llvm-mlu/build/bin/clang++ -I /usr/local/lib/python3.9/dist-packages/paddle/libs -fsycl -fsycl-targets=mlisa-cambricon-bang -std=c++17 -fPIC -O3 -shared -ldl -fbracket-depth=1030 ./source/sycl_1.cc -o ./source/sycl_1.so
+  [Hint: Expected system(command.c_str()) == 0, but received system(command.c_str()):256 != 0:0.] (at ../paddle/cinn/backends/sycl/compiler_sycl.cc:81)
+
+
+
+--------------------------------------
+C++ Traceback (most recent call last):
+--------------------------------------
+0   cinn::hlir::framework::ParallelCompiler::RunTask()
+1   cinn::hlir::framework::ParallelCompiler::Task::CodegenAndJit()
+2   cinn::backends::syclrtc::Compiler::operator()(std::string const&, cinn::common::Target::Arch)
+
+----------------------
+Error Message Summary:
+----------------------
+FatalError: `Process abort signal` is detected by the operating system.
+  [TimeInfo: *** Aborted at 1732087452 (unix time) try "date -d @1732087452" if you are using GNU date ***]
+  [SignalInfo: *** SIGABRT (@0x151267) received by PID 1380967 (TID 0x7f6752fed700) from PID 1380967 ***]
+
+
+Finished running test_slice_op.py.
+
+Running test_squeeze_op.py...
+
+I1120 15:42:56.038338 1388360 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1120 15:42:56.038388 1388360 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1120 15:42:56.065269 1388360 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1120 15:42:56.068452 1388360 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1120 15:42:56.068542 1388360 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1120 15:42:56.068563 1388360 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 9.731s
+
+OK
+..
+----------------------------------------------------------------------
+Ran 2 tests in 11.970s
+
+OK
+Current Paddle device : mlu:0
+
+Running TestSqueezeOpShapeTest.TestSqueezeOpShapeTest0: {'shape': [64], 'dtype': 'float32', 'axes': []}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000264 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001929 seconds
+Current Paddle device : mlu:0
+
+Running TestSqueezeOpDtypeTest.TestSqueezeOpDtypeTest0: {'shape': [64, 1, 128], 'dtype': 'float32', 'axes': []}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000072 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001953 seconds
+Current Paddle device : mlu:0
+
+Running TestSqueezeOpDtypeTest.TestSqueezeOpDtypeTest1: {'shape': [64, 32, 1], 'dtype': 'float32', 'axes': []}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000090 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001844 seconds
+
+Finished running test_squeeze_op.py.
+
+Running test_subtract_op.py...
+
+I1120 15:47:21.798658 1390779 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1120 15:47:21.798723 1390779 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1120 15:47:21.829581 1390779 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1120 15:47:21.833338 1390779 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1120 15:47:21.833467 1390779 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1120 15:47:21.833499 1390779 init.cc:240] CustomDevice: mlu, visible devices count: 1
+[2024-11-20 15:47:26] [CNNL] [Warning]: When calculating multiplication of complex_float data, it is required to use [cnnlGetOpTensorWorkspaceSize_v2] to apply for workspace.
+.
+----------------------------------------------------------------------
+Ran 1 test in 10.744s
+
+OK
+..
+----------------------------------------------------------------------
+Ran 2 tests in 12.485s
+
+OK
+Current Paddle device : mlu:0
+
+Running TestSubOpShapeTest.TestSubOpShapeTest0: {'shape': [64], 'dtype': 'float32', 'broadcast': False}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000387 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002005 seconds
+Current Paddle device : mlu:0
+
+Running TestSubOpDtypeTest.TestSubOpDtypeTest0: {'shape': [64, 1, 128], 'dtype': 'float32', 'broadcast': False}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000138 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.002041 seconds
+Current Paddle device : mlu:0
+
+Running TestSubOpDtypeTest.TestSubOpDtypeTest1: {'shape': [64, 32, 1], 'dtype': 'float32', 'broadcast': False}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000180 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001904 seconds
+
+Finished running test_subtract_op.py.
+
+Running test_transpose_op.py...
+
+I1120 16:04:14.511323 1396344 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1120 16:04:14.511394 1396344 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1120 16:04:14.542167 1396344 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1120 16:04:14.545823 1396344 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1120 16:04:14.545946 1396344 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1120 16:04:14.545979 1396344 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 9.936s
+
+OK
+../source/sycl_2.cc:14:123: error: invalid operands to binary expression ('int' and 'IndexVecWithMod<1024UL>')
+      cinn_sycl_store(var_0, IndexVec<1024>::Ramp(0), DataVec<float, 1024>::Load(x, ((IndexVec<1024>::Ramp(0) / 64) + (16 * (IndexVec<1024>::Ramp(0) % 64)))));
+                                                                                                                       ~~ ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 error generated.
+terminate called after throwing an instance of 'common::enforce::EnforceNotMet'
+  what():  (External) Following compile command failed:
+/opt/llvm-mlu/build/bin/clang++ -I /usr/local/lib/python3.9/dist-packages/paddle/libs -fsycl -fsycl-targets=mlisa-cambricon-bang -std=c++17 -fPIC -O3 -shared -ldl -fbracket-depth=1030 ./source/sycl_2.cc -o ./source/sycl_2.so
+  [Hint: Expected system(command.c_str()) == 0, but received system(command.c_str()):256 != 0:0.] (at ../paddle/cinn/backends/sycl/compiler_sycl.cc:81)
+
+
+
+--------------------------------------
+C++ Traceback (most recent call last):
+--------------------------------------
+0   cinn::hlir::framework::ParallelCompiler::RunTask()
+1   cinn::hlir::framework::ParallelCompiler::Task::CodegenAndJit()
+2   cinn::backends::syclrtc::Compiler::operator()(std::string const&, cinn::common::Target::Arch)
+
+----------------------
+Error Message Summary:
+----------------------
+FatalError: `Process abort signal` is detected by the operating system.
+  [TimeInfo: *** Aborted at 1732089872 (unix time) try "date -d @1732089872" if you are using GNU date ***]
+  [SignalInfo: *** SIGABRT (@0x154e78) received by PID 1396344 (TID 0x7f2443fd7700) from PID 1396344 ***]
+
+
+Finished running test_transpose_op.py.
+
+Running test_sqrt_op.py...
+
+I1120 16:12:27.574688 1400370 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1120 16:12:27.574752 1400370 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1120 16:12:27.605579 1400370 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1120 16:12:27.609465 1400370 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1120 16:12:27.609591 1400370 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1120 16:12:27.609623 1400370 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 10.029s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 4.955s
+
+OK
+Current Paddle device : mlu:0
+
+Running TestSqrtOpShape.TestUnaryOpCase0: {'x_shape': [1024], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000256 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001902 seconds
+Current Paddle device : mlu:0
+
+Running TestSqrtOpDtype.TestUnaryOpCase0: {'x_shape': [32, 64], 'x_dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000156 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.001662 seconds
+
+Finished running test_sqrt_op.py.
 

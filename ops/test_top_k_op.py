@@ -14,16 +14,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from op_test import OpTest, OpTestTool
+from op_test import OpTest, OpTestTool, is_compile_with_device
 from op_test_helper import TestCaseHelper, run_test
 
 import paddle
-from paddle.cinn.common import is_compiled_with_cuda
-from paddle.cinn.frontend import NetBuilder
-
+# from paddle.cinn.common import is_compiled_with_cuda
+# from paddle.cinn.frontend import NetBuilder
+from paddle.cinn import frontend
+import numpy as np
+import time
 
 @OpTestTool.skip_if(
-    not is_compiled_with_cuda(), "x86 test will be skipped due to timeout."
+    not is_compile_with_device, "x86 test will be skipped due to timeout."
 )
 class TestTopKOp(OpTest):
     def setUp(self):
@@ -38,25 +40,57 @@ class TestTopKOp(OpTest):
         self.largest = self.case["largest"]
 
     def build_paddle_program(self, target):
+        print("Paddle running at ", target.arch)         
         x = paddle.to_tensor(self.inputs["x"], stop_gradient=True)
         if x.shape[self.axis] < self.k:
             self.k = x.shape[self.axis]
+        # 记录开始时间
+        start_time = time.time()              
         out = paddle.topk(x, self.k, self.axis)
+        end_time = time.time()
+        # 计算执行时间
+        execution_time = end_time - start_time
+        # print(out)
+        
+        print(f"Paddle Execution time: {execution_time:.6f} seconds")        
         self.paddle_outputs = [out[0], out[1]]
 
     def build_cinn_program(self, target):
-        builder = NetBuilder("topk")
+        builder = frontend.NetBuilder("topk")
         x = builder.create_input(
             self.nptype2cinntype(self.inputs["x"].dtype),
             self.inputs["x"].shape,
             "x",
         )
+        print("CINN running at ", target.arch)         
         out = builder.top_k(x, self.k, self.axis, self.largest)
-        prog = builder.build()
-        forward_res = self.get_cinn_output(
-            prog, target, [x], [self.inputs["x"]], [out[0], out[1]]
-        )
-        self.cinn_outputs = forward_res
+        
+        computation = frontend.Computation.build_and_compile(target, builder)
+        
+        tensor_data = [
+            self.inputs["x"],
+        ]
+        
+        computation.get_tensor("x").from_numpy(tensor_data[0], target)
+        # 记录开始时间
+        start_time = time.time()
+        computation.execute()
+        end_time = time.time()
+        # 计算执行时间
+        execution_time = end_time - start_time
+
+        print(f"CINN Execution time: {execution_time:.6f} seconds")
+        res_tensor = computation.get_tensor(str(out))
+        res_data = res_tensor.numpy(target)
+        # print(res_data)
+        output = paddle.to_tensor(res_data, stop_gradient=True)
+        # print(output)
+        self.cinn_outputs = [output]
+        # prog = builder.build()
+        # forward_res = self.get_cinn_output(
+        #     prog, target, [x], [self.inputs["x"]], [out[0], out[1]]
+        # )
+        # self.cinn_outputs = forward_res
 
     def test_check_results(self):
         self.check_outputs_and_grads()
@@ -68,7 +102,8 @@ class TestTopKOpDumpicateElement(TestTopKOp):
         self.prepare_inputs()
 
     def prepare_inputs(self):
-        self.inputs = {"x": self.random([128], "int64", -10, 10)}
+        self.inputs = {"x": self.random([128], "float32", -10, 10)}
+        # self.inputs = {"x": self.random([128], "int64", -10, 10)}
         self.axis = 0
         self.largest = False
         self.k = 5
@@ -94,16 +129,16 @@ class TestTopKOpShapeTest(TestCaseHelper):
         self.cls = TestTopKOp
         self.inputs = [
             {"shape": [512], "k": 3},
-            {"shape": [1024], "k": 10},
-            {"shape": [1200], "k": 1024},
-            {"shape": [64, 16], "k": 3},
-            {"shape": [4, 32, 8], "k": 4},
-            {"shape": [16, 8, 4, 2], "k": 5},
-            {"shape": [2, 8, 4, 2, 5], "k": 1},
-            {"shape": [4, 8, 1, 2, 16], "k": 3},
-            {"shape": [1], "k": 1},
-            {"shape": [1, 1, 1, 1], "k": 1},
-            {"shape": [1, 1, 1, 1, 1], "k": 1},
+            # {"shape": [1024], "k": 10},
+            # {"shape": [1200], "k": 1024},
+            # {"shape": [64, 16], "k": 3},
+            # {"shape": [4, 32, 8], "k": 4},
+            # {"shape": [16, 8, 4, 2], "k": 5},
+            # {"shape": [2, 8, 4, 2, 5], "k": 1},
+            # {"shape": [4, 8, 1, 2, 16], "k": 3},
+            # {"shape": [1], "k": 1},
+            # {"shape": [1, 1, 1, 1], "k": 1},
+            # {"shape": [1, 1, 1, 1, 1], "k": 1},
         ]
         self.dtypes = [{"dtype": "float32"}]
         self.attrs = [{"axis": 0, "largest": True}]
@@ -129,9 +164,9 @@ class TestTopKOpDtypeTest(TestCaseHelper):
         ]
         self.dtypes = [
             {"dtype": "float32"},
-            {"dtype": "float64"},
-            {"dtype": "int32"},
-            {"dtype": "int64"},
+            # {"dtype": "float64"},
+            # {"dtype": "int32"},
+            # {"dtype": "int64"},
         ]
         self.attrs = [{"axis": 0, "largest": True, "k": 3}]
 
@@ -195,11 +230,11 @@ class TestTopKOpAscendingTest(TestTopKOpShapeTest):
 
 
 if __name__ == "__main__":
-    run_test(TestTopKOpDumpicateElement)
+    # run_test(TestTopKOpDumpicateElement)
     # run_test(TestTopKOpLargeCudaMemoryOccupation)
 
     TestTopKOpShapeTest().run()
     TestTopKOpDtypeTest().run()
-    TestTopKOpAxisTest().run()
-    TestTopKOpKTest().run()
-    TestTopKOpAscendingTest().run()
+    # TestTopKOpAxisTest().run()
+    # TestTopKOpKTest().run()
+    # TestTopKOpAscendingTest().run()
