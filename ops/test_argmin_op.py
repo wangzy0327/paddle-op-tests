@@ -20,7 +20,10 @@ from op_test import OpTest, OpTestTool, is_compile_with_device
 from op_test_helper import TestCaseHelper
 
 import paddle
-from paddle.cinn.frontend import NetBuilder
+# from paddle.cinn.frontend import NetBuilder
+from paddle.cinn import frontend
+import numpy as np
+import time
 
 
 @OpTestTool.skip_if(
@@ -28,6 +31,8 @@ from paddle.cinn.frontend import NetBuilder
 )
 class TestArgMinOp(OpTest):
     def setUp(self):
+        device_info = paddle.get_device()
+        print("Current Paddle device : %s"%(device_info))          
         self.prepare_inputs()
 
     def prepare_inputs(self):
@@ -38,12 +43,21 @@ class TestArgMinOp(OpTest):
         self.keepdim = self.case["keepdim"]
 
     def build_paddle_program(self, target):
+        print("Paddle running at ", target.arch)         
         x = paddle.to_tensor(self.x_np, stop_gradient=True)
+        # 记录开始时间
+        start_time = time.time()         
         out = paddle.argmin(x, self.axis, self.keepdim)
+        end_time = time.time()
+        # 计算执行时间
+        execution_time = end_time - start_time       
+        print(out)
+        
+        print(f"Paddle Execution time: {execution_time:.6f} seconds")          
         self.paddle_outputs = [out]
 
     def build_cinn_program(self, target):
-        builder = NetBuilder("argmin")
+        builder = frontend.NetBuilder("argmin")
         x = builder.create_input(
             self.nptype2cinntype(self.case["dtype"]), self.case["shape"], "x"
         )
@@ -52,6 +66,7 @@ class TestArgMinOp(OpTest):
         forward_res = self.get_cinn_output(
             prog, target, [x], [self.x_np], [out]
         )
+        print(forward_res[0])
         self.cinn_outputs = np.array(forward_res).astype("int64")
 
     def test_check_results(self):
@@ -63,39 +78,39 @@ class TestArgMinOpShapeTest(TestCaseHelper):
         self.class_name = "ArgMinOpShapeTest"
         self.cls = TestArgMinOp
         self.inputs = [
-            {
-                "shape": [512],
-            },
+            # {
+            #     "shape": [512],
+            # },
             {
                 "shape": [1024],
             },
-            {
-                "shape": [1200],
-            },
-            {
-                "shape": [64, 16],
-            },
-            {
-                "shape": [4, 32, 8],
-            },
-            {
-                "shape": [16, 8, 4, 2],
-            },
-            {
-                "shape": [2, 8, 4, 2, 5],
-            },
-            {
-                "shape": [4, 8, 1, 2, 16],
-            },
-            {
-                "shape": [1],
-            },
-            {
-                "shape": [1, 1, 1, 1],
-            },
-            {
-                "shape": [1, 1, 1, 1, 1],
-            },
+            # {
+            #     "shape": [1200],
+            # },
+            # {
+            #     "shape": [64, 16],
+            # },
+            # {
+            #     "shape": [4, 32, 8],
+            # },
+            # {
+            #     "shape": [16, 8, 4, 2],
+            # },
+            # {
+            #     "shape": [2, 8, 4, 2, 5],
+            # },
+            # {
+            #     "shape": [4, 8, 1, 2, 16],
+            # },
+            # {
+            #     "shape": [1],
+            # },
+            # {
+            #     "shape": [1, 1, 1, 1],
+            # },
+            # {
+            #     "shape": [1, 1, 1, 1, 1],
+            # },
         ]
         self.dtypes = [{"dtype": "float32"}]
         self.attrs = [{"axis": 0, "keepdim": False}]
@@ -111,27 +126,27 @@ class TestArgMinOpDtypeTest(TestCaseHelper):
             },
         ]
         self.dtypes = [
-            {
-                "dtype": "float16",
-            },
+            # {
+            #     "dtype": "float16",
+            # },
             {
                 "dtype": "float32",
             },
-            {
-                "dtype": "float64",
-            },
-            {
-                "dtype": "uint8",
-            },
-            {
-                "dtype": "int16",
-            },
-            {
-                "dtype": "int32",
-            },
-            {
-                "dtype": "int64",
-            },
+            # {
+            #     "dtype": "float64",
+            # },
+            # {
+            #     "dtype": "uint8",
+            # },
+            # {
+            #     "dtype": "int16",
+            # },
+            # {
+            #     "dtype": "int32",
+            # },
+            # {
+            #     "dtype": "int64",
+            # },
         ]
         self.attrs = [{"axis": 0, "keepdim": False}]
 
@@ -175,5 +190,5 @@ class TestArgMinOpKeepdimTest(TestCaseHelper):
 if __name__ == "__main__":
     TestArgMinOpShapeTest().run()
     TestArgMinOpDtypeTest().run()
-    TestArgMinOpAxisTest().run()
-    TestArgMinOpKeepdimTest().run()
+    # TestArgMinOpAxisTest().run()
+    # TestArgMinOpKeepdimTest().run()

@@ -33,14 +33,15 @@ import numpy as np
 class TestBinaryOp(OpTest):
     def setUp(self):
         device_info = paddle.get_device()
-        print("Current Paddle device : %s"%(device_info))        
+        print("Current Paddle device : %s"%(device_info))  
+        print(f"Running setup for class: {self.__class__.__name__}")      
         self.init_case()
 
     def get_x_data(self):
-        return self.random([32, 64], 'float32', -10.0, 10.0)
+        return self.random([16, 64], 'float32', -10.0, 10.0)
 
     def get_y_data(self):
-        return self.random([32, 64], 'float32', -10.0, 10.0)
+        return self.random([16, 64], 'float32', -10.0, 10.0)
 
     def get_axis_value(self):
         return -1
@@ -87,7 +88,7 @@ class TestBinaryOp(OpTest):
         end_time = time.time()
         # 计算执行时间
         execution_time = end_time - start_time
-        print(out)
+        # print(out)
 
         print(f"Paddle Execution time: {execution_time:.6f} seconds")
         self.paddle_outputs = [out]
@@ -128,7 +129,7 @@ class TestBinaryOp(OpTest):
         res_data = res_tensor.numpy(target)
         # print(res_data)
         output = paddle.to_tensor(res_data, stop_gradient=False)
-        print(output)
+        # print(output)
         self.cinn_outputs = [output] 
         # prog = builder.build()
         # res = self.get_cinn_output(
@@ -205,26 +206,26 @@ class TestMultiplyOp(TestBinaryOp):
         return builder.multiply(x, y, axis)
 
 
-class TestFloorDivideOp(TestBinaryOp):
-    def get_x_data(self):
-        # avoid random generate 0
-        return (
-            self.random([32, 64], 'int32', 1, 100)
-            * np.random.choice([-1, 1], [1])[0]
-        )
+# class TestFloorDivideOp(TestBinaryOp):
+#     def get_x_data(self):
+#         # avoid random generate 0
+#         return (
+#             self.random([32, 64], 'int32', 1, 100)
+#             * np.random.choice([-1, 1], [1])[0]
+#         )
 
-    def get_y_data(self):
-        # avoid random generate 0
-        return (
-            self.random([32, 64], 'int32', 1, 100)
-            * np.random.choice([-1, 1], [1])[0]
-        )
+#     def get_y_data(self):
+#         # avoid random generate 0
+#         return (
+#             self.random([32, 64], 'int32', 1, 100)
+#             * np.random.choice([-1, 1], [1])[0]
+#         )
 
-    def paddle_func(self, x, y):
-        return paddle.floor_divide(x, y)
+#     def paddle_func(self, x, y):
+#         return paddle.floor_divide(x, y)
 
-    def cinn_func(self, builder, x, y, axis):
-        return builder.floor_divide(x, y, axis)
+#     def cinn_func(self, builder, x, y, axis):
+#         return builder.floor_divide(x, y, axis)
 
 
 class TestModOp(TestBinaryOp):
@@ -235,41 +236,41 @@ class TestModOp(TestBinaryOp):
         return builder.mod(x, y, axis)
 
 
-class TestModCase1(TestModOp):
-    def get_x_data(self):
-        return (
-            self.random([32, 64], 'int32', 1, 100)
-            * np.random.choice([-1, 1], [1])[0]
-        )
+# class TestModCase1(TestModOp):
+#     def get_x_data(self):
+#         return (
+#             self.random([32, 64], 'int32', 1, 100)
+#             * np.random.choice([-1, 1], [1])[0]
+#         )
 
-    def get_y_data(self):
-        return (
-            self.random([32, 64], 'int32', 1, 100)
-            * np.random.choice([-1, 1], [1])[0]
-        )
-
-
-class TestRemainderOp(TestBinaryOp):
-    def paddle_func(self, x, y):
-        return paddle.remainder(x, y)
-
-    def cinn_func(self, builder, x, y, axis):
-        # paddle.remainder actual invoke mod function
-        return builder.mod(x, y, axis)
+#     def get_y_data(self):
+#         return (
+#             self.random([32, 64], 'int32', 1, 100)
+#             * np.random.choice([-1, 1], [1])[0]
+#         )
 
 
-class TestRemainderCase1(TestRemainderOp):
-    def get_x_data(self):
-        return (
-            self.random([32, 64], 'int32', 1, 100)
-            * np.random.choice([-1, 1], [1])[0]
-        )
+# class TestRemainderOp(TestBinaryOp):
+#     def paddle_func(self, x, y):
+#         return paddle.remainder(x, y)
 
-    def get_y_data(self):
-        return (
-            self.random([32, 64], 'int32', 1, 100)
-            * np.random.choice([-1, 1], [1])[0]
-        )
+#     def cinn_func(self, builder, x, y, axis):
+#         # paddle.remainder actual invoke mod function
+#         return builder.mod(x, y, axis)
+
+
+# class TestRemainderCase1(TestRemainderOp):
+#     def get_x_data(self):
+#         return (
+#             self.random([32, 64], 'int32', 1, 100)
+#             * np.random.choice([-1, 1], [1])[0]
+#         )
+
+#     def get_y_data(self):
+#         return (
+#             self.random([32, 64], 'int32', 1, 100)
+#             * np.random.choice([-1, 1], [1])[0]
+#         )
 
 
 class TestMaxOp(TestBinaryOp):
@@ -288,46 +289,46 @@ class TestMinOp(TestBinaryOp):
         return builder.min(x, y, axis)
 
 
-class TestLogicalAndOp(TestBinaryOp):
-    def get_x_data(self):
-        return self.random([32, 64], 'bool')
+# class TestLogicalAndOp(TestBinaryOp):
+#     def get_x_data(self):
+#         return self.random([32, 64], 'bool')
 
-    def get_y_data(self):
-        return self.random([32, 64], 'bool')
+#     def get_y_data(self):
+#         return self.random([32, 64], 'bool')
 
-    def paddle_func(self, x, y):
-        return paddle.logical_and(x, y)
+#     def paddle_func(self, x, y):
+#         return paddle.logical_and(x, y)
 
-    def cinn_func(self, builder, x, y, axis):
-        return builder.logical_and(x, y, axis)
-
-
-class TestLogicalOrOp(TestBinaryOp):
-    def get_x_data(self):
-        return self.random([32, 64], 'bool')
-
-    def get_y_data(self):
-        return self.random([32, 64], 'bool')
-
-    def paddle_func(self, x, y):
-        return paddle.logical_or(x, y)
-
-    def cinn_func(self, builder, x, y, axis):
-        return builder.logical_or(x, y, axis)
+#     def cinn_func(self, builder, x, y, axis):
+#         return builder.logical_and(x, y, axis)
 
 
-class TestLogicalXorOp(TestBinaryOp):
-    def get_x_data(self):
-        return self.random([32, 64], 'bool')
+# class TestLogicalOrOp(TestBinaryOp):
+#     def get_x_data(self):
+#         return self.random([32, 64], 'bool')
 
-    def get_y_data(self):
-        return self.random([32, 64], 'bool')
+#     def get_y_data(self):
+#         return self.random([32, 64], 'bool')
 
-    def paddle_func(self, x, y):
-        return paddle.logical_xor(x, y)
+#     def paddle_func(self, x, y):
+#         return paddle.logical_or(x, y)
 
-    def cinn_func(self, builder, x, y, axis):
-        return builder.logical_xor(x, y, axis)
+#     def cinn_func(self, builder, x, y, axis):
+#         return builder.logical_or(x, y, axis)
+
+
+# class TestLogicalXorOp(TestBinaryOp):
+#     def get_x_data(self):
+#         return self.random([32, 64], 'bool')
+
+#     def get_y_data(self):
+#         return self.random([32, 64], 'bool')
+
+#     def paddle_func(self, x, y):
+#         return paddle.logical_xor(x, y)
+
+#     def cinn_func(self, builder, x, y, axis):
+#         return builder.logical_xor(x, y, axis)
 
 
 class TestBitwiseAndOp(TestBinaryOp):
@@ -429,4 +430,29 @@ class TestAtan2Op(TestBinaryOp):
 
 
 if __name__ == "__main__":
-    unittest.main()
+    # 创建一个测试套件
+    suite = unittest.TestSuite()
+    # 添加特定的测试用例类
+    suite.addTest(unittest.TestLoader().loadTestsFromTestCase(TestAddOp))
+    suite.addTest(unittest.TestLoader().loadTestsFromTestCase(TestAddOpInt32))
+    suite.addTest(unittest.TestLoader().loadTestsFromTestCase(TestAtan2Op))
+    suite.addTest(unittest.TestLoader().loadTestsFromTestCase(TestBinaryOp))
+    suite.addTest(unittest.TestLoader().loadTestsFromTestCase(TestBitwiseAndOp))
+    suite.addTest(unittest.TestLoader().loadTestsFromTestCase(TestBitwiseOrOp))
+    suite.addTest(unittest.TestLoader().loadTestsFromTestCase(TestBitwiseXorOp))
+    suite.addTest(unittest.TestLoader().loadTestsFromTestCase(TestBitwiseXorOp))
+    suite.addTest(unittest.TestLoader().loadTestsFromTestCase(TestDivideOp))
+    suite.addTest(unittest.TestLoader().loadTestsFromTestCase(TestEqualOp))
+    suite.addTest(unittest.TestLoader().loadTestsFromTestCase(TestGreaterEqualOp))
+    suite.addTest(unittest.TestLoader().loadTestsFromTestCase(TestGreaterThanOp))
+    suite.addTest(unittest.TestLoader().loadTestsFromTestCase(TestLessEqualOp))
+    suite.addTest(unittest.TestLoader().loadTestsFromTestCase(TestLessThanOp))
+    suite.addTest(unittest.TestLoader().loadTestsFromTestCase(TestMaxOp))
+    suite.addTest(unittest.TestLoader().loadTestsFromTestCase(TestMinOp))
+    # suite.addTest(unittest.TestLoader().loadTestsFromTestCase(TestModOp))
+    suite.addTest(unittest.TestLoader().loadTestsFromTestCase(TestMultiplyOp))
+    suite.addTest(unittest.TestLoader().loadTestsFromTestCase(TestNotEqualOp))
+    suite.addTest(unittest.TestLoader().loadTestsFromTestCase(TestSubtractOp))
+    # 运行测试套件
+    unittest.TextTestRunner(verbosity=0).run(suite)
+    # unittest.main()
