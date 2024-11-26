@@ -44,14 +44,14 @@ class TestArgMaxOp(OpTest):
     def build_paddle_program(self, target):
         print("Paddle running at ", target.arch)         
         x = paddle.to_tensor(self.x_np, stop_gradient=True)
-        print(self.x_np)
+        # print(self.x_np)
         # 记录开始时间
         start_time = time.time()         
-        out = paddle.argmax(x, self.axis, self.keepdim)
+        out = paddle.argmax(x, self.axis, self.keepdim, dtype="int32")
         end_time = time.time()
         # 计算执行时间
         execution_time = end_time - start_time
-        print(out)
+        # print(out)
         
         print(f"Paddle Execution time: {execution_time:.6f} seconds")         
         self.paddle_outputs = [out]
@@ -82,7 +82,7 @@ class TestArgMaxOp(OpTest):
         res_data = res_tensor.numpy(target)
         # print(res_data)
         output = paddle.to_tensor(res_data, stop_gradient=True)
-        print(output)
+        # print(output)
         self.cinn_outputs = [output]        
         # prog = builder.build()
         # forward_res = self.get_cinn_output(

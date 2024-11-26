@@ -47,11 +47,11 @@ class TestArgMinOp(OpTest):
         x = paddle.to_tensor(self.x_np, stop_gradient=True)
         # 记录开始时间
         start_time = time.time()         
-        out = paddle.argmin(x, self.axis, self.keepdim)
+        out = paddle.argmin(x, self.axis, self.keepdim, dtype="int32")
         end_time = time.time()
         # 计算执行时间
         execution_time = end_time - start_time       
-        print(out)
+        # print(out)
         
         print(f"Paddle Execution time: {execution_time:.6f} seconds")          
         self.paddle_outputs = [out]
@@ -62,12 +62,34 @@ class TestArgMinOp(OpTest):
             self.nptype2cinntype(self.case["dtype"]), self.case["shape"], "x"
         )
         out = builder.argmin(x, self.axis, self.keepdim)
-        prog = builder.build()
-        forward_res = self.get_cinn_output(
-            prog, target, [x], [self.x_np], [out]
-        )
-        print(forward_res[0])
-        self.cinn_outputs = np.array(forward_res).astype("int64")
+        
+        computation = frontend.Computation.build_and_compile(target, builder)
+        
+        tensor_data = [
+            self.x_np,
+        ]
+        
+        computation.get_tensor("x").from_numpy(tensor_data[0], target)
+        # 记录开始时间
+        start_time = time.time()
+        computation.execute()
+        end_time = time.time()
+        # 计算执行时间
+        execution_time = end_time - start_time
+
+        print(f"CINN Execution time: {execution_time:.6f} seconds")
+        res_tensor = computation.get_tensor(str(out))
+        res_data = res_tensor.numpy(target)
+        # print(res_data)
+        output = paddle.to_tensor(res_data, stop_gradient=True)
+        # print(output)
+        self.cinn_outputs = [output]
+        # prog = builder.build()
+        # forward_res = self.get_cinn_output(
+        #     prog, target, [x], [self.x_np], [out]
+        # )
+        # print(forward_res[0])
+        # self.cinn_outputs = np.array(forward_res).astype("int64")
 
     def test_check_results(self):
         self.check_outputs_and_grads()

@@ -3653,3 +3653,237 @@ CINN Execution time: 0.001662 seconds
 
 Finished running test_sqrt_op.py.
 
+Running test_argmax_op.py...
+
+I1126 16:57:02.483295 1692998 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1126 16:57:02.483340 1692998 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1126 16:57:02.510039 1692998 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1126 16:57:02.513278 1692998 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1126 16:57:02.513367 1692998 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1126 16:57:02.513391 1692998 init.cc:240] CustomDevice: mlu, visible devices count: 1
+W1126 16:57:06.741377 1693237 eliminate_common_factor_of_local_index.cc:188] Indexes size is less than 2, returning default GCD values. Local var = _var_0_index_temp_temp_buffer
+.
+----------------------------------------------------------------------
+Ran 1 test in 10.248s
+
+OK
+W1126 16:57:13.124471 1693352 eliminate_common_factor_of_local_index.cc:188] Indexes size is less than 2, returning default GCD values. Local var = _var_0_index_temp_temp_buffer
+.
+----------------------------------------------------------------------
+Ran 1 test in 5.366s
+
+OK
+W1126 16:57:18.499137 1693465 eliminate_common_factor_of_local_index.cc:188] Indexes size is less than 2, returning default GCD values. Local var = _var_0_index_temp_temp_buffer
+.W1126 16:57:24.818944 1693578 eliminate_common_factor_of_local_index.cc:188] Indexes size is less than 2, returning default GCD values. Local var = _var_0_index_temp_temp_buffer
+.W1126 16:57:31.063556 1693646 eliminate_common_factor_of_local_index.cc:188] Indexes size is less than 2, returning default GCD values. Local var = _var_0_index_temp_temp_buffer
+.W1126 16:57:37.217249 1693715 eliminate_common_factor_of_local_index.cc:188] Indexes size is less than 2, returning default GCD values. Local var = _var_0_index_temp_temp_buffer
+.
+----------------------------------------------------------------------
+Ran 4 tests in 24.942s
+
+OK
+W1126 16:57:43.443323 1693782 eliminate_common_factor_of_local_index.cc:188] Indexes size is less than 2, returning default GCD values. Local var = _var_0_index_temp_temp_buffer
+.W1126 16:57:49.089471 1693850 eliminate_common_factor_of_local_index.cc:188] Indexes size is less than 2, returning default GCD values. Local var = _var_0_index_temp_temp_buffer
+.W1126 16:57:54.940114 1693918 eliminate_common_factor_of_local_index.cc:188] Indexes size is less than 2, returning default GCD values. Local var = _var_0_index_temp_temp_buffer
+.W1126 16:58:00.243310 1693986 eliminate_common_factor_of_local_index.cc:188] Indexes size is less than 2, returning default GCD values. Local var = _var_0_index_temp_temp_buffer
+.
+----------------------------------------------------------------------
+Ran 4 tests in 23.139s
+
+OK
+Current Paddle device : mlu:0
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000478 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.009197 seconds
+Current Paddle device : mlu:0
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000108 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.009173 seconds
+Current Paddle device : mlu:0
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000143 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.020096 seconds
+Current Paddle device : mlu:0
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000257 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.016508 seconds
+Current Paddle device : mlu:0
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000131 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.014044 seconds
+Current Paddle device : mlu:0
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000117 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.013580 seconds
+Current Paddle device : mlu:0
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000150 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.020869 seconds
+Current Paddle device : mlu:0
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000129 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.016509 seconds
+Current Paddle device : mlu:0
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000124 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.014515 seconds
+Current Paddle device : mlu:0
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000258 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.012644 seconds
+
+Finished running test_argmax_op.py.
+
+Running test_argmin_op.py...
+
+I1126 17:02:42.663354 1695374 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1126 17:02:42.663398 1695374 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1126 17:02:42.690332 1695374 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1126 17:02:42.693568 1695374 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1126 17:02:42.693662 1695374 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1126 17:02:42.693686 1695374 init.cc:240] CustomDevice: mlu, visible devices count: 1
+W1126 17:02:46.847154 1695630 eliminate_common_factor_of_local_index.cc:188] Indexes size is less than 2, returning default GCD values. Local var = _var_0_index_temp_temp_buffer
+.
+----------------------------------------------------------------------
+Ran 1 test in 10.303s
+
+OK
+W1126 17:02:53.360561 1695703 eliminate_common_factor_of_local_index.cc:188] Indexes size is less than 2, returning default GCD values. Local var = _var_0_index_temp_temp_buffer
+.
+----------------------------------------------------------------------
+Ran 1 test in 6.191s
+
+OK
+Current Paddle device : mlu:0
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000707 seconds
+CINN Execution time: 0.589821 seconds
+Current Paddle device : mlu:0
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000463 seconds
+CINN Execution time: 0.589771 seconds
+
+Finished running test_argmin_op.py.
+
+
+
+
+
+Running test_sort_op.py...
+
+I1126 17:16:23.662336 1701670 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1126 17:16:23.662382 1701670 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1126 17:16:23.689327 1701670 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1126 17:16:23.692600 1701670 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1126 17:16:23.692693 1701670 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1126 17:16:23.692718 1701670 init.cc:240] CustomDevice: mlu, visible devices count: 1
+W1126 17:16:27.752547 1701909 eliminate_common_factor_of_local_index.cc:188] Indexes size is less than 2, returning default GCD values. Local var = _var_0_index_temp_temp_buffer
+.
+----------------------------------------------------------------------
+Ran 1 test in 10.279s
+
+OK
+W1126 17:16:34.335098 1701996 eliminate_common_factor_of_local_index.cc:188] Indexes size is less than 2, returning default GCD values. Local var = _var_0_index_temp_temp_buffer
+.
+----------------------------------------------------------------------
+Ran 1 test in 6.247s
+
+OK
+W1126 17:16:40.583388 1702063 eliminate_common_factor_of_local_index.cc:188] Indexes size is less than 2, returning default GCD values. Local var = _var_0_index_temp_temp_buffer
+.W1126 17:16:46.991014 1702131 eliminate_common_factor_of_local_index.cc:188] Indexes size is less than 2, returning default GCD values. Local var = _var_0_index_temp_temp_buffer
+.W1126 17:16:54.119253 1702199 eliminate_common_factor_of_local_index.cc:188] Indexes size is less than 2, returning default GCD values. Local var = _var_0_index_temp_temp_buffer
+.W1126 17:16:59.363758 1702268 eliminate_common_factor_of_local_index.cc:188] Indexes size is less than 2, returning default GCD values. Local var = _var_0_index_temp_temp_buffer
+.
+----------------------------------------------------------------------
+Ran 4 tests in 25.337s
+
+OK
+W1126 17:17:05.928047 1702335 eliminate_common_factor_of_local_index.cc:188] Indexes size is less than 2, returning default GCD values. Local var = _var_0_index_temp_temp_buffer
+.W1126 17:17:11.515112 1702403 eliminate_common_factor_of_local_index.cc:188] Indexes size is less than 2, returning default GCD values. Local var = _var_0_index_temp_temp_buffer
+.W1126 17:17:17.680645 1702471 eliminate_common_factor_of_local_index.cc:188] Indexes size is less than 2, returning default GCD values. Local var = _var_0_index_temp_temp_buffer
+.W1126 17:17:23.469148 1702539 eliminate_common_factor_of_local_index.cc:188] Indexes size is less than 2, returning default GCD values. Local var = _var_0_index_temp_temp_buffer
+.
+----------------------------------------------------------------------
+Ran 4 tests in 23.416s
+
+OK
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000372 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.019880 seconds
+Current Paddle device : mlu:0
+
+Running TestSortOpShapeTest.TestSortOpShapeTest0: {'shape': [1024], 'dtype': 'float32', 'axis': 0, 'descending': False}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000151 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.593754 seconds
+Current Paddle device : mlu:0
+
+Running TestSortOpDtypeTest.TestSortOpDtypeTest0: {'shape': [1024], 'dtype': 'float32', 'axis': 0, 'descending': False}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000138 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.597362 seconds
+Current Paddle device : mlu:0
+
+Running TestSortOpDtypeTest.TestSortOpDtypeTest1: {'shape': [64, 16], 'dtype': 'float32', 'axis': 0, 'descending': False}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000119 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.051076 seconds
+Current Paddle device : mlu:0
+
+Running TestSortOpDtypeTest.TestSortOpDtypeTest2: {'shape': [4, 32, 8], 'dtype': 'float32', 'axis': 0, 'descending': False}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000115 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.015244 seconds
+Current Paddle device : mlu:0
+
+Running TestSortOpDtypeTest.TestSortOpDtypeTest3: {'shape': [16, 8, 4, 2], 'dtype': 'float32', 'axis': 0, 'descending': False}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000107 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.022270 seconds
+Current Paddle device : mlu:0
+
+Running TestSortOpAxisTest.TestSortOpAttrsTest0: {'shape': [16, 8, 4, 2], 'dtype': 'float32', 'axis': 0, 'descending': False}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000108 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.022469 seconds
+Current Paddle device : mlu:0
+
+Running TestSortOpAxisTest.TestSortOpAttrsTest1: {'shape': [16, 8, 4, 2], 'dtype': 'float32', 'axis': 1, 'descending': False}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000110 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.017857 seconds
+Current Paddle device : mlu:0
+
+Running TestSortOpAxisTest.TestSortOpAttrsTest2: {'shape': [16, 8, 4, 2], 'dtype': 'float32', 'axis': 2, 'descending': False}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000114 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.014746 seconds
+Current Paddle device : mlu:0
+
+Running TestSortOpAxisTest.TestSortOpAttrsTest3: {'shape': [16, 8, 4, 2], 'dtype': 'float32', 'axis': 3, 'descending': False}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000111 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.013902 seconds
+
+Finished running test_sort_op.py.
+
