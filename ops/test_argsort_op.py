@@ -42,14 +42,17 @@ class TestArgSortOp(OpTest):
 
     def build_paddle_program(self, target):
         print("Paddle running at ", target.arch)         
-        x1 = paddle.to_tensor(self.x_np, stop_gradient=True)
+        x1 = paddle.to_tensor(self.x_np , stop_gradient=True)
+        # print("Paddle elements : ", self.x_np)
         # 记录开始时间
         start_time = time.time()        
         out = paddle.argsort(x1, self.axis, self.descending)
         end_time = time.time()
         # 计算执行时间
         execution_time = end_time - start_time 
-        print(out)
+        # from argsort return tensor(int64) to tensor(int32)
+        out = out.cast('int32')
+        # print(out)
         
         print(f"Paddle Execution time: {execution_time:.6f} seconds")                
         self.paddle_outputs = [out]
@@ -59,6 +62,7 @@ class TestArgSortOp(OpTest):
         x1 = builder.create_input(
             self.nptype2cinntype(self.case["dtype"]), self.case["shape"], "x1"
         )
+        # print("CINN elements : ", self.x_np)
         print("CINN running at ", target.arch)          
         out = builder.argsort(x1, self.axis, not self.descending)
         computation = frontend.Computation.build_and_compile(target, builder)
@@ -76,16 +80,17 @@ class TestArgSortOp(OpTest):
         execution_time = end_time - start_time
 
         print(f"CINN Execution time: {execution_time:.6f} seconds")
-        res_tensor = computation.get_tensor(str(out))
+        res_tensor = computation.get_tensor(str(out[0]))
         res_data = res_tensor.numpy(target)
-        print(res_data)
+        # print(res_data)
         output = paddle.to_tensor(res_data, stop_gradient=True)
-        print(output)
+        # print(output)
         self.cinn_outputs = [output]        
         # prog = builder.build()
         # forward_res = self.get_cinn_output(prog, target, [x1], [self.x_np], out)
         # print(forward_res[0])
-        # self.cinn_outputs = [forward_res[0]]
+        # self.cinn_outputs = paddle.to_tensor([forward_res[0]], stop_gradient=True)
+        # self.cinn_outputs = self.cinn_outputs.cast("int32")
         # print(self.cinn_outputs)
 
     def test_check_results(self):
@@ -101,7 +106,7 @@ class TestArgSortOpShapeTest(TestCaseHelper):
             #     "shape": [512],
             # },
             {
-                "shape": [16],
+                "shape": [32],
             },
             # {
             #     "shape": [1200],

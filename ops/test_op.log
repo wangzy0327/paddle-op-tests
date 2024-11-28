@@ -3887,3 +3887,141 @@ CINN Execution time: 0.013902 seconds
 
 Finished running test_sort_op.py.
 
+Running test_argsort_op.py...
+
+I1128 14:46:29.347980 1725958 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1128 14:46:29.348024 1725958 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1128 14:46:29.374840 1725958 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1128 14:46:29.378103 1725958 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1128 14:46:29.378196 1725958 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1128 14:46:29.378219 1725958 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 10.095s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 6.585s
+
+OK
+....
+----------------------------------------------------------------------
+Ran 4 tests in 23.102s
+
+OK
+....
+----------------------------------------------------------------------
+Ran 4 tests in 22.259s
+
+OK
+Current Paddle device : mlu:0
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000336 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.010691 seconds
+Current Paddle device : mlu:0
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000096 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 1.180290 seconds
+Current Paddle device : mlu:0
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000122 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.032222 seconds
+Current Paddle device : mlu:0
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000117 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.021137 seconds
+Current Paddle device : mlu:0
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000111 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.016159 seconds
+Current Paddle device : mlu:0
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000111 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.013980 seconds
+Current Paddle device : mlu:0
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000107 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.031958 seconds
+Current Paddle device : mlu:0
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000112 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.018878 seconds
+Current Paddle device : mlu:0
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000169 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.016573 seconds
+Current Paddle device : mlu:0
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000111 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.014536 seconds
+
+Finished running test_argsort_op.py.
+
+Running test_split_op.py...
+
+I1128 15:42:02.111008 1741789 init.cc:234] ENV [CUSTOM_DEVICE_ROOT]=/usr/local/lib/python3.9/dist-packages/paddle_custom_device
+I1128 15:42:02.111053 1741789 init.cc:143] Try loading custom device libs from: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1128 15:42:02.137995 1741789 custom_device.cc:1099] Succeed in loading custom runtime in lib: /usr/local/lib/python3.9/dist-packages/paddle_custom_device/libpaddle-custom-mlu.so
+I1128 15:42:02.141430 1741789 custom_kernel.cc:63] Succeed in loading 262 custom kernel(s) from loaded lib(s), will be used like native ones.
+I1128 15:42:02.141526 1741789 init.cc:155] Finished in LoadCustomDevice with libs_path: [/usr/local/lib/python3.9/dist-packages/paddle_custom_device]
+I1128 15:42:02.141552 1741789 init.cc:240] CustomDevice: mlu, visible devices count: 1
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 39.873s
+
+OK
+.
+----------------------------------------------------------------------
+Ran 1 test in 5.578s
+
+OK
+
+Running TestSplitOpLegacy.TestSplitOpLegacy0: {'shape': [9, 9, 5], 'num_or_sections': [3], 'axis': 0, 'dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.006535 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.009394 seconds
+
+Running TestSplitOpLegacy.TestSplitOpLegacy1: {'shape': [9, 9, 5], 'num_or_sections': [3], 'axis': 1, 'dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000250 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.009358 seconds
+
+Running TestSplitOpLegacy.TestSplitOpLegacy2: {'shape': [8, 9, 5], 'num_or_sections': [2], 'axis': 0, 'dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000190 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.008443 seconds
+
+Running TestSplitOpLegacy.TestSplitOpLegacy3: {'shape': [2048, 9, 6], 'num_or_sections': [2], 'axis': 2, 'dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000121 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.145786 seconds
+
+Running TestSplitOpLegacy.TestSplitOpLegacy4: {'shape': [10, 128, 4096], 'num_or_sections': [2], 'axis': 2, 'dtype': 'float32'}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000454 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 6.284652 seconds
+
+Running TestSplitOpDtype.TestSplitOpDtype0: {'shape': [8], 'dtype': 'float32', 'num_or_sections': [2], 'axis': 0}
+Paddle running at  Arch.CambriconMLU
+Paddle Execution time: 0.000154 seconds
+CINN running at  Arch.CambriconMLU
+CINN Execution time: 0.012984 seconds
+
+Finished running test_split_op.py.
+
