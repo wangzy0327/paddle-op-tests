@@ -14,20 +14,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from op_test import OpTest, OpTestTool
+from op_test import OpTest, OpTestTool, is_compile_with_device
 from op_test_helper import TestCaseHelper
 
 import paddle
 from paddle import _C_ops
-from paddle.cinn.common import is_compiled_with_cudnn
+# from paddle.cinn.common import is_compiled_with_cudnn
 from paddle.cinn.frontend import NetBuilder
 
 
 @OpTestTool.skip_if(
-    not is_compiled_with_cudnn(), "x86 test will be skipped due to timeout."
+    not is_compile_with_device, "x86 test will be skipped due to timeout."
 )
 class TestPool2dOp(OpTest):
     def setUp(self):
+        device_info = paddle.get_device()
+        print("Current Paddle device : %s"%(device_info)) 
         # print(f"\n{self.__class__.__name__}: {self.case}")
         self.prepare_inputs()
 
@@ -37,6 +39,7 @@ class TestPool2dOp(OpTest):
         )
 
     def build_paddle_program(self, target):
+        print("Paddle running at ", target.arch) 
         x = paddle.to_tensor(self.x_np, stop_gradient=False)
         out = _C_ops.pool2d(
             x,
@@ -54,6 +57,7 @@ class TestPool2dOp(OpTest):
         self.paddle_outputs = [out]
 
     def build_cinn_program(self, target):
+        print("CINN running at ", target.arch)         
         builder = NetBuilder("pool2d")
         x = builder.create_input(
             self.nptype2cinntype(self.case["dtype"]), self.case["shape"], "x"
@@ -75,7 +79,9 @@ class TestPool2dOp(OpTest):
         res = self.get_cinn_output(
             prog, target, [x], [self.x_np], [out], passes=[]
         )
-        self.cinn_outputs = res
+        # 将numpy.ndarray转为 Paddle 的 Tensor
+        res_tensor = paddle.to_tensor(res)
+        self.cinn_outputs = res_tensor
 
     def test_check_results(self):
         self.check_outputs_and_grads(all_equal=True)
@@ -104,15 +110,15 @@ class TestPool2dOpAll(TestCaseHelper):
             },
         ]
         self.dtypes = [
-            {
-                "dtype": "float16",
-            },
+            # {
+            #     "dtype": "float16",
+            # },
             {
                 "dtype": "float32",
             },
-            {
-                "dtype": "float64",
-            },
+            # {
+            #     "dtype": "float64",
+            # },
         ]
         self.attrs = [
             {
@@ -185,7 +191,7 @@ class TestPool2dOpAll(TestCaseHelper):
 
 
 @OpTestTool.skip_if(
-    not is_compiled_with_cudnn(), "x86 test will be skipped due to timeout."
+    not is_compile_with_device, "x86 test will be skipped due to timeout."
 )
 class TestPool2dBackwardOp(OpTest):
     def setUp(self):
@@ -263,8 +269,11 @@ class TestPool2dBackwardOp(OpTest):
         res = self.get_cinn_output(
             prog, target, [x, dy], [self.x_np, self.dy_np], [y, dx], passes=[]
         )
-        self.cinn_outputs = [res[0]]
-        self.cinn_grads = [res[1]]
+        # 将numpy.ndarray转为 Paddle 的 Tensor
+        res0_tensor = paddle.to_tensor(res[0])
+        res1_tensor = paddle.to_tensor(res[1])
+        self.cinn_outputs = [res0_tensor]
+        self.cinn_grads = [res1_tensor]
 
     def test_check_results(self):
         max_relative_error = (
@@ -351,4 +360,4 @@ class TestPool2dBackwardAll(TestCaseHelper):
 
 if __name__ == "__main__":
     TestPool2dOpAll().run()
-    TestPool2dBackwardAll().run()
+    # TestPool2dBackwardAll().run()

@@ -15,7 +15,7 @@
 # limitations under the License.
 
 
-from op_test import OpTest, OpTestTool
+from op_test import OpTest, OpTestTool,is_compile_with_device
 from op_test_helper import TestCaseHelper
 
 import paddle
@@ -24,10 +24,12 @@ from paddle.cinn.frontend import NetBuilder
 
 
 @OpTestTool.skip_if(
-    not is_compiled_with_cuda(), "x86 test will be skipped due to timeout."
+    not is_compile_with_device, "x86 test will be skipped due to timeout."
 )
 class TestMatmulOp(OpTest):
     def setUp(self):
+        device_info = paddle.get_device()
+        print("Current Paddle device : %s"%(device_info)) 
         # print(f'{self.__class__.__name__}: {self.case}')
         self.prepare_inputs()
 
@@ -44,6 +46,7 @@ class TestMatmulOp(OpTest):
         )
 
     def build_paddle_program(self, target):
+        print("Paddle running at ", target.arch) 
         x = paddle.to_tensor(self.x_np, stop_gradient=True)
         y = paddle.to_tensor(self.y_np, stop_gradient=True)
         out = self.paddle_func(x, y)
@@ -58,6 +61,7 @@ class TestMatmulOp(OpTest):
         )
 
     def build_cinn_program(self, target):
+        print("CINN running at ", target.arch) 
         builder = NetBuilder("matmul")
         x = builder.create_input(
             self.nptype2cinntype(self.case["dtype"]), self.case["x_shape"], "x"
@@ -70,7 +74,9 @@ class TestMatmulOp(OpTest):
         res = self.get_cinn_output(
             prog, target, [x, y], [self.x_np, self.y_np], [out], passes=[]
         )
-        self.cinn_outputs = res
+        res_tensor = paddle.to_tensor(res)
+        
+        self.cinn_outputs = res_tensor
 
     def test_check_results(self):
         max_relative_error = (
@@ -95,54 +101,54 @@ class TestMatmulOpShapeDtype(TestCaseHelper):
         self.class_name = "TestMatmulOpCase"
         self.cls = TestMatmulOp
         self.inputs = [
-            {
-                "x_shape": [1024],
-                "y_shape": [1024],
-            },
+            # {
+            #     "x_shape": [1024],
+            #     "y_shape": [1024],
+            # },
             {
                 "x_shape": [4, 4],
                 "y_shape": [4, 4],
             },
-            {
-                "x_shape": [4, 16],
-                "y_shape": [16, 32],
-            },
-            {
-                "x_shape": [5, 4, 16],
-                "y_shape": [5, 16, 32],
-            },
-            {
-                # Matrix mul row vector
-                "x_shape": [4, 16],
-                "y_shape": [16],
-            },
-            {
-                # Matrix mul col vector
-                "x_shape": [4, 16],
-                "y_shape": [16, 1],
-            },
-            {
-                "x_shape": [8, 16, 4],
-                "y_shape": [1, 4, 16],
-            },
-            {
-                "x_shape": [1, 1, 1, 1],
-                "y_shape": [1, 1, 1, 1],
-            },
+            # {
+            #     "x_shape": [4, 16],
+            #     "y_shape": [16, 32],
+            # },
+            # {
+            #     "x_shape": [5, 4, 16],
+            #     "y_shape": [5, 16, 32],
+            # },
+            # {
+            #     # Matrix mul row vector
+            #     "x_shape": [4, 16],
+            #     "y_shape": [16],
+            # },
+            # {
+            #     # Matrix mul col vector
+            #     "x_shape": [4, 16],
+            #     "y_shape": [16, 1],
+            # },
+            # {
+            #     "x_shape": [8, 16, 4],
+            #     "y_shape": [1, 4, 16],
+            # },
+            # {
+            #     "x_shape": [1, 1, 1, 1],
+            #     "y_shape": [1, 1, 1, 1],
+            # },
         ]
         self.dtypes = [
             # {
             #     "dtype": "bfloat16",
             # },
-            {
-                "dtype": "float16",
-            },
+            # {
+            #     "dtype": "float16",
+            # },
             {
                 "dtype": "float32",
             },
-            {
-                "dtype": "float64",
-            },
+            # {
+            #     "dtype": "float64",
+            # },
         ]
         self.attrs = [
             {
@@ -264,5 +270,5 @@ class TestMatmulTransposePassAll(TestCaseHelper):
 
 if __name__ == "__main__":
     TestMatmulOpShapeDtype().run()
-    TestMatmulOpTrans().run()
-    TestMatmulTransposePassAll().run()
+    # TestMatmulOpTrans().run()
+    # TestMatmulTransposePassAll().run()

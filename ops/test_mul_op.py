@@ -117,34 +117,36 @@ class TestMulOp(OpTest):
             y_num_col_dims=self.case["y_num_col_dims"],
             is_infer=self.case["is_infer"],
         )        
-        computation = frontend.Computation.build_and_compile(target, builder)
+        # computation = frontend.Computation.build_and_compile(target, builder)
         
-        tensor_data = [
-            self.x_np,
-            self.y_np,
-        ]
+        # tensor_data = [
+        #     self.x_np,
+        #     self.y_np,
+        # ]
         
-        computation.get_tensor("x").from_numpy(tensor_data[0], target)
-        # 记录开始时间
-        start_time = time.time()
-        computation.execute()
-        end_time = time.time()
-        # 计算执行时间
-        execution_time = end_time - start_time
+        # computation.get_tensor("x").from_numpy(tensor_data[0], target)
+        # # 记录开始时间
+        # start_time = time.time()
+        # computation.execute()
+        # end_time = time.time()
+        # # 计算执行时间
+        # execution_time = end_time - start_time
 
-        print(f"CINN Execution time: {execution_time:.6f} seconds")
-        res_tensor = computation.get_tensor(str(out))
-        res_data = res_tensor.numpy(target)
-        # print(res_data)
-        output = paddle.to_tensor(res_data, stop_gradient=False)
-        # print(output)
-        self.cinn_outputs = [output]               
+        # print(f"CINN Execution time: {execution_time:.6f} seconds")
+        # res_tensor = computation.get_tensor(str(out))
+        # res_data = res_tensor.numpy(target)
+        # # print(res_data)
+        # output = paddle.to_tensor(res_data, stop_gradient=False)
+        # # print(output)
+        # self.cinn_outputs = [output]               
 
-        # prog = builder.build()
-        # res = self.get_cinn_output(
-        #     prog, target, [x, y], [self.x_np, self.y_np], [out]
-        # )
-        # self.cinn_outputs = res
+        prog = builder.build()
+        res = self.get_cinn_output(
+            prog, target, [x, y], [self.x_np, self.y_np], [out]
+        )
+        # 将numpy.ndarray转为 Paddle 的 Tensor
+        res_tensor = paddle.to_tensor(res)
+        self.cinn_outputs = res_tensor
 
     def test_check_results(self):
         max_relative_error = (

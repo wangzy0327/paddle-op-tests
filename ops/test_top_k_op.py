@@ -50,7 +50,7 @@ class TestTopKOp(OpTest):
         end_time = time.time()
         # 计算执行时间
         execution_time = end_time - start_time
-        # print(out)
+        print(out)
         
         print(f"Paddle Execution time: {execution_time:.6f} seconds")        
         self.paddle_outputs = [out[0], out[1]]
@@ -65,32 +65,38 @@ class TestTopKOp(OpTest):
         print("CINN running at ", target.arch)         
         out = builder.top_k(x, self.k, self.axis, self.largest)
         
-        computation = frontend.Computation.build_and_compile(target, builder)
+        # computation = frontend.Computation.build_and_compile(target, builder)
         
-        tensor_data = [
-            self.inputs["x"],
-        ]
+        # tensor_data = [
+        #     self.inputs["x"],
+        # ]
         
-        computation.get_tensor("x").from_numpy(tensor_data[0], target)
-        # 记录开始时间
-        start_time = time.time()
-        computation.execute()
-        end_time = time.time()
-        # 计算执行时间
-        execution_time = end_time - start_time
+        # computation.get_tensor("x").from_numpy(tensor_data[0], target)
+        # # 记录开始时间
+        # start_time = time.time()
+        # computation.execute()
+        # end_time = time.time()
+        # # 计算执行时间
+        # execution_time = end_time - start_time
 
-        print(f"CINN Execution time: {execution_time:.6f} seconds")
-        res_tensor = computation.get_tensor(str(out))
-        res_data = res_tensor.numpy(target)
-        # print(res_data)
-        output = paddle.to_tensor(res_data, stop_gradient=True)
-        # print(output)
-        self.cinn_outputs = [output]
-        # prog = builder.build()
-        # forward_res = self.get_cinn_output(
-        #     prog, target, [x], [self.inputs["x"]], [out[0], out[1]]
-        # )
-        # self.cinn_outputs = forward_res
+        # print(f"CINN Execution time: {execution_time:.6f} seconds")
+        # res_tensor = computation.get_tensor(str(out))
+        # res_data = res_tensor.numpy(target)
+        # # print(res_data)
+        # output = paddle.to_tensor(res_data, stop_gradient=True)
+        # # print(output)
+        # self.cinn_outputs = [output]
+        prog = builder.build()
+        forward_res = self.get_cinn_output(
+            prog, target, [x], [self.inputs["x"]], [out[0], out[1]]
+        )
+        forward_res_out0 = forward_res[0]
+        forward_res_out1 = forward_res[1]
+        forward_res_tensor0 = paddle.to_tensor(forward_res_out0)
+        forward_res_tensor1 = paddle.to_tensor(forward_res_out1)
+        forward_res_tensor = [forward_res_tensor0,forward_res_tensor1]
+        print(forward_res_tensor)
+        self.cinn_outputs = forward_res_tensor
 
     def test_check_results(self):
         self.check_outputs_and_grads()
@@ -102,7 +108,7 @@ class TestTopKOpDumpicateElement(TestTopKOp):
         self.prepare_inputs()
 
     def prepare_inputs(self):
-        self.inputs = {"x": self.random([128], "float32", -10, 10)}
+        # self.inputs = {"x": self.random([128], "float32", -10, 10)}
         # self.inputs = {"x": self.random([128], "int64", -10, 10)}
         self.axis = 0
         self.largest = False

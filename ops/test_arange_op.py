@@ -55,7 +55,9 @@ class TestArangeOp(OpTest):
         )
         end_time = time.time()
         # 计算执行时间
-        execution_time = end_time - start_time        
+        execution_time = end_time - start_time  
+        print(type(out))
+        print(out)      
         self.paddle_outputs = [out]
         print(f"Paddle Execution time: {execution_time:.6f} seconds")        
 
@@ -69,37 +71,43 @@ class TestArangeOp(OpTest):
         )
         print("CINN running at ", target.arch)    
 
-        computation = frontend.Computation.build_and_compile(target, builder)
+        # computation = frontend.Computation.build_and_compile(target, builder)
         
-        tensor_data = [
-            self.inputs["start"],
-            self.inputs["end"],
-            self.inputs["step"],
-            self.inputs["dtype"],
-        ]
+        # tensor_data = [
+        #     self.inputs["start"],
+        #     self.inputs["end"],
+        #     self.inputs["step"],
+        #     self.inputs["dtype"],
+        # ]
         
-        computation.get_tensor("start").from_numpy(tensor_data[0], target)
-        computation.get_tensor("end").from_numpy(tensor_data[1], target)
-        computation.get_tensor("step").from_numpy(tensor_data[2], target)
-        computation.get_tensor("dtype").from_numpy(tensor_data[3], target)
-        # 记录开始时间
-        start_time = time.time()
-        computation.execute()
-        end_time = time.time()
-        # 计算执行时间
-        execution_time = end_time - start_time
+        # computation.get_tensor("start").from_numpy(tensor_data[0], target)
+        # computation.get_tensor("end").from_numpy(tensor_data[1], target)
+        # computation.get_tensor("step").from_numpy(tensor_data[2], target)
+        # computation.get_tensor("dtype").from_numpy(tensor_data[3], target)
+        # # 记录开始时间
+        # start_time = time.time()
+        # computation.execute()
+        # end_time = time.time()
+        # # 计算执行时间
+        # execution_time = end_time - start_time
 
-        print(f"CINN Execution time: {execution_time:.6f} seconds")
-        res_tensor = computation.get_tensor(str(out))
-        res_data = res_tensor.numpy(target)
-        # print(res_data)
-        output = paddle.to_tensor(res_data, stop_gradient=True)
-        # print(output)
-        self.cinn_outputs = [output]
-        # prog = builder.build()
-        # res = self.get_cinn_output(prog, target, [], [], [out])
+        # print(f"CINN Execution time: {execution_time:.6f} seconds")
+        # res_tensor = computation.get_tensor(str(out))
+        # res_data = res_tensor.numpy(target)
+        # # print(res_data)
+        # output = paddle.to_tensor(res_data, stop_gradient=True)
+        # # print(output)
+        # self.cinn_outputs = [output]
+        prog = builder.build()
+        res = self.get_cinn_output(prog, target, [], [], [out])
+        # 将numpy.ndarray转为 Paddle 的 Tensor
+        res_tensor = paddle.to_tensor(res)
+        # res_tensor = paddle.to_tensor(res[0])
+        print(type(res_tensor))
+        print(res_tensor)
+        
 
-        # self.cinn_outputs = res
+        self.cinn_outputs = res_tensor
 
     def test_check_results(self):
         self.check_outputs_and_grads(all_equal=True)

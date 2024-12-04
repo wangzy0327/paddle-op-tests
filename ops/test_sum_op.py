@@ -70,30 +70,32 @@ class TestSumOp(OpTest):
             cinn_inputs.append(cinn_input)
         print("CINN running at ", target.arch)                     
         out = builder.sum(cinn_inputs)
-        computation = frontend.Computation.build_and_compile(target, builder)
+        # computation = frontend.Computation.build_and_compile(target, builder)
         
         
-        for id, input in enumerate(self.inputs): 
-            computation.get_tensor("input_"+str(id)).from_numpy(self.inputs[id], target)
-        # 记录开始时间
-        start_time = time.time()
-        computation.execute()
-        end_time = time.time()
-        # 计算执行时间
-        execution_time = end_time - start_time
+        # for id, input in enumerate(self.inputs): 
+        #     computation.get_tensor("input_"+str(id)).from_numpy(self.inputs[id], target)
+        # # 记录开始时间
+        # start_time = time.time()
+        # computation.execute()
+        # end_time = time.time()
+        # # 计算执行时间
+        # execution_time = end_time - start_time
 
-        print(f"CINN Execution time: {execution_time:.6f} seconds")
-        res_tensor = computation.get_tensor(str(out))
-        res_data = res_tensor.numpy(target)
-        # print(res_data)
-        output = paddle.to_tensor(res_data, stop_gradient=True)
-        # print(output)
-        self.cinn_outputs = [output]        
-        # prog = builder.build()
-        # res = self.get_cinn_output(
-        #     prog, target, cinn_inputs, self.inputs, [out]
-        # )
-        # self.cinn_outputs = res
+        # print(f"CINN Execution time: {execution_time:.6f} seconds")
+        # res_tensor = computation.get_tensor(str(out))
+        # res_data = res_tensor.numpy(target)
+        # # print(res_data)
+        # output = paddle.to_tensor(res_data, stop_gradient=True)
+        # # print(output)
+        # self.cinn_outputs = [output]        
+        prog = builder.build()
+        res = self.get_cinn_output(
+            prog, target, cinn_inputs, self.inputs, [out]
+        )
+        # 将numpy.ndarray转为 Paddle 的 Tensor
+        res_tensor = paddle.to_tensor(res)
+        self.cinn_outputs = res_tensor
 
     def test_check_results(self):
         self.check_outputs_and_grads()
