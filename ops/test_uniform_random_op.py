@@ -29,6 +29,8 @@ import time
 )
 class TestUniformRandomOp(OpTest):
     def setUp(self):
+        device_info = paddle.get_device()
+        print("Current Paddle device : %s"%(device_info)) 
         # print(f"\n{self.__class__.__name__}: {self.case}")
         pass
 
@@ -61,25 +63,28 @@ class TestUniformRandomOp(OpTest):
             self.case["seed"],
             self.case["dtype"],
         )
-        computation = frontend.Computation.build_and_compile(target, builder)
+        # computation = frontend.Computation.build_and_compile(target, builder)
     
-        # 记录开始时间
-        start_time = time.time()
-        computation.execute()
-        end_time = time.time()
-        # 计算执行时间
-        execution_time = end_time - start_time
+        # # 记录开始时间
+        # start_time = time.time()
+        # computation.execute()
+        # end_time = time.time()
+        # # 计算执行时间
+        # execution_time = end_time - start_time
 
-        print(f"CINN Execution time: {execution_time:.6f} seconds")
-        res_tensor = computation.get_tensor(str(out))
-        res_data = res_tensor.numpy(target)
-        # print(res_data)
-        output = paddle.to_tensor(res_data, stop_gradient=True)
-        # print(output)
-        self.cinn_outputs = [output]
-        # prog = builder.build()
-        # res = self.get_cinn_output(prog, target, [], [], [out], passes=[])
-        # self.cinn_outputs = res
+        # print(f"CINN Execution time: {execution_time:.6f} seconds")
+        # res_tensor = computation.get_tensor(str(out))
+        # res_data = res_tensor.numpy(target)
+        # # print(res_data)
+        # output = paddle.to_tensor(res_data, stop_gradient=True)
+        # # print(output)
+        # self.cinn_outputs = [output]
+        prog = builder.build()
+        res = self.get_cinn_output(prog, target, [], [], [out], passes=[])
+        res_tensor = paddle.to_tensor(res)
+        # res_tensor = paddle.to_tensor(res[0])
+        # print(type(res_tensor))        
+        self.cinn_outputs = res_tensor
 
     def test_check_results(self):
         # Due to the different random number generation numbers implemented

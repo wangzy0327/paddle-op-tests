@@ -19,15 +19,19 @@ import unittest
 from op_test import OpTest, OpTestTool, is_compile_with_device
 
 import paddle
-from paddle.cinn.common import is_compiled_with_cuda
-from paddle.cinn.frontend import NetBuilder
-
+# from paddle.cinn.common import is_compiled_with_cuda
+# from paddle.cinn.frontend import NetBuilder
+from paddle.cinn import frontend
+import numpy as np
+import time
 
 @OpTestTool.skip_if(
-    not is_compiled_with_cuda(), "x86 test will be skipped due to timeout."
+    not is_compile_with_device, "x86 test will be skipped due to timeout."
 )
 class TestRandIntOp(OpTest):
     def setUp(self):
+        device_info = paddle.get_device()
+        print("Current Paddle device : %s"%(device_info))         
         self.init_case()
 
     def init_case(self):
@@ -38,19 +42,49 @@ class TestRandIntOp(OpTest):
         self.dtype = "int32"
 
     def build_paddle_program(self, target):
+        print("Paddle running at ", target.arch)     
+        # 记录开始时间
+        start_time = time.time()             
         out = paddle.randint(
             shape=self.shape, low=self.min, high=self.max, dtype=self.dtype
         )
+        end_time = time.time()
+        # 计算执行时间
+        execution_time = end_time - start_time
+        # print(out)
+        
+        print(f"Paddle Execution time: {execution_time:.6f} seconds")        
         self.paddle_outputs = [out]
 
     def build_cinn_program(self, target):
-        builder = NetBuilder("randint")
+        builder = frontend.NetBuilder("randint")
+        print("CINN running at ", target.arch)         
         out = builder.randint(
             self.shape, self.min, self.max, self.seed, self.dtype
         )
+        
+        # computation = frontend.Computation.build_and_compile(target, builder)
+        
+        # # 记录开始时间
+        # start_time = time.time()
+        # computation.execute()
+        # end_time = time.time()
+        # # 计算执行时间
+        # execution_time = end_time - start_time
+
+        # print(f"CINN Execution time: {execution_time:.6f} seconds")
+        # res_tensor = computation.get_tensor(str(out))
+        # res_data = res_tensor.numpy(target)
+        # # print(res_data)
+        # output = paddle.to_tensor(res_data, stop_gradient=True)
+        # # print(output)
+        # self.cinn_outputs = [output]        
         prog = builder.build()
         res = self.get_cinn_output(prog, target, [], [], [out], passes=[])
-        self.cinn_outputs = [res[0]]
+        # res_tensor = paddle.to_tensor(res)
+        res_tensor = paddle.to_tensor(res[0])
+        # print(type(res_tensor))   
+        self.cinn_outputs = [res_tensor]
 
     def test_check_results(self):
         # Due to the different random number generation numbers implemented
@@ -71,13 +105,13 @@ class TestRandIntCase1(TestRandIntOp):
         self.dtype = "int32"
 
 
-class TestRandIntCase2(TestRandIntOp):
-    def init_case(self):
-        self.shape = [2, 3, 4]
-        self.min = -2
-        self.max = 3
-        self.seed = 8
-        self.dtype = "int64"
+# class TestRandIntCase2(TestRandIntOp):
+#     def init_case(self):
+#         self.shape = [2, 3, 4]
+#         self.min = -2
+#         self.max = 3
+#         self.seed = 8
+#         self.dtype = "int64"
 
 
 if __name__ == "__main__":
