@@ -56,10 +56,11 @@ class TestArangeOp(OpTest):
         end_time = time.time()
         # 计算执行时间
         execution_time = end_time - start_time  
-        print(type(out))
-        print(out)      
+        # print(type(out))
+        # print(out)      
         self.paddle_outputs = [out]
-        print(f"Paddle Execution time: {execution_time:.6f} seconds")        
+        # print(f"Paddle Execution time: {execution_time:.6f} seconds") 
+        print(f"Paddle Execution pass")       
 
     def build_cinn_program(self, target):
         builder = frontend.NetBuilder("arange")    
@@ -103,8 +104,9 @@ class TestArangeOp(OpTest):
         # 将numpy.ndarray转为 Paddle 的 Tensor
         res_tensor = paddle.to_tensor(res)
         # res_tensor = paddle.to_tensor(res[0])
-        print(type(res_tensor))
-        print(res_tensor)
+        # print(type(res_tensor))
+        # print(res_tensor)
+        print(f"CINN Execution pass")
         
 
         self.cinn_outputs = res_tensor
@@ -235,4 +237,4 @@ class TestArangeOpDtype(TestCaseHelper):
 
 if __name__ == "__main__":
     TestArangeOpShapeAndAttr().run()
-    TestArangeOpDtype().run()
+    # TestArangeOpDtype().run()

@@ -49,6 +49,7 @@ class TestConv2dOp(OpTest):
         )
 
     def build_paddle_program(self, target):
+        print("Paddle running at ", target.arch)         
         x = paddle.to_tensor(self.x_np, stop_gradient=False)
         weight = paddle.to_tensor(self.w_np, stop_gradient=False)
         y = paddle.nn.functional.conv2d(
@@ -64,8 +65,10 @@ class TestConv2dOp(OpTest):
         self.paddle_grads = self.get_paddle_grads(
             [y], [x, weight], [self.dy_np]
         )
+        print(f"Paddle Execution pass")          
 
     def build_cinn_program(self, target):
+        print("CINN running at ", target.arch)         
         builder = frontend.NetBuilder("conv2d")
         x = builder.create_input(
             self.nptype2cinntype(self.case["dtype"]), self.case["x_shape"], "x"
@@ -147,6 +150,7 @@ class TestConv2dOp(OpTest):
         res2_tensor = paddle.to_tensor(res[2])
         self.cinn_outputs = [res0_tensor]
         self.cinn_grads = [res1_tensor, res2_tensor]
+        print(f"CINN Execution pass")        
 
     def test_check_results(self):
         max_relative_error = (

@@ -63,6 +63,7 @@ class TestDepthwiseConv2dOp(OpTest):
         )
         y = conv(x)
         self.paddle_outputs = [y]
+        print(f"Paddle Execution pass")        
 
     def build_cinn_program(self, target):
         print("CINN running at ", target.arch)         
@@ -105,6 +106,7 @@ class TestDepthwiseConv2dOp(OpTest):
         # 将numpy.ndarray转为 Paddle 的 Tensor
         res_tensor = paddle.to_tensor(res)
         self.cinn_outputs = res_tensor
+        print(f"CINN Execution pass")        
 
     def test_check_results(self):
         max_relative_error = (

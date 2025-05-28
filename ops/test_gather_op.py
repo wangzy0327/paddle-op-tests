@@ -65,9 +65,10 @@ class TestGatherOp(OpTest):
         execution_time = end_time - start_time
         # print(out)
         
-        print(f"Paddle Execution time: {execution_time:.6f} seconds")        
+        # print(f"Paddle Execution time: {execution_time:.6f} seconds")        
         logger.debug(f" -- The output of Paddle:\n{out}")
         self.paddle_outputs.append(out)
+        print(f"Paddle Execution pass")          
 
     def build_cinn_program(self, target):
         inputs = self.case
@@ -105,6 +106,7 @@ class TestGatherOp(OpTest):
         logger.debug(f" -- The output of CINN:\n{res}")
         res_tensor = paddle.to_tensor(res)
         self.cinn_outputs.extend(res_tensor)
+        print(f"CINN Execution pass")          
 
     def test_check_results(self):
         self.check_outputs_and_grads(all_equal=True)

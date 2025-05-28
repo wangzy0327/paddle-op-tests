@@ -29,48 +29,50 @@ import time
 @OpTestTool.skip_if(
     not is_compile_with_device, "x86 test will be skipped due to timeout."
 )
-class TestArgMinOp(OpTest):
+class TestArgSortOp(OpTest):
     def setUp(self):
         device_info = paddle.get_device()
-        print("Current Paddle device : %s"%(device_info))          
+        print("Current Paddle device : %s"%(device_info)) 
         self.prepare_inputs()
 
     def prepare_inputs(self):
-        self.x_np = self.random(
-            self.case["shape"], self.case["dtype"], low=0, high=10
-        )
+        self.x_np = self.random(self.case["shape"], self.case["dtype"])
         self.axis = self.case["axis"]
-        self.keepdim = self.case["keepdim"]
+        self.descending = self.case["descending"]
 
     def build_paddle_program(self, target):
         print("Paddle running at ", target.arch)         
-        x = paddle.to_tensor(self.x_np, stop_gradient=True)
+        x1 = paddle.to_tensor(self.x_np , stop_gradient=True)
+        # print("Paddle elements : ", self.x_np)
         # 记录开始时间
-        start_time = time.time()         
-        out = paddle.argmin(x, self.axis, self.keepdim, dtype="int32")
+        start_time = time.time()        
+        out = paddle.argsort(x1, self.axis, self.descending)
         end_time = time.time()
         # 计算执行时间
-        execution_time = end_time - start_time       
+        execution_time = end_time - start_time 
+        # from argsort return tensor(int64) to tensor(int32)
+        out = out.cast('int32')
         # print(out)
         
         # print(f"Paddle Execution time: {execution_time:.6f} seconds")   
-        print(f"Paddle Execution pass")       
+        print(f"Paddle Execution pass")             
         self.paddle_outputs = [out]
 
     def build_cinn_program(self, target):
-        builder = frontend.NetBuilder("argmin")
-        x = builder.create_input(
-            self.nptype2cinntype(self.case["dtype"]), self.case["shape"], "x"
+        builder = frontend.NetBuilder("argsort")
+        x1 = builder.create_input(
+            self.nptype2cinntype(self.case["dtype"]), self.case["shape"], "x1"
         )
-        out = builder.argmin(x, self.axis, self.keepdim)
-        
+        # print("CINN elements : ", self.x_np)
+        print("CINN running at ", target.arch)          
+        out = builder.argsort(x1, self.axis, not self.descending)
         computation = frontend.Computation.build_and_compile(target, builder)
         
         tensor_data = [
             self.x_np,
         ]
         
-        computation.get_tensor("x").from_numpy(tensor_data[0], target)
+        computation.get_tensor("x1").from_numpy(tensor_data[0], target)
         # 记录开始时间
         start_time = time.time()
         computation.execute()
@@ -79,34 +81,34 @@ class TestArgMinOp(OpTest):
         execution_time = end_time - start_time
 
         # print(f"CINN Execution time: {execution_time:.6f} seconds")
-        print(f"CINN Execution pass")
-        res_tensor = computation.get_tensor(str(out))
+        print(f"Paddle Execution pass")
+        res_tensor = computation.get_tensor(str(out[0]))
         res_data = res_tensor.numpy(target)
         # print(res_data)
         output = paddle.to_tensor(res_data, stop_gradient=True)
         # print(output)
-        self.cinn_outputs = [output]
+        self.cinn_outputs = [output]        
         # prog = builder.build()
-        # forward_res = self.get_cinn_output(
-        #     prog, target, [x], [self.x_np], [out]
-        # )
+        # forward_res = self.get_cinn_output(prog, target, [x1], [self.x_np], out)
         # print(forward_res[0])
-        # self.cinn_outputs = np.array(forward_res).astype("int64")
+        # self.cinn_outputs = paddle.to_tensor([forward_res[0]], stop_gradient=True)
+        # self.cinn_outputs = self.cinn_outputs.cast("int32")
+        # print(self.cinn_outputs)
 
     def test_check_results(self):
         self.check_outputs_and_grads()
 
 
-class TestArgMinOpShapeTest(TestCaseHelper):
+class TestArgSortOpShapeTest(TestCaseHelper):
     def init_attrs(self):
-        self.class_name = "ArgMinOpShapeTest"
-        self.cls = TestArgMinOp
+        self.class_name = "ArgSortOpShapeTest"
+        self.cls = TestArgSortOp
         self.inputs = [
             # {
             #     "shape": [512],
             # },
             {
-                "shape": [1024],
+                "shape": [32],
             },
             # {
             #     "shape": [1200],
@@ -137,34 +139,29 @@ class TestArgMinOpShapeTest(TestCaseHelper):
             # },
         ]
         self.dtypes = [{"dtype": "float32"}]
-        self.attrs = [{"axis": 0, "keepdim": False}]
+        self.attrs = [{"axis": 0, "descending": False}]
 
 
-class TestArgMinOpDtypeTest(TestCaseHelper):
+class TestArgSortOpDtypeTest(TestCaseHelper):
     def init_attrs(self):
-        self.class_name = "ArgMinOpDtypeTest"
-        self.cls = TestArgMinOp
+        self.class_name = "ArgSortOpDtypeTest"
+        self.cls = TestArgSortOp
         self.inputs = [
             {
                 "shape": [1024],
             },
         ]
         self.dtypes = [
-            # {
-            #     "dtype": "float16",
-            # },
             {
                 "dtype": "float32",
             },
             # {
             #     "dtype": "float64",
             # },
-            # {
-            #     "dtype": "uint8",
-            # },
-            # {
-            #     "dtype": "int16",
-            # },
+            # # Throw dtype not support error in paddle
+            # # {
+            # #     "dtype": "uint8",
+            # # },
             # {
             #     "dtype": "int32",
             # },
@@ -172,13 +169,13 @@ class TestArgMinOpDtypeTest(TestCaseHelper):
             #     "dtype": "int64",
             # },
         ]
-        self.attrs = [{"axis": 0, "keepdim": False}]
+        self.attrs = [{"axis": 0, "descending": False}]
 
 
-class TestArgMinOpAxisTest(TestCaseHelper):
+class TestArgSortOpAxisTest(TestCaseHelper):
     def init_attrs(self):
-        self.class_name = "ArgMinOpAxisTest"
-        self.cls = TestArgMinOp
+        self.class_name = "ArgSortOpAxisTest"
+        self.cls = TestArgSortOp
         self.inputs = [
             {
                 "shape": [16, 8, 4, 2],
@@ -186,17 +183,17 @@ class TestArgMinOpAxisTest(TestCaseHelper):
         ]
         self.dtypes = [{"dtype": "float32"}]
         self.attrs = [
-            {"axis": 0, "keepdim": False},
-            {"axis": 1, "keepdim": False},
-            {"axis": 2, "keepdim": False},
-            {"axis": 3, "keepdim": False},
+            {"axis": 0, "descending": False},
+            {"axis": 1, "descending": False},
+            {"axis": 2, "descending": False},
+            {"axis": 3, "descending": False},
         ]
 
 
-class TestArgMinOpKeepdimTest(TestCaseHelper):
+class TestArgSortOpDescendingTest(TestCaseHelper):
     def init_attrs(self):
-        self.class_name = "ArgMinOpKeepdimTest"
-        self.cls = TestArgMinOp
+        self.class_name = "ArgSortOpDescendingTest"
+        self.cls = TestArgSortOp
         self.inputs = [
             {
                 "shape": [16, 8, 4, 2],
@@ -204,15 +201,15 @@ class TestArgMinOpKeepdimTest(TestCaseHelper):
         ]
         self.dtypes = [{"dtype": "float32"}]
         self.attrs = [
-            {"axis": 0, "keepdim": True},
-            {"axis": 1, "keepdim": True},
-            {"axis": 2, "keepdim": True},
-            {"axis": 3, "keepdim": True},
+            {"axis": 0, "descending": True},
+            {"axis": 1, "descending": True},
+            {"axis": 2, "descending": True},
+            {"axis": 3, "descending": True},
         ]
 
 
 if __name__ == "__main__":
-    TestArgMinOpShapeTest().run()
-    TestArgMinOpDtypeTest().run()
-    # TestArgMinOpAxisTest().run()
-    # TestArgMinOpKeepdimTest().run()
+    TestArgSortOpShapeTest().run()
+    TestArgSortOpDtypeTest().run()
+    TestArgSortOpAxisTest().run()
+    TestArgSortOpDescendingTest().run()

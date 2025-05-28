@@ -56,7 +56,8 @@ class TestBitcastConvertOp(OpTest):
         execution_time = end_time - start_time
         # print(y)
 
-        print(f"Paddle Execution time: {execution_time:.6f} seconds")        
+        # print(f"Paddle Execution time: {execution_time:.6f} seconds")   
+        print(f"Paddle Execution pass")             
         self.paddle_outputs = [y]
 
     def build_cinn_program(self, target):
@@ -82,7 +83,8 @@ class TestBitcastConvertOp(OpTest):
         # 计算执行时间
         execution_time = end_time - start_time
 
-        print(f"CINN Execution time: {execution_time:.6f} seconds")
+        # print(f"CINN Execution time: {execution_time:.6f} seconds")
+        print(f"CINN Execution pass")        
         res_tensor = computation.get_tensor(str(out))
         res_data = res_tensor.numpy(target)
         # print(res_data)

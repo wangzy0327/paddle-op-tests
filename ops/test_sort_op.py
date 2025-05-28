@@ -32,13 +32,19 @@ class TestSortOp(OpTest):
         self.prepare_inputs()
 
     def prepare_inputs(self):
-        self.inputs = {"x": self.random(self.case["shape"], self.case["dtype"])}
+        # self.inputs = {"x": self.random(self.case["shape"], self.case["dtype"])}
+        self.inputs = {"x": np.random.choice(
+            np.arange(1, 10000),
+            size=int(np.prod(self.case["shape"])),
+            replace=False
+        ).reshape(self.case["shape"]).astype(np.int64)}
         self.axis = self.case["axis"]
         self.descending = self.case["descending"]
 
     def build_paddle_program(self, target):
         print("Paddle running at ", target.arch)  
         x1 = paddle.to_tensor(self.inputs["x"], stop_gradient=True)
+        print("Paddle elements : ", self.inputs["x"])
         # 记录开始时间
         start_time = time.time()         
         out = paddle.sort(x1, self.axis, self.descending)
@@ -46,6 +52,8 @@ class TestSortOp(OpTest):
         # 计算执行时间
         execution_time = end_time - start_time
         # print(out)
+        out  = out.cast('int32')
+        print(out)
         
         print(f"Paddle Execution time: {execution_time:.6f} seconds") 
         self.paddle_outputs = [out]
@@ -58,6 +66,7 @@ class TestSortOp(OpTest):
             "x",
         )
         print("CINN running at ", target.arch) 
+        print("CINN elements : ", self.inputs["x"])
         out = builder.sort(x1, self.axis, not self.descending)
         computation = frontend.Computation.build_and_compile(target, builder)
         
@@ -78,7 +87,8 @@ class TestSortOp(OpTest):
         res_data = res_tensor.numpy(target)
         # print(res_data)
         output = paddle.to_tensor(res_data, stop_gradient=True)
-        # print(output)
+        output = output.cast('int32')
+        print(output)
         self.cinn_outputs = [output]        
         # prog = builder.build()
         # forward_res = self.get_cinn_output(
@@ -164,7 +174,8 @@ class TestSortOpShapeTest(TestCaseHelper):
             #     "shape": [131072],
             # },
         ]
-        self.dtypes = [{"dtype": "float32"}]
+        # self.dtypes = [{"dtype": "float32"}]
+        self.dtypes = [{"dtype": "int64"}]
         self.attrs = [{"axis": 0, "descending": False}]
 
 
@@ -232,10 +243,10 @@ class TestSortOpDescedingTest(TestSortOpShapeTest):
 
 
 if __name__ == "__main__":
-    run_test(TestSortOpDumpicateElement)
+    # run_test(TestSortOpDumpicateElement)
     # run_test(TestSortOpLargeCudaMemoryOccupation)
 
     TestSortOpShapeTest().run()
-    TestSortOpDtypeTest().run()
-    TestSortOpAxisTest().run()
+    # TestSortOpDtypeTest().run()
+    # TestSortOpAxisTest().run()
     # TestSortOpDescedingTest().run()

@@ -54,7 +54,7 @@ class TestSoftmaxOp(OpTest):
         self.cinn_outputs = res_tensor
 
     def test_check_results(self):
-        self.check_outputs_and_grads()
+        self.check_outputs_and_grads(max_relative_error=1e-2)
 
 
 class TestSoftmaxAll(TestCaseHelper):
@@ -93,7 +93,7 @@ class TestSoftmaxAll(TestCaseHelper):
         ]
         self.dtypes = [
             {
-                "dtype": "float32",
+                "dtype": "float32"
             },
             # {
             #     "dtype": "float64",

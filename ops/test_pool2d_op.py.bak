@@ -20,9 +20,8 @@ from op_test_helper import TestCaseHelper
 import paddle
 from paddle import _C_ops
 # from paddle.cinn.common import is_compiled_with_cudnn
-# from paddle.cinn.frontend import NetBuilder
-from paddle.cinn import frontend
-import time
+from paddle.cinn.frontend import NetBuilder
+
 
 @OpTestTool.skip_if(
     not is_compile_with_device, "x86 test will be skipped due to timeout."
@@ -59,7 +58,7 @@ class TestPool2dOp(OpTest):
 
     def build_cinn_program(self, target):
         print("CINN running at ", target.arch)         
-        builder = frontend.NetBuilder("pool2d")
+        builder = NetBuilder("pool2d")
         x = builder.create_input(
             self.nptype2cinntype(self.case["dtype"]), self.case["shape"], "x"
         )
@@ -76,33 +75,13 @@ class TestPool2dOp(OpTest):
             adaptive=self.case["adaptive"],
             padding_algorithm=self.case["padding_algorithm"],
         )
-        # prog = builder.build()
-        computation = frontend.Computation.build_and_compile(target, builder)
-        tensor_data = [
-            self.x_np,
-        ]
-        
-        computation.get_tensor("x").from_numpy(tensor_data[0], target) 
-        # 记录开始时间
-        start_time = time.time()
-        computation.execute()
-        end_time = time.time()
-        # 计算执行时间
-        execution_time = end_time - start_time               
-        # res = self.get_cinn_output(
-        #     prog, target, [x], [self.x_np], [out], passes=[]
-        # )
+        prog = builder.build()
+        res = self.get_cinn_output(
+            prog, target, [x], [self.x_np], [out], passes=[]
+        )
         # 将numpy.ndarray转为 Paddle 的 Tensor
-        # res_tensor = paddle.to_tensor(res)
-        print(f"CINN Execution pass")
-        # output_var = out[0]
-        res_tensor = computation.get_tensor(str(out))
-        res_data = res_tensor.numpy(target)
-        # print(res_data)
-        output = paddle.to_tensor(res_data, stop_gradient=True)
-        print(output)
-        self.cinn_outputs = [output]         
-        # self.cinn_outputs = res_tensor
+        res_tensor = paddle.to_tensor(res)
+        self.cinn_outputs = res_tensor
 
     def test_check_results(self):
         self.check_outputs_and_grads(all_equal=True)
@@ -117,10 +96,10 @@ class TestPool2dOpAll(TestCaseHelper):
                 "shape": [1, 3, 32, 32],
                 "data_format": "NCHW",
             },
-            # {
-            #     "shape": [32, 3, 64, 64],
-            #     "data_format": "NCHW",
-            # },
+            {
+                "shape": [32, 3, 64, 64],
+                "data_format": "NCHW",
+            },
             # {
             #     "shape": [1, 32, 32, 3],
             #     "data_format": "NHWC",
@@ -382,4 +361,3 @@ class TestPool2dBackwardAll(TestCaseHelper):
 if __name__ == "__main__":
     TestPool2dOpAll().run()
     # TestPool2dBackwardAll().run()
-

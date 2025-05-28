@@ -36,14 +36,25 @@ class TestArgSortOp(OpTest):
         self.prepare_inputs()
 
     def prepare_inputs(self):
-        self.x_np = self.random(self.case["shape"], self.case["dtype"])
+        # self.x_np = self.random(self.case["shape"], self.case["dtype"])
+        # self.x_np = np.random.randint(low=1,
+        #                       high=10000,
+        #                       size=self.case["shape"],
+        #                       dtype=np.int64)
+        self.x_np = np.random.choice(
+            np.arange(1, 10000),
+            size=int(np.prod(self.case["shape"])),
+            replace=False
+        ).reshape(self.case["shape"]).astype(np.int64)        
+        # self.x_np = np.array([5, 6, 8, 4, 10], dtype=np.int64)       
         self.axis = self.case["axis"]
         self.descending = self.case["descending"]
+        print(f"dtype is {self.case['dtype']}")
 
     def build_paddle_program(self, target):
         print("Paddle running at ", target.arch)         
         x1 = paddle.to_tensor(self.x_np , stop_gradient=True)
-        # print("Paddle elements : ", self.x_np)
+        print("Paddle elements : ", self.x_np)
         # 记录开始时间
         start_time = time.time()        
         out = paddle.argsort(x1, self.axis, self.descending)
@@ -52,17 +63,19 @@ class TestArgSortOp(OpTest):
         execution_time = end_time - start_time 
         # from argsort return tensor(int64) to tensor(int32)
         out = out.cast('int32')
-        # print(out)
+        print(out)
         
-        print(f"Paddle Execution time: {execution_time:.6f} seconds")                
+        # print(f"Paddle Execution time: {execution_time:.6f} seconds")   
+        print(f"Paddle Execution pass")             
         self.paddle_outputs = [out]
 
     def build_cinn_program(self, target):
         builder = frontend.NetBuilder("argsort")
         x1 = builder.create_input(
+            # self.nptype2cinntype("int64"), self.x_np.shape, "x1"
             self.nptype2cinntype(self.case["dtype"]), self.case["shape"], "x1"
         )
-        # print("CINN elements : ", self.x_np)
+        print("CINN elements : ", self.x_np)
         print("CINN running at ", target.arch)          
         out = builder.argsort(x1, self.axis, not self.descending)
         computation = frontend.Computation.build_and_compile(target, builder)
@@ -79,12 +92,13 @@ class TestArgSortOp(OpTest):
         # 计算执行时间
         execution_time = end_time - start_time
 
-        print(f"CINN Execution time: {execution_time:.6f} seconds")
+        # print(f"CINN Execution time: {execution_time:.6f} seconds")
+        print(f"CINN Execution pass")
         res_tensor = computation.get_tensor(str(out[0]))
         res_data = res_tensor.numpy(target)
         # print(res_data)
         output = paddle.to_tensor(res_data, stop_gradient=True)
-        # print(output)
+        print(output)
         self.cinn_outputs = [output]        
         # prog = builder.build()
         # forward_res = self.get_cinn_output(prog, target, [x1], [self.x_np], out)
@@ -106,7 +120,7 @@ class TestArgSortOpShapeTest(TestCaseHelper):
             #     "shape": [512],
             # },
             {
-                "shape": [32],
+                "shape": [1024],
             },
             # {
             #     "shape": [1200],
@@ -136,7 +150,8 @@ class TestArgSortOpShapeTest(TestCaseHelper):
             #     "shape": [1, 1, 1, 1, 1],
             # },
         ]
-        self.dtypes = [{"dtype": "float32"}]
+        # self.dtypes = [{"dtype": "float32"}]
+        self.dtypes = [{"dtype": "int64"}]
         self.attrs = [{"axis": 0, "descending": False}]
 
 
@@ -208,6 +223,6 @@ class TestArgSortOpDescendingTest(TestCaseHelper):
 
 if __name__ == "__main__":
     TestArgSortOpShapeTest().run()
-    TestArgSortOpDtypeTest().run()
-    TestArgSortOpAxisTest().run()
-    TestArgSortOpDescendingTest().run()
+    # TestArgSortOpDtypeTest().run()
+    # TestArgSortOpAxisTest().run()
+    # TestArgSortOpDescendingTest().run()

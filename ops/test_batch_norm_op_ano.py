@@ -47,6 +47,7 @@ class TestBatchNormTrainOp(OpTest):
         out = batch_norm(x)
 
         self.paddle_outputs = [out]
+        print(f"Paddle Execution pass")
 
     # Note: If the forward and backward operators are run in the same program,
     # the forward result will be incorrect.
@@ -78,6 +79,8 @@ class TestBatchNormTrainOp(OpTest):
             prog, target, [x], [self.x_np], out, passes=[]
         )
         self.cinn_outputs = [forward_res[0]]
+        
+        print(f"CINN Execution pass")
 
     def test_check_results(self):
         max_relative_error = (

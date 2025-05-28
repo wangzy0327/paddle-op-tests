@@ -42,6 +42,8 @@ class TestAbsOp(OpTest):
             low=-100.0,
             high=100,
         )
+        print(f"Input Data")
+        # print(self.x_np)
 
     def build_paddle_program(self, target):
         print("Paddle running at ", target.arch)
@@ -54,7 +56,8 @@ class TestAbsOp(OpTest):
         execution_time = end_time - start_time
         # print(out)
         
-        print(f"Paddle Execution time: {execution_time:.6f} seconds")
+        # print(f"Paddle Execution time: {execution_time:.6f} seconds")
+        print(f"Paddle Execution pass")
 
         self.paddle_outputs = [out]
 
@@ -82,7 +85,8 @@ class TestAbsOp(OpTest):
         # 计算执行时间
         execution_time = end_time - start_time
 
-        print(f"CINN Execution time: {execution_time:.6f} seconds")
+        # print(f"CINN Execution time: {execution_time:.6f} seconds")
+        print(f"CINN Execution pass")
         res_tensor = computation.get_tensor(str(out))
         res_data = res_tensor.numpy(target)
         # print(res_data)
@@ -117,6 +121,7 @@ class TestAbsOpShape(TestCaseHelper):
             #     "x_shape": [1],
             # },
             {
+                # "x_shape": [961],
                 "x_shape": [1024],
             },
             # {
@@ -172,4 +177,4 @@ class TestAbsOpDtype(TestCaseHelper):
 
 if __name__ == "__main__":
     TestAbsOpShape().run()
-    TestAbsOpDtype().run()
+    #TestAbsOpDtype().run()

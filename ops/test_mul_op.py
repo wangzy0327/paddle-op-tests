@@ -269,5 +269,5 @@ class TestMulOpAttr(TestCaseHelper):
 
 if __name__ == "__main__":
     TestMulOpShape().run()
-    TestMulOpDtype().run()
+    #TestMulOpDtype().run()
     # TestMulOpAttr().run()

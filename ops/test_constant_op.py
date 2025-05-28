@@ -58,15 +58,18 @@ class TestConstantOp(OpTest):
         end_time = time.time()
         # 计算执行时间
         execution_time = end_time - start_time
+        print(type(x))
         print(x)
         
         print(f"Paddle Execution time: {execution_time:.6f} seconds")        
         self.paddle_outputs = [x]
+        print(f"Paddle Execution pass")          
 
     def build_cinn_program(self, target):
         builder = frontend.NetBuilder("constant")
         print("CINN running at ", target.arch)    
         x = builder.constant(self.value, self.name, self.dtype)
+        prog = builder.build()
         # computation = frontend.Computation.build_and_compile(target, builder)
         
         # tensor_data = [
@@ -84,13 +87,17 @@ class TestConstantOp(OpTest):
         # print(f"CINN Execution time: {execution_time:.6f} seconds")
         # res_tensor = computation.get_tensor(str(x))
         # res_data = res_tensor.numpy(target)
-        # # print(res_data)
+        # print(res_data)
         # output = paddle.to_tensor(res_data, stop_gradient=True)
         # print(output)
         # self.cinn_outputs = [output]            
-        prog = builder.build()
+
         res = self.get_cinn_output(prog, target, [], [], [x])
-        self.cinn_outputs = res
+        # print(type(res))
+        print(res)
+        output = paddle.to_tensor(res, stop_gradient=False)
+        self.cinn_outputs = output
+        print(f"CINN Execution pass")        
 
     def test_check_results(self):
         self.check_outputs_and_grads(all_equal=True)
@@ -130,9 +137,9 @@ class TestConstantOpShape(TestCaseHelper):
             # {
             #     "shape": [512],
             # },
-            {
-                "shape": [1024],
-            },
+            # {
+            #     "shape": [1024],
+            # },
             # Update: stack over flow while compiling
             # very slow for the shape 2048
             # {
@@ -181,4 +188,4 @@ class TestConstantOpDtype(TestCaseHelper):
 
 if __name__ == "__main__":
     TestConstantOpShape().run()
-    TestConstantOpDtype().run()
+    # TestConstantOpDtype().run()

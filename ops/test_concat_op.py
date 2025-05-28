@@ -55,13 +55,16 @@ class TestConcatOp(OpTest):
         ]
 
     def build_paddle_program(self, target):
+        print("Paddle running at ", target.arch)         
         out = paddle.concat(x=self.paddle_inputs(self.inputs), axis=self.axis)
 
         self.paddle_outputs = [out]
+        print(f"CINN Execution pass")        
 
     # Note: If the forward and backward operators are run in the same program,
     # the forward result will be incorrect.
     def build_cinn_program(self, target):
+        print("CINN running at ", target.arch)         
         builder = NetBuilder("concat")
         input_list = self.cinn_inputs(builder, self.inputs)
         out = builder.concat(input_list, axis=self.axis)
@@ -73,6 +76,7 @@ class TestConcatOp(OpTest):
         res = self.get_cinn_output(prog, target, input_list, input_datas, [out])
 
         self.cinn_outputs = res
+        print(f"CINN Execution pass")        
 
     def test_check_results(self):
         self.check_outputs_and_grads(all_equal=True)

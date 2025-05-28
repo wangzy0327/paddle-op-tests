@@ -50,8 +50,9 @@ class TestAcoshOp(OpTest):
         end_time = time.time()
         # 计算执行时间
         execution_time = end_time - start_time
-        print(out)
-        print(f"Paddle Execution time: {execution_time:.6f} seconds")        
+        # print(out)
+        # print(f"Paddle Execution time: {execution_time:.6f} seconds")   
+        print(f"Paddle Execution pass")     
         self.paddle_outputs = [out]
 
     def build_cinn_program(self, target):
@@ -79,12 +80,13 @@ class TestAcoshOp(OpTest):
         # 计算执行时间
         execution_time = end_time - start_time
 
-        print(f"CINN Execution time: {execution_time:.6f} seconds")
+        # print(f"CINN Execution time: {execution_time:.6f} seconds")
+        print(f"CINN Execution pass")
         res_tensor = computation.get_tensor(str(out))
         res_data = res_tensor.numpy(target)
         # print(res_data)
         output = paddle.to_tensor(res_data, stop_gradient=False)
-        print(output)
+        # print(output)
         self.cinn_outputs = [output]
         # prog = builder.build()
         # res = self.get_cinn_output(prog, target, [x], [self.x_np], [out])

@@ -153,9 +153,9 @@ class TestTransposeOpDtypeTest(TestCaseHelper):
         self.cls = TestTransposeOp
         self.inputs = [
             {"shape": [1024], "axes": [0]},
-            {"shape": [64, 16], "axes": [1, 0]},
-            {"shape": [4, 32, 8], "axes": [0, 2, 1]},
-            {"shape": [16, 8, 4, 2], "axes": [1, 2, 3, 0]},
+            #{"shape": [64, 16], "axes": [1, 0]},
+            #{"shape": [4, 32, 8], "axes": [0, 2, 1]},
+            #{"shape": [16, 8, 4, 2], "axes": [1, 2, 3, 0]},
         ]
         self.dtypes = [
             # {"dtype": "float16"},

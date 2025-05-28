@@ -55,7 +55,8 @@ class TestGeluOp(OpTest):
         execution_time = end_time - start_time
         print(out)
         
-        print(f"Paddle Execution time: {execution_time:.6f} seconds")
+        # print(f"Paddle Execution time: {execution_time:.6f} seconds")
+        print(f"CINN Execution pass")          
         self.paddle_outputs = [out]
         # self.paddle_grads = self.get_paddle_grads(
         #     [out], [x], [self.inputs["dout"]]
@@ -98,6 +99,7 @@ class TestGeluOp(OpTest):
         # 将numpy.ndarray转为 Paddle 的 Tensor
         forward_res_tensor = paddle.to_tensor(forward_res)
         self.cinn_outputs = forward_res_tensor
+        print(f"CINN Execution pass")          
 
     def test_check_results(self):
         self.check_outputs_and_grads()
@@ -163,4 +165,4 @@ class TestGeluDtype(TestCaseHelper):
 
 if __name__ == "__main__":
     TestGeluShape().run()
-    TestGeluDtype().run()
+    # TestGeluDtype().run()

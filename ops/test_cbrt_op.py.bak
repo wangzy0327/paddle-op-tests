@@ -37,10 +37,9 @@ class TestCbrtOp(OpTest):
 
     def prepare_inputs(self):
         self.inputs = {
-            # "x": self.random(
-            #     self.case["shape"], self.case["dtype"], 0.0, 100.0
-            # ),
-            "x": np.full(self.case["shape"], 2.0, self.case["dtype"]),            
+            "x": self.random(
+                self.case["shape"], self.case["dtype"], 0.0, 100.0
+            ),
             "y": np.full(self.case["shape"], 0.333333, self.case["dtype"])
         }
         self.axis = np.random.choice([-1, 0])
@@ -112,10 +111,8 @@ class TestCbrtOp(OpTest):
         print(f"CINN Execution pass")        
         # prog = builder.build()
         res = self.get_cinn_output(prog, target, [x], [self.inputs["x"]], [out])
-        output = paddle.to_tensor(res, stop_gradient=False)
-        print(output)
-        self.cinn_outputs = output
-        # self.cinn_outputs = res
+
+        self.cinn_outputs = res
 
     def test_check_results(self):
         self.check_outputs_and_grads(

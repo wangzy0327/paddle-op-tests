@@ -36,14 +36,17 @@ class TestExpandDimsOp(OpTest):
         )
 
     def build_paddle_program(self, target):
+        print("Paddle running at ", target.arch)          
         x = paddle.to_tensor(self.x_np, stop_gradient=True)
         out = paddle.unsqueeze(x, self.case["axes_shape"])
 
         self.paddle_outputs = [out]
+        print(f"Paddle Execution pass")        
 
     # Note: If the forward and backward operators are run in the same program,
     # the forward result will be incorrect.
     def build_cinn_program(self, target):
+        print("CINN running at ", target.arch)  
         builder = NetBuilder("expand_dims")
         x = builder.create_input(
             self.nptype2cinntype(self.case["x_dtype"]),
@@ -56,6 +59,7 @@ class TestExpandDimsOp(OpTest):
         res = self.get_cinn_output(prog, target, [x], [self.x_np], [out])
 
         self.cinn_outputs = [res[0]]
+        print(f"CINN Execution pass")        
 
     def test_check_results(self):
         max_relative_error = (

@@ -49,7 +49,8 @@ class TestGaussianRandomOp(OpTest):
         execution_time = end_time - start_time
         # print(out)
         
-        print(f"Paddle Execution time: {execution_time:.6f} seconds")        
+        # print(f"Paddle Execution time: {execution_time:.6f} seconds")       
+        print(f"Paddle Execution pass")           
         self.paddle_outputs = [out]
 
     def build_cinn_program(self, target):
@@ -85,6 +86,7 @@ class TestGaussianRandomOp(OpTest):
         # res_tensor = paddle.to_tensor(res[0])
         # print(type(res_tensor))
         self.cinn_outputs = res_tensor
+        print(f"CINN Execution pass")          
 
     def test_check_results(self):
         # Due to the different random number generation numbers implemented

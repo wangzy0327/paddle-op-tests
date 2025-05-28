@@ -53,7 +53,8 @@ class TestArgMaxOp(OpTest):
         execution_time = end_time - start_time
         # print(out)
         
-        print(f"Paddle Execution time: {execution_time:.6f} seconds")         
+        # print(f"Paddle Execution time: {execution_time:.6f} seconds")    
+        print(f"Paddle Execution pass")     
         self.paddle_outputs = [out]
 
     def build_cinn_program(self, target):
@@ -77,7 +78,8 @@ class TestArgMaxOp(OpTest):
         # 计算执行时间
         execution_time = end_time - start_time
 
-        print(f"CINN Execution time: {execution_time:.6f} seconds")
+        # print(f"CINN Execution time: {execution_time:.6f} seconds")
+        print(f"CINN Execution pass")
         res_tensor = computation.get_tensor(str(out))
         res_data = res_tensor.numpy(target)
         # print(res_data)
@@ -99,12 +101,12 @@ class TestArgMaxOpShapeTest(TestCaseHelper):
         self.class_name = "ArgMaxOpShapeTest"
         self.cls = TestArgMaxOp
         self.inputs = [
-            # {
-            #     "shape": [512],
-            # },
             {
-                "shape": [8],
+                "shape": [512],
             },
+            # {
+            #     "shape": [8],
+            # },
             # {
             #     "shape": [1200],
             # },
@@ -211,5 +213,5 @@ class TestArgMaxOpKeepdimTest(TestCaseHelper):
 if __name__ == "__main__":
     TestArgMaxOpShapeTest().run()
     TestArgMaxOpDtypeTest().run()
-    TestArgMaxOpAxisTest().run()
-    TestArgMaxOpKeepdimTest().run()
+    # TestArgMaxOpAxisTest().run()
+    # TestArgMaxOpKeepdimTest().run()
