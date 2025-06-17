@@ -1,0 +1,3 @@
+op-pkg/** filter=lfs diff=lfs merge=lfs -text
+model-pkg/** filter=lfs diff=lfs merge=lfs -text
+unfuse-pkg/** filter=lfs diff=lfs merge=lfs -text
