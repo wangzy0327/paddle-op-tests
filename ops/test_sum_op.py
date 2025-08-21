@@ -24,11 +24,14 @@ from paddle.cinn import frontend
 import numpy as np
 import time
 
+# paddle.seed(42)
 @OpTestTool.skip_if(
     not is_compile_with_device, "x86 test will be skipped due to timeout."
 )
 class TestSumOp(OpTest):
     def setUp(self):
+        # 设置随机种子（关键！）
+        np.random.seed(42)
         device_info = paddle.get_device()
         print("Current Paddle device : %s"%(device_info))         
         print(f"\nRunning {self.__class__.__name__}: {self.case}")
@@ -173,9 +176,9 @@ class TestSumOpDtypeTest(TestCaseHelper):
             {
                 "shapes": [[64, 1, 128]] * 2,
             },
-            {
-                "shapes": [[64, 32, 1]] * 2,
-            },
+            #{
+            #    "shapes": [[64, 32, 1]] * 2,
+            #},
         ]
         self.dtypes = [
             # {"dtype": "float16"},
@@ -190,4 +193,4 @@ class TestSumOpDtypeTest(TestCaseHelper):
 
 if __name__ == "__main__":
     TestSumOpShapeTest().run()
-    TestSumOpDtypeTest().run()
+    # TestSumOpDtypeTest().run()

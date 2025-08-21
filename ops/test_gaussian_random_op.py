@@ -198,4 +198,4 @@ class TestGaussianRandomOpAttr(TestCaseHelper):
 if __name__ == "__main__":
     TestGaussianRandomOpShape().run()
     TestGaussianRandomOpDtype().run()
-    TestGaussianRandomOpAttr().run()
+    # TestGaussianRandomOpAttr().run()

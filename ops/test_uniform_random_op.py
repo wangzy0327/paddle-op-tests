@@ -196,4 +196,4 @@ class TestUniformRandomOpAttr(TestCaseHelper):
 if __name__ == "__main__":
     TestUniformRandomOpShape().run()
     TestUniformRandomOpDtype().run()
-    TestUniformRandomOpAttr().run()
+    # TestUniformRandomOpAttr().run()

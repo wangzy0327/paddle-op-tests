@@ -72,17 +72,14 @@ scripts=(
      "test_split_op.py" 
     "test_sqrt_op.py" 
     "test_squeeze_op.py"
-     "test_subtract_op.py" 
-    "test_sum_op.py" 
-    "test_tan_op.py" "test_tanh_op.py" 
-    "test_top_k_op.py"
+     "test_subtract_op.py"  
     "test_trunc_op.py"
-     "test_uniform_random_op.py" "test_fill_constant_op.py"
-    "test_sort_op.py" "test_split_op.py" "test_sqrt_op.py" "test_squeeze_op.py" "test_subtract_op.py" "test_sum_op.py"
+     "test_uniform_random_op.py"
+    "test_sort_op.py" "test_sum_op.py"
     "test_tan_op.py" "test_tanh_op.py" "test_top_k_op.py" 
     "test_transpose_op.py" 
     "test_fill_constant_op.py"
-     "test_trunc_op.py" "test_uniform_random_op.py"  
+     "test_trunc_op.py"  
 )
 
 # 日志文件
